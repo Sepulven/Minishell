@@ -1,0 +1,91 @@
+
+<command_line> : <and_or> ; <command_line>
+				|	<and_or> ;
+				|	<and_or>
+				;
+
+<and_or> : <task> && <and_or>
+		 | <task> || <and_or>
+         | <task>
+		 ;
+
+<task> : <exec> | <task>
+	   | <exec>
+	   ;
+
+<exec> : <command> <redir>
+	   | <command>
+	   | NULL
+	   ;
+
+<command> : [name] <argument_list>
+		  |	[name]
+		  ;
+
+<argument_list> : <argument> <argument>
+				| NULL
+				;
+
+<argument> : //Peliculas, aspas variables expands.
+
+<redir>	 : <redir_in> <redir_out>
+		 | <redir_out> <redir_in>
+		 | <redir_out>
+		 ;
+
+<redir_in> : < [filename]
+		   | << [filename]
+		   ;
+
+<redir_out> : > [filename]
+			| >> [filename]
+			;
+
+NOTE(03/04/2023)
+
+
+Goal implement these (1):
+
+• Handle ’ (single quote) which should prevent the shell from interpreting the meta-
+characters in the quoted sequence.
+• Handle " (double quote) which should prevent the shell from interpreting the meta-
+characters in the quoted sequence except for $ (dollar sign).
+
+
+List:
+The semicolon (;), ampersand (&), and bar ampersand (|&) have a lower priority than the double ampersand (&&) and double bar (||).
+The ;, &, and |& symbols have equal priority among themselves. 
+The && and || symbols are equal in priority. One or more newline characters can be used instead of a semicolon to delimit two commands in a list.
+
+Metacharacters:
+Each metacharacter has a special meaning to the shell and causes termination of a word unless it is quoted. 
+Metacharacters are: pipe (|), ampersand (&), semicolon (;), less-than sign (<), greater-than sign (>),
+ left parenthesis ((), right parenthesis ()), dollar sign ($), backquote (`), backslash (\), right quote ('),
+double quotation marks ("), newline character, space character, and tab character. 
+All characters enclosed between single quotation marks are considered quoted and are interpreted literally by the shell.
+The special meaning of metacharacters is retained if not quoted. (Metacharacters are also known as parser metacharacters in the C shell.)
+
+| & ; < > ( ) $ ` \ ' " 
+
+
+Observation:
+ex1:
+ echo '"$t'"" -> "$t
+ex2:
+echo "$t$PATH" -> it is string side by side
+ex3:
+"""echo"""  """hello""" -> hello
+ex4:
+export t=l
+"$t"s -> ls
+ex5:
+"e"c"h""o" teste
+ex6:
+"l"$s -> ls
+Goal implement the correct pipe separator (2);
+
+Goal implemente these (3):
+
+◦ ctrl-C displays a new prompt on a new line.
+◦ ctrl-D exits the shell.
+◦ ctrl-\ does nothing.
