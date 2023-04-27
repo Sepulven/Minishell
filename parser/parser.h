@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 16:58:49 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:48:59 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ int				check_words(char const *s);
 int				pos_of_c_in_str(char *str, char *c);
 
 // FIM PARSER UTILS //
-
-/*expander.c*/
-char			*get_env_value(char *var_name, char **envp);
-char			*expander(char *str, char **envp);
 
 /* !Funcoes libft alteradas ! */
 char			*ft_substr_mini(char const *s, \

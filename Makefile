@@ -6,7 +6,7 @@
 #    By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 14:26:54 by mvicente          #+#    #+#              #
-#    Updated: 2023/04/27 16:56:36 by asepulve         ###   ########.fr        #
+#    Updated: 2023/04/27 23:54:24 by asepulve         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 RM = rm -f
 
-EXPANDER_SRC	= expander.c
+EXPANDER_SRC	= expander.c utils_expander.c
 
 LEXER_SRC		= lexer.c formatter.c utils_lexer_1.c
 
