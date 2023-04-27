@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 17:08:45 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:29:20 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ void	minishell(char *str)
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	print_parser();
+	//print_parser();
 	if (parser_list)
 		execute(parser_list, com);
-	if (tokens)
-		free_tokens(tokens);
 	free_lst(parser_list);
 }
 

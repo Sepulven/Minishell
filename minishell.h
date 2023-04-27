@@ -34,7 +34,7 @@
 
 /* aux.c ! Funcoes libft alteradas ! */
 char	*ft_substr_mini(char const *s, unsigned int start, unsigned int end);
-int 	ft_strcmp_mini(char *a, char *b);
+int		ft_strcmp_mini(char *a, char *b);
 void	print_char_matrix(char **matrix);
 char	**dup_env(char **envp);
 void	free_envp(char **env);

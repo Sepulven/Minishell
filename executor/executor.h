@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 12:14:49 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:24:04 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "../utils/utils.h"
 # include "../libft/libft.h"
 # include "../parser/parser.h"
+# include "../minishell.h"
 
 # include <unistd.h>
 # include <stdio.h>
