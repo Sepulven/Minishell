@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/24 16:29:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:39:33 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,29 @@ void	command_echo(char **param)
 {
 	int	n;
 	int	i;
+	int	f;
 
 	n = 0;
 	i = 1;
 	while (param[i])
 	{
+		f = 0;
 		while (param[i] && check_flag_n(param[i]) == 1)
 		{
 			n = 1;
 			i++;
 		}
-		ft_printf("%s", param[i]);
+		while (param[i][f])
+		{
+			if (param[i][f] == '$' && param[i][f + 1] == '?')
+			{
+				ft_printf("%i", g_exit_s);
+				f++;
+			}
+			else
+				ft_printf("%c", param[i][f]);
+			f++;
+		}
 		if (param[i + 1])
 			write(1, " ", 1);
 		i++;

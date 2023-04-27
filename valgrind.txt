@@ -1,0 +1,186 @@
+==688977== Memcheck, a memory error detector
+==688977== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==688977== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==688977== Command: ./minishell
+==688977== 
+--688977-- Valgrind options:
+--688977--    --verbose
+--688977--    --leak-check=full
+--688977--    --show-leak-kinds=all
+--688977-- Contents of /proc/version:
+--688977--   Linux version 5.19.11-t2 (root@e2997f705b9f) (gcc (Ubuntu 11.2.0-19ubuntu1) 11.2.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #2 SMP PREEMPT_DYNAMIC Mon Sep 26 17:42:07 UTC 2022
+--688977-- 
+--688977-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--688977-- Page sizes: currently 4096, max supported 4096
+--688977-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--688977-- Reading syms from /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--688977--   Considering /usr/lib/debug/.build-id/45/87364908de169dec62ffa538170118c1c3a078.debug ..
+--688977--   .. build-id is valid
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--688977--    object doesn't have a symbol table
+--688977--    object doesn't have a dynamic symbol table
+--688977-- Scheduler: using generic scheduler lock implementation.
+--688977-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==688977== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-688977-by-mvicente-on-???
+==688977== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-688977-by-mvicente-on-???
+==688977== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-688977-by-mvicente-on-???
+==688977== 
+==688977== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==688977== don't want to do, unless you know exactly what you're doing,
+==688977== or are doing some strange experiment):
+==688977==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=688977 ...command...
+==688977== 
+==688977== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==688977==   /path/to/gdb ./minishell
+==688977== and then give GDB the following command
+==688977==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=688977
+==688977== --pid is optional if only one valgrind process is running
+==688977== 
+--688977-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--688977-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--688977--    object doesn't have a symbol table
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--688977--    object doesn't have a symbol table
+==688977== WARNING: new redirection conflicts with existing -- ignoring it
+--688977--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--688977--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--688977-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--688977-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/libreadline.so.8.0
+--688977--    object doesn't have a symbol table
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--688977--   Considering /usr/lib/debug/.build-id/18/78e6b475720c7c51969e69ab2d276fae6d1dee.debug ..
+--688977--   .. build-id is valid
+--688977-- Reading syms from /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+--688977--    object doesn't have a symbol table
+--688977-- REDIR: 0x4953480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49537b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49520a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49527e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4954c50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x496fce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x496f820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49535e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x496f7e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49521d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4970f50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x496f860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x495bbb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49533d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x496f930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4952ae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4953750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49536f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4954c90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49538a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49526b0 (libc.so.6:strncat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49e0850 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x49532f0 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--688977-- REDIR: 0x4a3b500 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--688977-- REDIR: 0x494d0e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+==688977== Invalid write of size 8
+==688977==    at 0x406455: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+--688977-- REDIR: 0x494d6d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==688977== Invalid read of size 8
+==688977==    at 0x4028F3: get_paths (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x403430: parser (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x40695A: minishell (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406A22: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+==688997== Syscall param execve(envp) points to unaddressable byte(s)
+==688997==    at 0x499617B: execve (syscall-template.S:78)
+==688997==    by 0x404AE1: execute_one (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997==    by 0x404B50: execute (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997==    by 0x406985: minishell (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997==    by 0x406A22: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688997==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688997==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688997== 
+==688977== Warning: invalid file descriptor -1 in syscall read()
+==688977==    at 0x49C0FD2: read (read.c:26)
+==688977==    by 0x407719: get_next_line (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406A2C: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== Invalid read of size 8
+==688977==    at 0x40648B: free_envp (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x405505: command_exit (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4043ED: check_builtin_one (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x404B3E: execute (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406985: minishell (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406A22: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+==688977== 
+==688977== HEAP SUMMARY:
+==688977==     in use at exit: 0 bytes in 0 blocks
+==688977==   total heap usage: 172 allocs, 172 frees, 4,838 bytes allocated
+==688977== 
+==688977== All heap blocks were freed -- no leaks are possible
+==688977== 
+==688977== ERROR SUMMARY: 4 errors from 3 contexts (suppressed: 0 from 0)
+==688977== 
+==688977== 1 errors in context 1 of 3:
+==688977== Invalid read of size 8
+==688977==    at 0x40648B: free_envp (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x405505: command_exit (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4043ED: check_builtin_one (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x404B3E: execute (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406985: minishell (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406A22: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+==688977== 
+==688977== 1 errors in context 2 of 3:
+==688977== Invalid write of size 8
+==688977==    at 0x406455: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+==688977== 
+==688977== 2 errors in context 3 of 3:
+==688977== Invalid read of size 8
+==688977==    at 0x4028F3: get_paths (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x403430: parser (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x40695A: minishell (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x406A22: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==  Address 0x4ad7290 is 0 bytes after a block of size 592 alloc'd
+==688977==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==688977==    by 0x406407: dup_env (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977==    by 0x4069D1: main (in /sgoinfre/goinfre/Perso/mvicente/Minishell/minishell)
+==688977== 
+==688977== ERROR SUMMARY: 4 errors from 3 contexts (suppressed: 0 from 0)

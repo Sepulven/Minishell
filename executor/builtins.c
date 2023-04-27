@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 12:11:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:47:24 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,11 @@ void	check_builtin(t_command_list *lst)
 		command_env(lst->param);
 		exit(g_exit_s);
 	}
+	else if (ft_strcmp(lst->command, "echo") == 0)
+	{
+		command_echo(lst->param);
+		exit(g_exit_s);
+	}
 }
 
 int	check_builtin_one(t_command_list *lst)
@@ -121,7 +126,5 @@ int	check_builtin_one(t_command_list *lst)
 		command_echo(lst->param);
 	else
 		flag = -1;
-	// if (flag == 0)
-	// 	printf("status %i\n", g_exit_s);
 	return (flag);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 16:05:23 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:36:09 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,14 @@ char	*expander(char *str, char **envp)
 		return (NULL);
 	while (str[i])
 	{
-		if (str[i] == '\'')
+		if (str[i] == '$' && str[i + 1] == '?')
+		{
+			new_str[j] = str[i];
+			new_str[j + 1] = str[i + 1];
+			i = i + 2;
+			j = j + 2;
+		}
+		else if (str[i] == '\'')
 		{
 			single_quotes_len += jump_quotes(&str[i]);
 			ft_strlcat(new_str, &str[i], ft_strlen(new_str) + single_quotes_len + 2);
