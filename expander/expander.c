@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 17:36:09 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:03:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ static char	*get_var_name(char *str)
 	char	*var_name;
 	int		i;
 
-	if (!str || (!ft_isalpha(str[0]) && str[0] != '_'))
+	if (!str || (!ft_isalpha(str[0]) && str[0] != '_' && str[0] != '?'))
 		return (ft_strdup(""));
+	if (str[0] == '?')
+		return (ft_strdup("?"));
 	i = 0;
 	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_'))
 		i++;
@@ -67,7 +69,10 @@ int rest, char **envp)
 	char	*env_value;
 	char	*new_str;
 
-	env_value = get_env_value(var_name, envp);
+	if (var_name[0] == '?')
+		env_value = ft_itoa(g_exit_s);
+	else
+		env_value = get_env_value(var_name, envp);
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 	ft_strlen(current) + rest + 2, sizeof (char));
 	ft_strlcat(new_str, current, ft_strlen(current) + 1);
@@ -108,17 +113,11 @@ char	*expander(char *str, char **envp)
 		return (NULL);
 	while (str[i])
 	{
-		if (str[i] == '$' && str[i + 1] == '?')
+		if (str[i] == '\'')
 		{
-			new_str[j] = str[i];
-			new_str[j + 1] = str[i + 1];
-			i = i + 2;
-			j = j + 2;
-		}
-		else if (str[i] == '\'')
-		{
-			single_quotes_len += jump_quotes(&str[i]);
-			ft_strlcat(new_str, &str[i], ft_strlen(new_str) + single_quotes_len + 2);
+			single_quotes_len = jump_quotes(&str[i]);
+			ft_strlcat(new_str, &str[i], ft_strlen(new_str) \
+			+ single_quotes_len + 1);
 			j += single_quotes_len;
 			i += single_quotes_len;
 		}

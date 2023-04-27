@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:02:08 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 17:23:42 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 21:58:04 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ char	**dup_env(char **envp)
 	count = 0;
 	while (envp[count])
 		count++;
-	env = malloc(sizeof(char *) * count);
+	env = ft_calloc(sizeof(char *), count + 1);
+	if (!env)
+		return (NULL);
 	while (envp[i])
 	{
 		env[i] = ft_strdup(envp[i]);

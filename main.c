@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 17:29:20 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:04:34 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	minishell(char *str)
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	//print_parser();
+	// print_parser(parser_list);
 	if (parser_list)
 		execute(parser_list, com);
 	free_lst(parser_list);
@@ -72,50 +72,6 @@ int	main(int argc, char **argv, char **envp)
 		str = get_next_line(0);
 		str[ft_strlen(str)] = '\0'; // O get_next_line retorna com o breakline
 		minishell(str);
-		// str = expander(str, envp);
-		// com = get_com_number(&str);
-		// if (!str)
-		// 	exit(EXIT_FAILURE);
-		// tokens = lexer(str, com);
-		// if (tokens)
-		// 	print_lexer(tokens);
-		// if (tokens)
-		// 	free(tokens);
 		get_next_line(-1);
 	}
 }
-
-/*
-int	main(int argc, char **argv, char **envp)
-{
-	char	*str;
-	int		com;
-	str = NULL;
-
-	(void)argc;
-	(void)argv;
-	(void)envp;
-	com = 0;
-	// *env() = dup_env(envp);
-	while (1)
-	{
-		str = readline("myshell:> ");
-		ft_printf("myshell:> ");
-		str = get_next_line(0);
-		ft_printf("In terminal: %s", str);
-		str = expander(str, envp);
-		ft_printf("After expander: %s", str);
-		str = formatter(str);
-		ft_printf("After unquote: %s\n", str);
-
-		com = get_com_number(str);
-		str = expander(str, *env());
-		free(str);
-		get_next_line(-1);
-		ft_printf("%s\n", expand_var_env(str, envp));
-		add_history(str);
-		minishell(str);
-		free(str); 
-	}
-}
-*/
