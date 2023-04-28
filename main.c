@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 22:33:51 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:48:52 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	minishell(char *str)
 	str = expander(str);
 	token_num = count_tokens_in_command(str);
 	tokens = lexer(str, token_num);
-	print_lexer(tokens);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;

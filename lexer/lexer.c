@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:44:54 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 21:57:17 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:53:02 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ static char	**command_to_tokens(char *str)
 				i += 1 - (str[i] == '\'' || str[i] == '"');
 		}
 		if (__token != i)
-			command_tokens[j++] = create_token(str, __token, \
-			i - (!!ft_isredirects(&str[i])));
+		{
+			// ft_printf("start %d end %d i %d\n", __token, i, i);
+			command_tokens[j++] = create_token(str, __token, i);
+			// ft_printf("%s\n", command_tokens[j - 1]);
+		}
 		__token = i;
 		i += jump_white_spaces(&str[i]);
 		i += ft_isredirects(&str[i]);
