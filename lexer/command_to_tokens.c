@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 23:39:59 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/29 00:10:43 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "./lexer.h"
 
 /*
 	* Receives the token address, where it starts and ends.
@@ -44,52 +44,48 @@ static char	*create_token(char *str, int start, int end)
 	return (token);
 }
 
-static char	*command_to_tokens_util(char *str, int *__token, int *i)
+static char	**command_to_tokens_util(char **command_tokens, char *str, \
+			int __token, int *j)
 {
-	char	*command_tokens;
+	int		i;
 
-	command_tokens = NULL;
-	while (str[(*i)] && !ft_iswhitespace(str[(*i)]) \
-		&& !ft_isredirects(&str[(*i)]))
+	i = 0;
+	i += jump_white_spaces(&str[i]);
+	while (str[i])
 	{
-		if (str[(*i)] == '"' || str[(*i)] == '\'')
-			*i += jump_quotes(&str[(*i)]);
-		else
-			*i += 1 - (str[(*i)] == '\'' || str[(*i)] == '"');
+		while (str[i] && !ft_iswhitespace(str[i]) \
+			&& !ft_isredirects(&str[i]))
+		{
+			if (str[i] == '"' || str[i] == '\'')
+				i += jump_quotes(&str[i]);
+			else
+				i += 1 - (str[i] == '\'' || str[i] == '"');
+		}
+		if (__token != i)
+			command_tokens[(*j)++] = create_token(str, __token, i);
+		__token = i;
+		i += jump_white_spaces(&str[i]);
+		i += ft_isredirects(&str[i]);
+		i += jump_white_spaces(&str[i]);
 	}
-	if (*__token != *i)
-		command_tokens = create_token(str, *__token, *i);
-	*__token = *i;
-	*i += jump_white_spaces(&str[(*i)]);
-	*i += ft_isredirects(&str[(*i)]);
-	*i += jump_white_spaces(&str[(*i)]);
 	return (command_tokens);
 }
 
 char	**command_to_tokens(char *str)
 {
-	int		i;
-	int		j;
-	int		__token;
 	size_t	number_tokens;
 	char	**command_tokens;
+	int		j;
 
+	j = 0;
 	if (!str)
 		return (NULL);
 	number_tokens = count_tokens_in_command(str);
 	command_tokens = ft_calloc(number_tokens + 1, sizeof (char *));
 	if (!command_tokens)
 		return (NULL);
-	i = 0;
-	j = 0;
-	__token = 0;
-	i += jump_white_spaces(&str[i]);
-	while (str[i])
-	{
-		command_tokens[j] = command_to_tokens_util(str, &i, &__token);
-		j += (command_tokens[j] != NULL);
-	}
+	command_tokens = command_to_tokens_util(command_tokens, str, 0, &j);
 	if (str)
 		free(str);
-	return (command_tokens);
+	return (ft_protectmatrix(command_tokens, j));
 }
