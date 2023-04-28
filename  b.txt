@@ -1,0 +1,18 @@
+aux.c
+aux.o
+ b.txt
+executor
+expander
+get_com_number.c
+get_com_number.o
+lexer
+libft
+main.c
+main.o
+Makefile
+minishell
+minishell.h
+parser
+syntatic_grammar.txt
+utils
+valgrind.txt

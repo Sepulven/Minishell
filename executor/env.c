@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 01:44:17 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 23:57:23 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:26:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	free_env(t_env *env)
 		free(env->name);
 		if (env->value)
 			free(env->value);
+		free(env);
 		env = ptr;
 	}
 }
@@ -29,6 +30,7 @@ void	free_env(t_env *env)
 void	command_env(char **param)
 {
 	t_env	*env;
+	t_env	*aux;
 
 	g_exit_s = 0;
 	if (param[1])
@@ -37,14 +39,14 @@ void	command_env(char **param)
 		return ;
 	}
 	env = get_env();
+	aux = env;
 	while (env)
 	{
 		if (env->value)
 			ft_printf("%s=%s\n", env->name, env->value);
 		env = env->next;
 	}
-	free_env(env);
-	free(env);
+	free_env(aux);
 }
 
 void	initialize_env(t_env **new)
@@ -53,6 +55,7 @@ void	initialize_env(t_env **new)
 	(*new)->value = 0;
 	(*new)->next = 0;
 }
+
 
 t_env	*get_env(void)
 {

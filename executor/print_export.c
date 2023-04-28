@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:35:54 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 13:12:25 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:28:31 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	printf_env(char **env)
 t_env	*lst_delete(t_env *lst, char *node_del)
 {
 	t_env	*new_lst;
+	t_env	*aux;
 
 	new_lst = lst;
 	if (ft_strcmp(lst->name, node_del) == 0)
@@ -39,7 +40,12 @@ t_env	*lst_delete(t_env *lst, char *node_del)
 	{
 		if (ft_strcmp(lst->next->name, node_del) == 0)
 		{
-			lst->next = lst->next->next;
+			aux = lst->next->next;
+			free(lst->next->name);
+			if (lst->next->value)
+				free(lst->next->value);
+			free(lst->next);
+			lst->next = aux;
 			lst = new_lst;
 			return (lst);
 		}
