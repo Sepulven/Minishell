@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:52 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 16:05:44 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:37:57 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	append(char *token)
 
 	buff = ft_strdup(token);
 	buff[ft_strlen(buff) - 1] = '\0';
-	file_name = ft_strdup(&buff[3]);
+	file_name = ft_strdup(&buff[3 + ft_iswhitespace(buff[3])]);
 	fd = open(file_name, O_RDWR | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{

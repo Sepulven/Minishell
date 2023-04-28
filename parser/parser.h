@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 23:48:59 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:24:01 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 /*parser_lexer_utils.c*/
 int				check_words(char const *s);
 int				pos_of_c_in_str(char *str, char *c);
+void			initialize_lst(t_command_list **new);
 
 // FIM PARSER UTILS //
 
@@ -40,7 +41,6 @@ int				ft_strcmp_mini(char *a, char *b);
 /*parser.c*/
 t_command_list	*parser(char ***tokens, char **envp);
 t_command_list	*get_node(char **command_token, char **paths);
-void			initialize_lst(t_command_list **new);
 
 /*redirect_outf_inf.c*/
 int				redirect_inf(char *token);

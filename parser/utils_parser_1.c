@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:01:55 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 14:45:11 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:23:43 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,12 @@ int	check_words(char const *s)
 	return (0);
 }
 
+void	initialize_lst(t_command_list **new)
+{
+	(*new)->command = 0;
+	(*new)->param = ft_calloc(1, sizeof (char *));
+	(*new)->param[0] = NULL;
+	(*new)->inf = 0;
+	(*new)->outf = 0;
+	(*new)->next = 0;
+}

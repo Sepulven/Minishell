@@ -33,14 +33,15 @@
 # include <sys/wait.h>
 
 /* aux.c ! Funcoes libft alteradas ! */
-char	*ft_substr_mini(char const *s, unsigned int start, unsigned int end);
-int		ft_strcmp_mini(char *a, char *b);
-void	print_char_matrix(char **matrix);
-char	**dup_env(char **envp);
-void	free_envp(char **env);
+char			*ft_substr_mini(char const *s, unsigned int start, \
+				unsigned int end);
+int				ft_strcmp_mini(char *a, char *b);
+void			print_char_matrix(char **matrix);
+char			**dup_env(char **envp);
+void			free_envp(char **env);
 
 /*get_com_number.c*/
-int		get_com_number(char **str);
+int				get_com_number(char **str);
 
 int				check_words(char const *s);
 

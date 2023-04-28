@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:47:26 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 16:03:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:28:24 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static int	isforbiddenc(char c)
 {
 	return (c == ';' || c == '&');
 }
-
 
 /*
 TODO: Quebrar esta função em dois, esta validando, alterando a string, e contando os comandos;

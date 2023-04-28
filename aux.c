@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:02:08 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 21:58:04 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 20:28:21 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	free_envp(char **env)
 		free(env);
 }
 
-
 char	*ft_substr_mini(char const *s, unsigned int start, unsigned int end)
 {
 	char			*ptr;
@@ -85,4 +84,3 @@ int	ft_strcmp_mini(char *a, char *b)
 	}
 	return (1);
 }
-

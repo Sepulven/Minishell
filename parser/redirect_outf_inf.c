@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:10:27 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/21 16:27:10 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:37:31 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	redirect_outf(char *token)
 
 	buff = ft_strdup(token);
 	buff[ft_strlen(buff) - 1] = '\0';
-	file_name = ft_strdup(&buff[2]);
+	file_name = ft_strdup(&buff[2 + ft_iswhitespace(buff[2])]);
 	fd = open(file_name, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	if (fd == -1)
 	{
@@ -28,7 +28,6 @@ int	redirect_outf(char *token)
 		return (-1);
 	}
 	free(buff);
-	printf("outf %i\n", fd);
 	return (fd);
 }
 
@@ -40,7 +39,7 @@ int	redirect_inf(char *token)
 
 	buff = ft_strdup(token);
 	buff[ft_strlen(buff) - 1] = '\0';
-	file_name = ft_strdup(&buff[2]);
+	file_name = ft_strdup(&buff[2 + ft_iswhitespace(buff[2])]);
 	fd = open(file_name, O_RDONLY, 0444);
 	if (fd == -1)
 	{

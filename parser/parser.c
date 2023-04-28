@@ -6,22 +6,12 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 18:26:44 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:52:59 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parser.h"
 #include "../minishell.h"
-
-void	initialize_lst(t_command_list **new)
-{
-	(*new)->command = 0;
-	(*new)->param = ft_calloc(1, sizeof (char *));
-	(*new)->param[0] = NULL;
-	(*new)->inf = 0;
-	(*new)->outf = 0;
-	(*new)->next = 0;
-}
 
 /*
 	* Não é preciso dar free no command token, pois ja damos free fora do escopo.
@@ -69,6 +59,16 @@ char	**add_param(char **matrix, char *param)
 	return (new_matrix);
 }
 
+static void	treat_redirects(t_command_list *new, char *command_token)
+{
+	if (!ft_strncmp(command_token, ">>", 2))
+		new->outf = append(command_token);
+	else if (!ft_strncmp(command_token, "<", 1))
+		new->inf = redirect_inf(command_token);
+	else if (!ft_strncmp(command_token, ">", 1))
+		new->outf = redirect_outf(command_token);
+}
+
 /*
 	* Receberemos uma matrix com os tokens do repesctivo comando e o path.
 	
@@ -95,14 +95,7 @@ t_command_list	*get_node(char **command_token, char **paths)
 		else if (command_token[i][0] == '"' && ft_strlen(command_token[i]) > 2)
 			new->param = add_param(new->param, command_token[i]);
 		else if (ft_isredirects(command_token[i]))
-		{
-			if (!ft_strncmp(command_token[i], ">>", 2))
-				new->outf = append(command_token[i]);
-			else if (!ft_strncmp(command_token[i], "<", 1))
-				new->inf = redirect_inf(command_token[i]);
-			else if (!ft_strncmp(command_token[i], ">", 1))
-				new->outf = redirect_outf(command_token[i]);
-		}
+			treat_redirects(new, command_token[i]);
 		i++;
 	}
 	return (new);
@@ -133,12 +126,7 @@ t_command_list	*parser(char ***tokens, char **envp)
 	{
 		node = get_node(tokens[i++], paths);
 		if (!node)
-		{
-			// * Tenho de tratar das leaks,
-			// * dar free do que havia sido previamente alocado na string;
 			exit(EXIT_FAILURE);
-			return (NULL);
-		}
 		__ft_lstadd_back(&lst, node);
 	}
 	free_double(paths);

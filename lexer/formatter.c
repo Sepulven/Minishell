@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:47:01 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 00:28:48 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 19:30:20 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,44 +33,74 @@
 	* Preciso refactorar para colocar em menos linhas;
 	* Vamos dar trim dos seguintes caracteres: ( ,",',|)
 */
+
+static void	quotes_case(char **formatted, char *unformatted, \
+				int str_size, int i)
+{
+	char	*str;
+
+	str = ft_calloc((str_size - 2) + 1, sizeof (char));
+	if (!str)
+		return ;
+	ft_strlcpy(str, &unformatted[i + 1], str_size - 1);
+	*formatted = ft_strjoin_free(*formatted, str, "s1s2");
+}
+
+static void	str_out_quotes_case(char **formatted, char *unformatted, \
+			int str_size, int i)
+{
+	char	*str;
+
+	str = ft_calloc(str_size + 1, sizeof (char));
+	if (!str)
+		return ;
+	ft_strlcpy(str, &unformatted[i], str_size + 1);
+	*formatted = ft_strjoin_free(*formatted, str, "s1s2");
+}
+
+static char	*prepare_unformatted(char *unformatted, int *str_size, int *i,\
+			char **formatted)
+{
+	char	*str;
+
+	*str_size = 0;
+	*i = 0;
+	*formatted = ft_strdup("");
+	if (!formatted)
+		return (NULL);
+	str = ft_strtrim(unformatted, " \n\t\f\r");
+	if (!str)
+		return (NULL);
+	free(unformatted);
+	unformatted = ft_strdup(str);
+	if (!unformatted)
+	{
+		free(str);
+		return (NULL);
+	}
+	free(str);
+	return (unformatted);
+}
+
 char	*formatter(char *unformatted)
 {
 	char	*formatted;
-	char	*str;
 	int		i;
 	int		str_size;
 
-	str_size = 0;
-	i = 0;
-	str = ft_strtrim(unformatted, " \n\t\f\r");
-	free(unformatted);
-	unformatted = ft_strdup(str);
-	free(str);
-	formatted = ft_strdup("");
+	unformatted = prepare_unformatted(unformatted, &str_size, &i, &formatted);
 	while (unformatted[i])
 	{
 		str_size = jump_quotes(&unformatted[i]);
-		if (str_size) //  * Tenho sempre que levar em consideração o string size por conta das aspas.
-		{
-			str = ft_calloc((str_size - 2) + 1, sizeof (char));
-			if (!str)
-				return (NULL);
-			ft_strlcpy(str, &unformatted[i + 1], str_size - 1);
-			formatted = ft_strjoin_free(formatted, str, "s1s2");
-		}
+		if (str_size)
+			quotes_case(&formatted, unformatted, str_size, i);
 		i = i + str_size;
 		str_size = jump_str_out_quotes(&unformatted[i]);
-		if (str_size) // * Str out quotes case
-		{
-			str = ft_calloc(str_size + 1, sizeof (char));
-			if (!str)
-				return (NULL);
-			ft_strlcpy(str, &unformatted[i], str_size + 1);
-			formatted = ft_strjoin_free(formatted, str, "s1s2");
-		}
+		if (str_size)
+			str_out_quotes_case(&formatted, unformatted, str_size, i);
 		i = i + str_size;
 		str_size = jump_white_spaces(&unformatted[i]);
-		if (str_size) // * White space case 
+		if (str_size)
 			formatted = ft_strjoin_free(formatted, " ", "s1");
 		i = i + str_size;
 	}
