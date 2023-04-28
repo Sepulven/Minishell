@@ -21,7 +21,7 @@ RM = rm -f
 
 EXPANDER_SRC	= expander.c utils_expander.c
 
-LEXER_SRC		= lexer.c formatter.c utils_lexer_1.c
+LEXER_SRC		= lexer.c formatter.c utils_lexer_1.c command_to_tokens.c
 
 PARSER_SRC		= env_utils.c free_parser.c heredoc.c parser.c\
 				  utils_parser_1.c redirect_outf_inf.c redirect_append.c

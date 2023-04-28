@@ -1,0 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command_to_tokens.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
+/*   Updated: 2023/04/28 23:39:59 by asepulve         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "lexer.h"
+
+/*
+	* Receives the token address, where it starts and ends.
+	* Create the token based on the rules. Add quotes.
+	* Return te token if the process works, and NULL if it doesn't;
+*/
+static char	*create_token(char *str, int start, int end)
+{
+	char	*token;
+	char	*formatted;
+	int		i;
+
+	i = 0;
+	token = ft_calloc(end - start + 3, sizeof (char));
+	if (!token)
+		return (NULL);
+	ft_strlcpy(token, &str[start], end - start + 1);
+	formatted = formatter(token);
+	token = ft_calloc(ft_strlen(formatted) + 3, sizeof (char));
+	if (!token)
+	{
+		free(formatted);
+		return (NULL);
+	}
+	ft_strlcat(token, "\"", 2);
+	ft_strlcat(token, formatted, ft_strlen(formatted) + 2);
+	ft_strlcat(token, "\"", ft_strlen(formatted) + 3);
+	i = ft_isredirects(&token[1]);
+	ft_swap(&token[0], &token[i]);
+	free(formatted);
+	return (token);
+}
+
+static char	*command_to_tokens_util(char *str, int *__token, int *i)
+{
+	char	*command_tokens;
+
+	command_tokens = NULL;
+	while (str[(*i)] && !ft_iswhitespace(str[(*i)]) \
+		&& !ft_isredirects(&str[(*i)]))
+	{
+		if (str[(*i)] == '"' || str[(*i)] == '\'')
+			*i += jump_quotes(&str[(*i)]);
+		else
+			*i += 1 - (str[(*i)] == '\'' || str[(*i)] == '"');
+	}
+	if (*__token != *i)
+		command_tokens = create_token(str, *__token, *i);
+	*__token = *i;
+	*i += jump_white_spaces(&str[(*i)]);
+	*i += ft_isredirects(&str[(*i)]);
+	*i += jump_white_spaces(&str[(*i)]);
+	return (command_tokens);
+}
+
+char	**command_to_tokens(char *str)
+{
+	int		i;
+	int		j;
+	int		__token;
+	size_t	number_tokens;
+	char	**command_tokens;
+
+	if (!str)
+		return (NULL);
+	number_tokens = count_tokens_in_command(str);
+	command_tokens = ft_calloc(number_tokens + 1, sizeof (char *));
+	if (!command_tokens)
+		return (NULL);
+	i = 0;
+	j = 0;
+	__token = 0;
+	i += jump_white_spaces(&str[i]);
+	while (str[i])
+	{
+		command_tokens[j] = command_to_tokens_util(str, &i, &__token);
+		j += (command_tokens[j] != NULL);
+	}
+	if (str)
+		free(str);
+	return (command_tokens);
+}

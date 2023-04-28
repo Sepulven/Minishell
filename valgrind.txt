@@ -1,161 +1,156 @@
-==61673== Memcheck, a memory error detector
-==61673== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==61673== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
-==61673== Command: ./minishell
-==61673== 
---61673-- Valgrind options:
---61673--    --verbose
---61673--    --leak-check=full
---61673--    --show-leak-kinds=all
---61673-- Contents of /proc/version:
---61673--   Linux version 5.19.0-41-generic (buildd@lcy02-amd64-045) (x86_64-linux-gnu-gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #42~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 18 17:40:00 UTC 2
---61673-- 
---61673-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
---61673-- Page sizes: currently 4096, max supported 4096
---61673-- Valgrind library directory: /usr/libexec/valgrind
---61673-- Reading syms from /home/asepulve/Desktop/Minishell/minishell
---61673-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
---61673--   Considering /usr/lib/debug/.build-id/61/ef896a699bb1c2e4e231642b2e1688b2f1a61e.debug ..
---61673--   .. build-id is valid
---61673-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
---61673--    object doesn't have a symbol table
---61673--    object doesn't have a dynamic symbol table
---61673-- Scheduler: using generic scheduler lock implementation.
---61673-- Reading suppressions file: /usr/libexec/valgrind/default.supp
-==61673== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-61673-by-asepulve-on-???
-==61673== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-61673-by-asepulve-on-???
-==61673== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-61673-by-asepulve-on-???
-==61673== 
-==61673== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==61673== don't want to do, unless you know exactly what you're doing,
-==61673== or are doing some strange experiment):
-==61673==   /usr/bin/vgdb --pid=61673 ...command...
-==61673== 
-==61673== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==61673==   /path/to/gdb ./minishell
-==61673== and then give GDB the following command
-==61673==   target remote | /usr/bin/vgdb --pid=61673
-==61673== --pid is optional if only one valgrind process is running
-==61673== 
---61673-- REDIR: 0x402aa60 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
---61673-- REDIR: 0x402a830 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
---61673-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
---61673--    object doesn't have a symbol table
---61673-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
---61673--    object doesn't have a symbol table
-==61673== WARNING: new redirection conflicts with existing -- ignoring it
---61673--     old: 0x0402aa60 (strlen              ) R-> (0000.0) 0x580bcec2 ???
---61673--     new: 0x0402aa60 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
---61673-- REDIR: 0x4027240 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
---61673-- REDIR: 0x402afc0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
---61673-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
---61673--   Considering /usr/lib/debug/.build-id/69/389d485a9793dbe873f0ea2c93e02efaa9aa3d.debug ..
---61673--   .. build-id is valid
-==61673== WARNING: new redirection conflicts with existing -- ignoring it
---61673--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---61673--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==61673== WARNING: new redirection conflicts with existing -- ignoring it
---61673--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---61673--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
-==61673== WARNING: new redirection conflicts with existing -- ignoring it
---61673--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---61673--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
-==61673== WARNING: new redirection conflicts with existing -- ignoring it
---61673--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
---61673--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
---61673-- REDIR: 0x49147a0 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914a60 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914360 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4932d50 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915750 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49315c0 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915c90 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49313f0 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49142e0 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49149e0 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915620 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
-==61673== Preferring higher priority redirection:
---61673--     old: 0x04a0c940 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
---61673--     new: 0x04a0c940 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
---61673-- REDIR: 0x4931470 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915a60 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4931a30 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49148b0 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915af0 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49144a0 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49314f0 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914250 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915be0 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915500 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x491d5f0 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4917090 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914410 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915b90 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914720 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914950 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x49159d0 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915470 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4914b80 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915850 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4915b40 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4917000 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
---61673-- REDIR: 0x4a09790 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
---61673-- REDIR: 0x4911120 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
---61673-- REDIR: 0x4911460 (libc.so.6:free) redirected to 0x484b210 (free)
-==61673== Warning: invalid file descriptor -1 in syscall read()
-==61673==    at 0x4980992: read (read.c:26)
-==61673==    by 0x10F7B7: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E891: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== Process terminating with default action of signal 2 (SIGINT)
-==61673==    at 0x4980992: read (read.c:26)
-==61673==    by 0x10F86C: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E861: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== HEAP SUMMARY:
-==61673==     in use at exit: 5,436 bytes in 91 blocks
-==61673==   total heap usage: 185 allocs, 94 frees, 6,758 bytes allocated
-==61673== 
-==61673== Searching for pointers to 91 not-freed blocks
-==61673== Checked 113,640 bytes
-==61673== 
-==61673== 2 bytes in 1 blocks are definitely lost in loss record 1 of 4
-==61673==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==61673==    by 0x10EFB2: ft_strdup (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B77B: append (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B0DE: treat_redirects (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B316: get_node (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B416: parser (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E7C5: minishell (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E887: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== 28 bytes in 3 blocks are definitely lost in loss record 2 of 4
-==61673==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==61673==    by 0x10EFB2: ft_strdup (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B6C7: redirect_inf (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B112: treat_redirects (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B316: get_node (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10B416: parser (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E7C5: minishell (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E887: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== 696 bytes in 1 blocks are still reachable in loss record 3 of 4
-==61673==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==61673==    by 0x10E8C0: ft_calloc (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E302: dup_env (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E840: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== 4,710 bytes in 86 blocks are still reachable in loss record 4 of 4
-==61673==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==61673==    by 0x10EFB2: ft_strdup (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E349: dup_env (in /home/asepulve/Desktop/Minishell/minishell)
-==61673==    by 0x10E840: main (in /home/asepulve/Desktop/Minishell/minishell)
-==61673== 
-==61673== LEAK SUMMARY:
-==61673==    definitely lost: 30 bytes in 4 blocks
-==61673==    indirectly lost: 0 bytes in 0 blocks
-==61673==      possibly lost: 0 bytes in 0 blocks
-==61673==    still reachable: 5,406 bytes in 87 blocks
-==61673==         suppressed: 0 bytes in 0 blocks
-==61673== 
-==61673== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==68573== Memcheck, a memory error detector
+==68573== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==68573== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==68573== Command: ./minishell
+==68573== 
+--68573-- Valgrind options:
+--68573--    --verbose
+--68573--    --leak-check=full
+--68573--    --show-leak-kinds=all
+--68573-- Contents of /proc/version:
+--68573--   Linux version 5.19.0-41-generic (buildd@lcy02-amd64-045) (x86_64-linux-gnu-gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0, GNU ld (GNU Binutils for Ubuntu) 2.38) #42~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 18 17:40:00 UTC 2
+--68573-- 
+--68573-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--68573-- Page sizes: currently 4096, max supported 4096
+--68573-- Valgrind library directory: /usr/libexec/valgrind
+--68573-- Reading syms from /home/asepulve/Desktop/Minishell/minishell
+--68573-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--68573--   Considering /usr/lib/debug/.build-id/61/ef896a699bb1c2e4e231642b2e1688b2f1a61e.debug ..
+--68573--   .. build-id is valid
+--68573-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--68573--    object doesn't have a symbol table
+--68573--    object doesn't have a dynamic symbol table
+--68573-- Scheduler: using generic scheduler lock implementation.
+--68573-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==68573== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-68573-by-asepulve-on-???
+==68573== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-68573-by-asepulve-on-???
+==68573== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-68573-by-asepulve-on-???
+==68573== 
+==68573== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==68573== don't want to do, unless you know exactly what you're doing,
+==68573== or are doing some strange experiment):
+==68573==   /usr/bin/vgdb --pid=68573 ...command...
+==68573== 
+==68573== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==68573==   /path/to/gdb ./minishell
+==68573== and then give GDB the following command
+==68573==   target remote | /usr/bin/vgdb --pid=68573
+==68573== --pid is optional if only one valgrind process is running
+==68573== 
+--68573-- REDIR: 0x402aa60 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--68573-- REDIR: 0x402a830 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--68573-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--68573--    object doesn't have a symbol table
+--68573-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--68573--    object doesn't have a symbol table
+==68573== WARNING: new redirection conflicts with existing -- ignoring it
+--68573--     old: 0x0402aa60 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--68573--     new: 0x0402aa60 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--68573-- REDIR: 0x4027240 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--68573-- REDIR: 0x402afc0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--68573-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--68573--   Considering /usr/lib/debug/.build-id/69/389d485a9793dbe873f0ea2c93e02efaa9aa3d.debug ..
+--68573--   .. build-id is valid
+==68573== WARNING: new redirection conflicts with existing -- ignoring it
+--68573--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--68573--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==68573== WARNING: new redirection conflicts with existing -- ignoring it
+--68573--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--68573--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==68573== WARNING: new redirection conflicts with existing -- ignoring it
+--68573--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--68573--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==68573== WARNING: new redirection conflicts with existing -- ignoring it
+--68573--     old: 0x04911ce0 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--68573--     new: 0x04911ce0 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--68573-- REDIR: 0x49147a0 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914a60 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914360 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4932d50 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915750 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49315c0 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915c90 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49313f0 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49142e0 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49149e0 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915620 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==68573== Preferring higher priority redirection:
+--68573--     old: 0x04a0c940 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--68573--     new: 0x04a0c940 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--68573-- REDIR: 0x4931470 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915a60 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4931a30 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49148b0 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915af0 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49144a0 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49314f0 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914250 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915be0 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915500 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x491d5f0 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4917090 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914410 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915b90 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914720 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914950 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x49159d0 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915470 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4914b80 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915850 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4915b40 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4917000 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--68573-- REDIR: 0x4a09790 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
+--68573-- REDIR: 0x4911120 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
+--68573-- REDIR: 0x4911460 (libc.so.6:free) redirected to 0x484b210 (free)
+==68573== Invalid read of size 8
+==68573==    at 0x10B427: get_node (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10B50E: parser (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E8BD: minishell (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E97F: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==  Address 0x4a99fe0 is 0 bytes after a block of size 32 alloc'd
+==68573==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68573==    by 0x10E9B8: ft_calloc (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10A8D8: command_to_tokens (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x109DB9: populate_command_tokens (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x109EC0: lexer (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E8A2: minishell (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E97F: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== 
+==68573== Invalid read of size 8
+==68573==    at 0x10ACFB: free_tokens (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10B571: parser (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E8BD: minishell (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E97F: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==  Address 0x4a99fe0 is 0 bytes after a block of size 32 alloc'd
+==68573==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==68573==    by 0x10E9B8: ft_calloc (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10A8D8: command_to_tokens (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x109DB9: populate_command_tokens (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x109EC0: lexer (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E8A2: minishell (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E97F: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== 
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
+==68573== Warning: invalid file descriptor -1 in syscall read()
+==68573==    at 0x4980992: read (read.c:26)
+==68573==    by 0x10F8AF: get_next_line (in /home/asepulve/Desktop/Minishell/minishell)
+==68573==    by 0x10E989: main (in /home/asepulve/Desktop/Minishell/minishell)
