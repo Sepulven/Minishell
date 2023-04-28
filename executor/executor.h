@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 17:24:04 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/27 23:55:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int				**create_pipes(int com);
 void			free_pipes(int **id, int com);
 
 /*utils_env_1.c*/
-void	initialize_env(t_env **new);
-t_env	*get_env(void);
+void			initialize_env(t_env **new);
+t_env			*get_env(void);
 
 /*commands.c*/
 void			command_one(int **fd, t_command_list *lst, int i);
@@ -61,7 +61,6 @@ void			command_pwd(t_env *env_lst);
 void			command_env(char **param);
 void			initialize_env(t_env **new);
 void			printf_env(char **env);
-t_env			*get_env(void);
 void			print_env_order(t_env *env_lst, int num_var);
 void			command_export(char **param);
 int				ft_lstsize_env(t_env *lst);
