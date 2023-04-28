@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 16:32:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:42:16 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,29 @@ static char *concat_env_to_str(char *current, char *var_name,
 	return (new_str);
 }
 
-static void expander_utils(char *var_name, char *new_str, int *x, int *y)
+static void expande_to_new_str(char *str, char **new_str, int *i, int *j)
 {
+	char	*var_name;
+
+	var_name = NULL;
+	var_name = get_var_name(&str[*i + 1]);
+	*new_str = concat_env_to_str(*new_str, var_name,
+	ft_strlen(&str[*i + 1 + ft_strlen(var_name)]), *env());
 	if (!new_str)
 	{
 		write(2, "WE COULDN'T ALLOCATE MEMORY.\n", 30);
 		exit(EXIT_FAILURE);
 	}
-	*x += ft_strlen(var_name) + 1;
-	*y = ft_strlen(new_str);
+	*i += ft_strlen(var_name) + 1;
+	*j = ft_strlen(*new_str);
 	free(var_name);
 }
 
-static void expand_or_not(char *str, char **new_str, int *i, int *j)
+static void expand_rules(char *str, char **new_str, int *i, int *j)
 {
 	int single_quotes_len;
-	char *var_name;
 
 	single_quotes_len = 0;
-	var_name = NULL;
 	if (str[*i] == '\'')
 	{
 		single_quotes_len = jump_quotes(&str[*i]);
@@ -91,25 +95,17 @@ static void expand_or_not(char *str, char **new_str, int *i, int *j)
 		while (str[*i] && str[*i] != '"')
 		{
 			if (str[*i] == '$')
-			{
-				var_name = get_var_name(&str[*i + 1]);
-				*new_str = concat_env_to_str(*new_str, var_name,
-				ft_strlen(&str[*i + 1 + ft_strlen(var_name)]), *env());
-				expander_utils(var_name, *new_str, i, j);
-			}
+				expande_to_new_str(str, new_str, i, j);
 			else
 				(*new_str)[(*j)++] = str[(*i)++];
 		}
 		(*new_str)[(*j)++] = str[(*i)++];
 	}
 	else if (str[*i] == '$')
-	{
-		var_name = get_var_name(&str[*i + 1]);
-		*new_str = concat_env_to_str(*new_str, var_name,
-									 ft_strlen(&str[*i + 1 + ft_strlen(var_name)]), *env());
-		expander_utils(var_name, *new_str, i, j);
-	}
+		expande_to_new_str(str, new_str, i, j);
 }
+
+
 
 char *expander(char *str)
 {
@@ -125,7 +121,7 @@ char *expander(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '$' || str[i] == '"')
-			expand_or_not(str, &new_str, &i, &j);
+			expand_rules(str, &new_str, &i, &j);
 		else
 			new_str[j++] = str[i++];
 	}

@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 16:02:34 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/28 18:26:44 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ t_command_list	*parser(char ***tokens, char **envp)
 	int				i;
 	char			**paths;
 
-	if (!tokens)
+	if (!tokens || !*tokens || !**tokens || !***tokens)
 		return (NULL);
 	paths = get_paths(envp);
 	if (!paths)
