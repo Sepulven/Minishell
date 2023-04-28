@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 12:52:33 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:19:31 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	error_function(t_command_list *lst, int **fd)
 		free_pipes(fd, get_com(lst));
 	free_lst(lst);
 	g_exit_s = 127;
+	free_envp(*env());
 	exit(g_exit_s);
 }
 
@@ -85,14 +86,12 @@ void	execute(t_command_list *lst, int com)
 	int	i;
 	int	f;
 	int	**id;
-	int	pid;
 	int	status;
 
 	(void)f;
 	i = 0;
 	f = 3;
 	id = 0;
-	pid = 0;
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
@@ -111,9 +110,8 @@ void	execute(t_command_list *lst, int com)
 			i++;
 		}
 	}
-	waitpid(pid, &status, 0);
+	waitpid(-1, &status, 0);
 	if (WIFEXITED(status))
 		g_exit_s = WEXITSTATUS(status);
 	free_pipes(id, com);
-	//printf("exit status %i\n", g_exit_s);
 }

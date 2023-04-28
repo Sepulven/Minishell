@@ -6,11 +6,10 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 12:14:38 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/28 11:39:00 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./executor.h"
 #include "./executor.h"
 
 int	check_repeat(t_env *var, t_env **lst)
@@ -90,5 +89,4 @@ void	command_export(char **param)
 		}
 	}
 	free_env(env_lst);
-	free(env_lst);
 }

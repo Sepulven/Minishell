@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/21 14:36:00 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/28 10:56:35 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	unset_var(char *param, t_env *env_lst)
 	first_node = env_lst;
 	flag = 0;
 	if (check_param(param) == -1)
+	{
+		g_exit_s = 1;
 		return ;
+	}
 	while (env_lst && env_lst->next)
 	{
 		aux = env_lst;
@@ -74,4 +77,5 @@ void	command_unset(char **param, t_env *env_lst)
 		unset_var(param[i], env_lst);
 		i++;
 	}
+	free_env(env_lst);
 }
