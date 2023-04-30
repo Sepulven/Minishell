@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 17:01:01 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:18:45 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,6 @@ t_command_list	*parser(char ***tokens, char **envp)
 	if (!tokens || !*tokens || !**tokens || !***tokens)
 		return (NULL);
 	paths = get_paths(envp);
-	if (!paths)
-		return (NULL);
 	i = 0;
 	lst = NULL;
 	while (tokens[i])
@@ -129,7 +127,8 @@ t_command_list	*parser(char ***tokens, char **envp)
 			exit(EXIT_FAILURE);
 		__ft_lstadd_back(&lst, node);
 	}
-	free_double(paths);
+	if (paths)
+		free_double(paths);
 	if (tokens)
 		free_tokens(tokens);
 	return (lst);

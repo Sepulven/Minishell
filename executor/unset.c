@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/28 10:56:35 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:19:57 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_param(char *param)
 			error_m("unset: ", param, ": invalid option\n", 2);
 			return (-1);
 		}
-		else if (param[i] == '=' || ft_isalpha(param[i]) == 0)
+		else if (param[i] == '=' || ft_isalnum(param[i]) == 0)
 		{
 			error_m("unset: `", param, "': not a valid identifier\n", 1);
 			return (-1);

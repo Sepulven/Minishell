@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 22:48:52 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:20:12 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,11 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		ft_printf("myshell:> ");
+		//ft_printf("myshell:> ");
 		str = get_next_line(0);
 		str[ft_strlen(str)] = '\0';
 		minishell(str);
 		get_next_line(-1);
+		//add_history(str);
 	}
 }

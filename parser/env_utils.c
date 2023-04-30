@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:49:19 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 12:07:12 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/30 20:19:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ char	*check_path(char **paths, char *command)
 	char	*path2;
 
 	i = 0;
+	if (!paths)
+		return (ft_strdup(command));
 	while (paths[i])
 	{
 		path1 = ft_strjoin(paths[i], "/");

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/28 11:39:00 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 19:58:32 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,19 @@ void	command_export2(char *param, t_env *env_lst)
 	i = 0;
 	if (param[i] == '-' && param[i + 1])
 		error_m("export: `", param, "': invalid option\n", 2);
-	else if (ft_isalpha(param[0]) == 0)
+	else if (ft_isalpha(param[i]) == 0)
 		error_m("export: `", param, "': not a valid identifier\n", 1);
 	else
 	{
+		while (param[i] && param[i] != '=')
+		{
+			if (ft_isalpha(param[i]) == 0 && param[i] != '_')
+			{
+				error_m("export: `", param, "': not a valid identifier\n", 1);
+				return ;
+			}
+			i++;
+		}
 		node = create_node(param);
 		__ft_lstadd_env(&env_lst, node);
 		update_all(env_lst, *env());
