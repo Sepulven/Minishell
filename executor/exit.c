@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/28 10:31:40 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	command_exit(t_command_list *lst)
 		clear_exit(lst);
 	else if (check_exit(lst->param[1]) == -1)
 	{
-		no_file_message("exit", lst->param[1], 2);
+		error_m("exit", lst->param[1], "Numeric argument required\n", 2);
 		clear_exit(lst);
 	}
 	else if (lst->param[2])
 	{
-		write(2, "exit: too many arguments\n", 25);
+		ft_putendl_fd("exit: too many arguments\n", 2);
 		g_exit_s = 1;
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 12:13:09 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 22:46:41 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,19 @@ void	update_all(t_env *env_lst, char **envp)
 	}
 	free(envp);
 	*env() = new_env;
+}
+
+void	update_var(t_env *env_lst, char *oldpwd)
+{
+	t_env	*aux;
+	char	pwd[1024];
+
+	aux = env_lst;
+	env_lst = fetch_node(aux, "PWD");
+	if (env_lst)
+		env_lst->value = getcwd(pwd, sizeof(pwd));
+	env_lst = fetch_node(aux, "OLDPWD");
+	if (env_lst)
+		env_lst->value = oldpwd;
+	update_all(aux, *env());
 }

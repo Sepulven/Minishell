@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 20:20:18 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:16:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ int	get_com(t_command_list *lst)
 	return (i);
 }
 
-void	error_function(t_command_list *lst, int **fd)
+void	error_function(t_command_list *lst, int **fd, int status)
 {
-	perror(lst->command);
-	g_exit_s = 127;
+	g_exit_s = status;
 	if (fd)
 		free_pipes(fd, get_com(lst));
 	free_lst(lst);
@@ -47,9 +46,11 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
-	check_builtin(node);
+	check_builtin_first(node);
+	check_builtin_second(node);
 	execve(node->path, node->param, *env());
-	error_function(node, fd);
+	perror(node->command);
+	error_function(node, fd, 127);
 }
 
 void	do_fork(t_command_list *lst, int **id, int i, int com)
@@ -60,8 +61,8 @@ void	do_fork(t_command_list *lst, int **id, int i, int com)
 	pid = fork();
 	if (pid == -1)
 	{
-		write_error("Fork failed\n", 1);
-		return ;
+		ft_putendl_fd("Forked failed\n", 2);
+		error_function(lst, 0, 127);
 	}
 	else if (pid == 0)
 		command(id, lst, i, com);
@@ -75,19 +76,27 @@ void	do_fork(t_command_list *lst, int **id, int i, int com)
 
 void	execute_one(t_command_list *lst)
 {
-	int	p;
+	int			p;
+	struct stat	path_stat;
 
 	p = fork();
 	if (p == -1)
-		error_function(lst, 0);
+		error_function(lst, 0, 127);
 	else if (p == 0)
 	{
 		if (lst->inf != 0)
 			dup2(lst->inf, STDIN_FILENO);
 		if (lst->outf != 0)
 			dup2(lst->outf, STDOUT_FILENO);
+		stat(lst->path, &path_stat);
+		if (S_ISDIR(path_stat.st_mode))
+		{
+			ft_putendl_fd("Is a directory\n", 2);
+			error_function(lst, 0, 126);
+		}
 		execve(lst->path, lst->param, *env());
-		error_function(lst, 0);
+		perror(lst->command);
+		error_function(lst, 0, 127);
 	}
 }
 

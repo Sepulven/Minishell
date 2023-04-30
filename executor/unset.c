@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 20:19:57 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	check_param(char *param)
 	{
 		if (param[i] == '-' && param[i + 1])
 		{
-			error_m("unset: ", param, ": invalid option\n", 2);
+			error_m("unset", param, "invalid option\n", 2);
 			return (-1);
 		}
 		else if (param[i] == '=' || ft_isalnum(param[i]) == 0)
 		{
-			error_m("unset: `", param, "': not a valid identifier\n", 1);
+			error_m("unset", param, "not a valid identifier\n", 1);
 			return (-1);
 		}
 		i++;

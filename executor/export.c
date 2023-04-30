@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 19:58:32 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,6 @@ int	check_repeat(t_env *var, t_env **lst)
 	return (0);
 }
 
-void	error_m(char *command, char *param, char *str, int s)
-{
-	ft_putendl_fd(command, 2);
-	ft_putendl_fd(param, 2);
-	ft_putendl_fd(str, 2);
-	g_exit_s = s;
-}
-
 void	command_export2(char *param, t_env *env_lst)
 {
 	t_env	*node;
@@ -44,16 +36,16 @@ void	command_export2(char *param, t_env *env_lst)
 
 	i = 0;
 	if (param[i] == '-' && param[i + 1])
-		error_m("export: `", param, "': invalid option\n", 2);
+		error_m("export", param, "invalid option\n", 2);
 	else if (ft_isalpha(param[i]) == 0)
-		error_m("export: `", param, "': not a valid identifier\n", 1);
+		error_m("export", param, "not a valid identifier\n", 1);
 	else
 	{
 		while (param[i] && param[i] != '=')
 		{
 			if (ft_isalpha(param[i]) == 0 && param[i] != '_')
 			{
-				error_m("export: `", param, "': not a valid identifier\n", 1);
+				error_m("export", param, "not a valid identifier\n", 1);
 				return ;
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 18:21:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 22:47:09 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 
 /*execution.c*/
 void			execute(t_command_list *lst, int com);
@@ -48,11 +49,13 @@ void			command_final(int **fd, t_command_list *node, int i);
 void			command_middle(int **fd, t_command_list *node, int i);
 
 /*builtins.c*/
-void			check_builtin(t_command_list *lst);
+void			check_builtin_first(t_command_list *lst);
+void			check_builtin_second(t_command_list *lst);
 int				check_builtin_one(t_command_list *lst);
 void			command_cd(char **param, t_env *env);
 void			update_env(char *s, char **envp, int flag);
 void			update_all(t_env *env_lst, char **envp);
+void			update_var(t_env *env_lst, char *oldpwd);
 t_env			*create_node(char *str);
 t_env			*fetch_node(t_env *env_lst, char *name);
 void			command_pwd(t_env *env_lst);
@@ -66,7 +69,6 @@ void			command_unset(char **param, t_env *env_lst);
 void			free_env(t_env *env);
 void			command_exit(t_command_list *lst);
 void			ft_putendl_fd(char *s, int fd);
-void			no_file_message(char *command, char *param, int s);
 void			error_m(char *command, char *param, char *str, int s);
 void			command_echo(char **param);
 void			write_error(char *str, int status);
