@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 23:55:32 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:21:58 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H 1
 
-# include "../utils/utils.h"
-# include "../libft/libft.h"
 # include "../utils/utils.h"
 # include "../libft/libft.h"
 # include "../parser/parser.h"
@@ -45,9 +43,9 @@ void			initialize_env(t_env **new);
 t_env			*get_env(void);
 
 /*commands.c*/
-void			command_one(int **fd, t_command_list *lst, int i);
-void			command_final(int **fd, t_command_list *lst, int i);
-void			command_middle(int **fd, t_command_list *lst, int i);
+void			command_one(int **fd, t_command_list *node, int i);
+void			command_final(int **fd, t_command_list *node, int i);
+void			command_middle(int **fd, t_command_list *node, int i);
 
 /*builtins.c*/
 void			check_builtin(t_command_list *lst);
@@ -71,4 +69,5 @@ void			ft_putendl_fd(char *s, int fd);
 void			no_file_message(char *command, char *param, int s);
 void			error_m(char *command, char *param, char *str, int s);
 void			command_echo(char **param);
+void			write_error(char *str, int status);
 #endif

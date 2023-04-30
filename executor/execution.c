@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/28 20:18:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/04/30 18:23:38 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	get_com(t_command_list *lst)
 void	error_function(t_command_list *lst, int **fd)
 {
 	perror(lst->command);
+	g_exit_s = 127;
 	if (fd)
 		free_pipes(fd, get_com(lst));
 	free_lst(lst);
-	g_exit_s = 127;
 	free_envp(*env());
 	exit(g_exit_s);
 }
@@ -42,35 +42,45 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 
 	node = get_lst(lst, i);
 	if (i == 0)
-		command_one(fd, lst, i);
+		command_one(fd, node, i);
 	else if (i == com - 1)
-		command_final(fd, lst, i);
+		command_final(fd, node, i);
 	else
-		command_middle(fd, lst, i);
+		command_middle(fd, node, i);
 	check_builtin(node);
 	execve(node->path, node->param, *env());
-	error_function(lst, fd);
+	error_function(node, fd);
 }
 
 void	do_fork(t_command_list *lst, int **id, int i, int com)
 {
-	int	pa;
+	int	pid;
+	int	status;
 
-	pa = fork();
-	if (pa == -1)
+	pid = fork();
+	if (pid == -1)
+	{
+		write_error("Fork failed\n", 1);
 		return ;
-	else if (pa == 0)
+	}
+	else if (pid == 0)
 		command(id, lst, i, com);
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			g_exit_s = WEXITSTATUS(status);
+	}
 }
 
 void	execute_one(t_command_list *lst)
 {
-	int	pa;
+	int	p;
 
-	pa = fork();
-	if (pa == -1)
+	p = fork();
+	if (p == -1)
 		error_function(lst, 0);
-	else if (pa == 0)
+	else if (p == 0)
 	{
 		if (lst->inf != 0)
 			dup2(lst->inf, STDIN_FILENO);
@@ -111,8 +121,7 @@ void	execute(t_command_list *lst, int com)
 			i++;
 		}
 	}
-	waitpid(-1, &status, 0);
-	if (WIFEXITED(status))
-		g_exit_s = WEXITSTATUS(status);
+	i = 0;
+	waitpid(-1, 0, 0);
 	free_pipes(id, com);
 }
