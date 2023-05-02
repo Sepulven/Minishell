@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/02 13:31:52 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:19:43 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,37 +53,29 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 	error_function(node, fd, 127);
 }
 
-int	*do_fork(t_command_list *lst, int **id, int i, int com)
+void	do_fork(t_command_list *lst, int **id, int i, int com)
 {
-	int	*pid;
-	int	stat;
+	int	pid;
 
-	pid = malloc(sizeof(int) * com);
-	pid[i] = fork();
-	if (pid[i] == -1)
+	pid = fork();
+	if (pid == -1)
 	{
 		ft_putendl_fd("Forked failed\n", 2);
 		error_function(lst, 0, 127);
 	}
-	else if (pid[i] == 0)
+	else if (pid == 0)
 		command(id, lst, i, com);
-	else
-	{
-		waitpid(pid[i], &stat, 0);
-		g_exit_s = WIFEXITED(stat);
-	}
-	return (pid);
 }
 
 void	execute_one(t_command_list *lst)
 {
-	int			p;
+	int			pid;
 	struct stat	path_stat;
 
-	p = fork();
-	if (p == -1)
+	pid = fork();
+	if (pid == -1)
 		error_function(lst, 0, 127);
-	else if (p == 0)
+	else if (pid == 0)
 	{
 		if (lst->inf != 0)
 			dup2(lst->inf, STDIN_FILENO);
@@ -108,12 +100,6 @@ void	close_pipes(int **id, int com)
 	i = 0;
 	while (i != com - 1)
 	{
-		close(id[i][1]);
-		i++;
-	}
-	i = 0;
-	while (i != com - 1)
-	{
 		close(id[i][0]);
 		i++;
 	}
@@ -125,11 +111,9 @@ void	execute(t_command_list *lst, int com)
 	int	f;
 	int	**id;
 	int	status;
-	int	*pid;
 
-	(void)f;
 	i = 0;
-	f = 3;
+	f = 0;
 	id = 0;
 	status = 0;
 	if (com == 1)
@@ -144,17 +128,20 @@ void	execute(t_command_list *lst, int com)
 		{
 			if (i != com - 1)
 				pipe(id[i]);
-			pid = do_fork(lst, id, i, com);
-			// if (i != com - 1)
-			// 	close(id[i][1]);
+			do_fork(lst, id, i, com);
+			if (i != com - 1)
+				close(id[i][1]);
 			i++;
 		}
+		close_pipes(id, com);
 	}
-	close_pipes(id, com);
-	i = 0;
-	//waitpid(-1, 0, 0);
-	while (i != com - 1)
-		waitpid(pid[i], &g_exit_s, 0);
-	//waitpid(-1, &status, 0);
+	f = 0;
+	while (f <= i)
+	{
+		wait(NULL);
+		f++;
+	}
+	if (WIFEXITED(status))
+		g_exit_s = WEXITSTATUS(status);
 	free_pipes(id, com);
 }

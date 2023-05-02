@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 23:02:44 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/02 17:23:51 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	command_echo(char **param)
 
 	n = 0;
 	i = 0;
-	printf("exit status %d\n", g_exit_s);
 	while (param[++i] && check_flag_n(param[i]) == 1)
 		n = 1;
 	while (param[i])

@@ -50,7 +50,7 @@ void			command_final(int **fd, t_command_list *lst, int i);
 void			command_middle(int **fd, t_command_list *lst, int i);
 
 void			command(int **fd, t_command_list *lst, int i, int com);
-int				*do_fork(t_command_list *lst, int **id, int i, int com);
+void			do_fork(t_command_list *lst, int **id, int i, int com);
 void			execute_one(t_command_list *lst);
 void			execute(t_command_list *lst, int com);
 
