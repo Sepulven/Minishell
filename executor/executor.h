@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 22:47:09 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:49:08 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 /*execution.c*/
 void			execute(t_command_list *lst, int com);
 void			execute_one(t_command_list *lst);
-void			do_fork(t_command_list *lst, int **id, int i, int com);
+int				*do_fork(t_command_list *lst, int **id, int i, int com);
 void			command(int **fd, t_command_list *lst, int i, int com);
 
 /*pipes.c*/
