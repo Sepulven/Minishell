@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 17:00:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:44:25 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void				print_parser(t_command_list *parser);
 
 /*__def_env.c*/
 char				***env(void);
+void				free_env(t_env *env);
 
 /*utils_list_1.c*/
 void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);
