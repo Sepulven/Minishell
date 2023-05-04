@@ -6,11 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 19:37:43 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:22:23 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./expander.h"
+#include "../important.h"
 
 static char	*get_var_name(char *str)
 {

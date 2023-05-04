@@ -6,11 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 12:43:54 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:52 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+#include "../important.h"
 
 // void	free_env(t_env *env)
 // {

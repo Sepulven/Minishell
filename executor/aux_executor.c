@@ -6,11 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 21:47:21 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 22:00:50 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:31 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "executor.h"
+#include "../important.h"
 
 void	write_error(char *str, int status)
 {

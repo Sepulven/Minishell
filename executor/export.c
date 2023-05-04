@@ -6,11 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 12:32:37 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+#include "../important.h"
 
 void	command_export2(char *param, t_env *env_lst)
 {

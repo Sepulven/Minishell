@@ -1,6 +1,10 @@
 {
 	"files.associations": {
 		"sstream": "c",
-		"lexer.h": "c"
+		"lexer.h": "c",
+		"expander.h": "c",
+		"minishell.h": "c",
+		"utils.h": "c",
+		"executor.h": "c"
 	}
 }

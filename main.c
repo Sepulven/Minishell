@@ -6,14 +6,13 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/02 17:08:31 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:02:07 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
-int	g_exit_s = 0;
-
+int	g_exit_s;
 /*
 	* Executa o processo convencional do bash, seguro.
 	* Expander -> Lexer -> Parser -> Executor
@@ -59,7 +58,7 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		ft_printf("myshell:> ");
+		//ft_printf("myshell:> ");
 		str = get_next_line(0);
 		str[ft_strlen(str)] = '\0';
 		minishell(str);
