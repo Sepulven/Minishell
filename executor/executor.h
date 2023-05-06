@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 16:39:17 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:24:58 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
-
 
 /*execution.c*/
 void			execute(t_command_list *lst, int com);
@@ -72,5 +71,5 @@ void			ft_putendl_fd(char *s, int fd);
 void			error_m(char *command, char *param, char *str, int s);
 void			command_echo(char **param);
 void			write_error(char *str, int status);
-void	        error_function(t_command_list *lst, int **fd, int status);
+void			error_function(t_command_list *lst, int **fd, int status);
 #endif

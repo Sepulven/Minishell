@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 15:59:52 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 21:23:51 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	initialize_env(t_env **new)
 	(*new)->value = 0;
 	(*new)->next = 0;
 }
-
 
 t_env	*get_env(void)
 {

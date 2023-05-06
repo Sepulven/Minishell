@@ -6,11 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/06 20:56:32 by asepulve         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/04 16:02:07 by mvicente         ###   ########.fr       */
->>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
+/*   Updated: 2023/05/06 21:34:02 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +61,9 @@ int	main(int argc, char **argv, char **envp)
 		ft_printf("myshell:> ");
 		str = get_next_line(0);
 		str[ft_strlen(str) - 1] = '\0';
-		// minishell(str);
+		minishell(str);
 		get_next_line(-1);
-		validator(str);
+		// validator(str);
 		//add_history(str);
 	}
 }
