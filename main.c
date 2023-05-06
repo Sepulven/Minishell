@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 20:20:12 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:56:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	minishell(char *str)
 	int				token_num;
 	int				com;
 
-	(void)com;
-	com = get_com_number(&str);
+	validator(str);
+	com = get_com_number(str);
 	str = expander(str);
 	token_num = count_tokens_in_command(str);
 	tokens = lexer(str, token_num);
@@ -66,11 +66,12 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		//ft_printf("myshell:> ");
+		ft_printf("myshell:> ");
 		str = get_next_line(0);
-		str[ft_strlen(str)] = '\0';
-		minishell(str);
+		str[ft_strlen(str) - 1] = '\0';
+		// minishell(str);
 		get_next_line(-1);
+		validator(str);
 		//add_history(str);
 	}
 }

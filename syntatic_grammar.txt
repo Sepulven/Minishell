@@ -89,3 +89,6 @@ Goal implemente these (3):
 ◦ ctrl-C displays a new prompt on a new line.
 ◦ ctrl-D exits the shell.
 ◦ ctrl-\ does nothing.
+
+Metacharacters:
+	> >> < * ? [ ] | ; [ ] || && ( ) & # $  << " '

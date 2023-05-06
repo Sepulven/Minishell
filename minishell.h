@@ -41,7 +41,11 @@ char			**dup_env(char **envp);
 void			free_envp(char **env);
 
 /*get_com_number.c*/
-int				get_com_number(char **str);
+int				get_com_number(char *str);
+
+/*validator.c*/
+int				validator(char *line);
+int				is_empty_to_next_pipe(char *str);
 
 int				check_words(char const *s);
 

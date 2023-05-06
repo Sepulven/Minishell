@@ -11,6 +11,8 @@
 #                                                                              #
 # **************************************************************************** #
 
+ # > >> < * ? [ ] | ; [ ] || && ( ) & # $  << " '
+
 NAME = minishell
 
 CC = cc
@@ -31,12 +33,14 @@ EXECUTOR_SRC	= cd.c echo.c builtins.c pwd.c commands.c execution.c \
 
 UTILS_SRC		= data_output.c string_jumps.c utils_list_1.c __def_env.c utils_general_1.c
 
+
+
 SRC				= $(addprefix expander/,$(EXPANDER_SRC)) \
 				  $(addprefix lexer/,$(LEXER_SRC)) \
 				  $(addprefix parser/,$(PARSER_SRC)) \
 				  $(addprefix executor/,$(EXECUTOR_SRC)) \
 				  $(addprefix utils/,$(UTILS_SRC)) \
-				  aux.c get_com_number.c main.c
+				  aux.c get_com_number.c main.c validator.c
 
 LIBFT = libft/libft.a
 

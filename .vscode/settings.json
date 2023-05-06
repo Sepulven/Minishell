@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"sstream": "c",
-		"lexer.h": "c"
+		"lexer.h": "c",
+		"random": "c"
 	}
 }

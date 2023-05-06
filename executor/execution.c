@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 23:16:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/04/30 23:24:15 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,11 @@ void	execute(t_command_list *lst, int com)
 	int	i;
 	int	f;
 	int	**id;
-	int	status;
 
 	(void)f;
 	i = 0;
 	f = 3;
 	id = 0;
-	status = 0;
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
