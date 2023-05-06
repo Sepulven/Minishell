@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 22:47:09 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:39:17 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@
 # include <sys/wait.h>
 # include <sys/stat.h>
 
+
 /*execution.c*/
 void			execute(t_command_list *lst, int com);
 void			execute_one(t_command_list *lst);
-void			do_fork(t_command_list *lst, int **id, int i, int com);
+int 			do_fork(t_command_list *lst, int **id, int i, int com);
 void			command(int **fd, t_command_list *lst, int i, int com);
 
 /*pipes.c*/
@@ -49,8 +50,7 @@ void			command_final(int **fd, t_command_list *node, int i);
 void			command_middle(int **fd, t_command_list *node, int i);
 
 /*builtins.c*/
-void			check_builtin_first(t_command_list *lst);
-void			check_builtin_second(t_command_list *lst);
+void			check_builtin(t_command_list *lst);
 int				check_builtin_one(t_command_list *lst);
 void			command_cd(char **param, t_env *env);
 void			update_env(char *s, char **envp, int flag);
@@ -72,4 +72,5 @@ void			ft_putendl_fd(char *s, int fd);
 void			error_m(char *command, char *param, char *str, int s);
 void			command_echo(char **param);
 void			write_error(char *str, int status);
+void	        error_function(t_command_list *lst, int **fd, int status);
 #endif

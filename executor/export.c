@@ -6,28 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-
-int	check_repeat(t_env *var, t_env **lst)
-{
-	while (*lst)
-	{
-		if (ft_strcmp(var->name, (*lst)->name) == 0)
-		{
-			if (var->value)
-				(*lst)->value = ft_strdup(var->value);
-			else
-				(*lst)->value = NULL;
-			return (1);
-		}
-		(*lst) = (*lst)->next;
-	}
-	return (0);
-}
+#include "../important.h"
 
 void	command_export2(char *param, t_env *env_lst)
 {
@@ -43,7 +27,7 @@ void	command_export2(char *param, t_env *env_lst)
 	{
 		while (param[i] && param[i] != '=')
 		{
-			if (ft_isalpha(param[i]) == 0 && param[i] != '_')
+			if (ft_isalnum(param[i]) == 0 && param[i] != '_')
 			{
 				error_m("export", param, "not a valid identifier\n", 1);
 				return ;

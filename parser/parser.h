@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 20:24:01 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:45:47 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int				redirect_outf(char *token);
 int				append(char *token);
 
 /*free_parser.c*/
-void			free_double(char **array);
 void			free_lst(t_command_list *lst);
 void			free_tokens(char ***tokens);
 

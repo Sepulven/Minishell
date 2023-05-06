@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 17:00:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:55:32 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 # define DEBUG1 write(1, "PING1\n", 7);
 # define DEBUG2 write(1, "PING2\n", 7);
-
-extern int	g_exit_s;
 
 typedef struct s_env
 {
@@ -46,8 +44,13 @@ void				print_lexer(char ***lexer);
 void				print_char_matrix(char **matrix);
 void				print_parser(t_command_list *parser);
 
+
+/*frees.c*/
+void	free_double(char **array);
+
 /*__def_env.c*/
 char				***env(void);
+void				free_env(t_env *env);
 
 /*utils_list_1.c*/
 void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);

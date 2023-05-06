@@ -6,26 +6,27 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:59:52 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+#include "../important.h"
 
-void	free_env(t_env *env)
-{
-	t_env	*ptr;
+// void	free_env(t_env *env)
+// {
+// 	t_env	*ptr;
 
-	while (env)
-	{
-		ptr = env->next;
-		free(env->name);
-		if (env->value)
-			free(env->value);
-		free(env);
-		env = ptr;
-	}
-}
+// 	while (env)
+// 	{
+// 		ptr = env->next;
+// 		free(env->name);
+// 		if (env->value)	
+// 			free(env->value);
+// 		free(env);
+// 		env = ptr;
+// 	}
+// }
 
 void	command_env(char **param)
 {

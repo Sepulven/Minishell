@@ -6,25 +6,11 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 13:40:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/27 17:29:08 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:45:42 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parser.h"
-
-void	free_double(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	if (array)
-		free(array);
-}
 
 void	free_tokens(char ***tokens)
 {

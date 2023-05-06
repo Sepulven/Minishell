@@ -6,14 +6,17 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/06 20:56:32 by asepulve         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/04 16:02:07 by mvicente         ###   ########.fr       */
+>>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
-int	g_exit_s = 0;
-
+int	g_exit_s;
 /*
 	* Executa o processo convencional do bash, seguro.
 	* Expander -> Lexer -> Parser -> Executor
@@ -52,17 +55,10 @@ void	minishell(char *str)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	char	***tokens;
-	int		com;
 
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	(void)envp;
-	(void)tokens;
-	(void)com;
-	(void)execute;
-	com = 0;
 	*env() = dup_env(envp);
 	while (1)
 	{

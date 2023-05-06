@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 12:31:23 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/04 12:49:28 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,25 @@ int	__ft_lstsize_env(t_env *lst)
 	return (i);
 }
 
+void	free_env2(t_env *env)
+{
+	t_env	*ptr;
+
+	while (env)
+	{
+		ptr = env->next;
+		free(env->name);
+		if (env->value)
+			free(env->value);
+		free(env);
+		env = ptr;
+	}
+}
+
 void	__ft_lstadd_env(t_env **env, t_env *new)
 {
 	t_env	*current;
+	t_env	*aux;
 
 	if (!env)
 		return ;
@@ -54,6 +70,21 @@ void	__ft_lstadd_env(t_env **env, t_env *new)
 		return ;
 	}
 	current = __ft_lstlast_env(*env);
+	aux = *env;
+	while (aux)
+	{
+		if (ft_strcmp(new->name, aux->name) == 0)
+		{
+			if (new->value)
+			{
+				free(aux->value);
+				aux->value = ft_strdup(new->value);
+			}
+			free_env(new);
+			return ;
+		}
+		aux = aux->next;
+	}
 	current->next = new;
 }
 
