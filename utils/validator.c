@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 20:59:18 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:27:06 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "./utils.h"
 // > >> << < * ? [ ] | ; || && ( ) & # $ " '
 
 // Allowed characters: > >> < << " '

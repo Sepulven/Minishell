@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 15:45:47 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:35:03 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 // PARSER UTILS //
 
 /*parser_lexer_utils.c*/
-int				check_words(char const *s);
 int				pos_of_c_in_str(char *str, char *c);
 void			initialize_lst(t_command_list **new);
 

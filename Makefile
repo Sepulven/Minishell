@@ -31,7 +31,8 @@ PARSER_SRC		= env_utils.c free_parser.c heredoc.c parser.c\
 EXECUTOR_SRC	= cd.c echo.c builtins.c pwd.c commands.c execution.c \
 				  export.c pipes.c env.c exit.c print_export.c unset.c update_var.c aux_executor.c
 
-UTILS_SRC		= data_output.c string_jumps.c utils_list_1.c __def_env.c utils_general_1.c frees.c
+UTILS_SRC		= data_output.c string_jumps.c utils_list_1.c __def_env.c utils_general_1.c \
+				  validator.c frees.c get_com_number.c aux.c
 
 
 
@@ -40,7 +41,7 @@ SRC				= $(addprefix expander/,$(EXPANDER_SRC)) \
 				  $(addprefix parser/,$(PARSER_SRC)) \
 				  $(addprefix executor/,$(EXECUTOR_SRC)) \
 				  $(addprefix utils/,$(UTILS_SRC)) \
-				  aux.c get_com_number.c main.c validator.c
+				  main.c
 
 LIBFT = libft/libft.a
 

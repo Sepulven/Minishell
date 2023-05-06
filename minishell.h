@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:11:06 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 21:22:55 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:29:31 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
-/* aux.c ! Funcoes libft alteradas ! */
-char			*ft_substr_mini(char const *s, unsigned int start, \
-				unsigned int end);
-int				ft_strcmp_mini(char *a, char *b);
-void			print_char_matrix(char **matrix);
-char			**dup_env(char **envp);
-void			free_envp(char **env);
-
-/*get_com_number.c*/
-int				get_com_number(char *str);
-
-/*validator.c*/
-int				validator(char *line);
-int				is_empty_to_next_pipe(char *str);
 
 int				check_words(char const *s);
 

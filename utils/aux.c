@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:02:08 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 20:28:21 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:30:34 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "./utils.h"
 
 char	**dup_env(char **envp)
 {
