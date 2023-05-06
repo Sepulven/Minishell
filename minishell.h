@@ -54,12 +54,11 @@ void			command_final(int **fd, t_command_list *lst, int i);
 void			command_middle(int **fd, t_command_list *lst, int i);
 
 void			command(int **fd, t_command_list *lst, int i, int com);
-int			do_fork(t_command_list *lst, int **id, int i, int com);
+int				do_fork(t_command_list *lst, int **id, int i, int com);
 void			execute_one(t_command_list *lst);
 void			execute(t_command_list *lst, int com);
 
 int				get_num_words(char *str, char c);
-char			*get_word(char *str, char c);
 
 void			do_dups(int fin, int fout, int fd_close);
 t_command_list	*get_lst(t_command_list *lst, int i);
@@ -71,5 +70,4 @@ t_command_list	*no_redirections(t_command_list *new, char **aux, char **paths);
 // t_command_list	*get_output(t_command_list *new, char **aux, int i);
 t_command_list	*get_parameters(t_command_list *new, char **aux);
 t_command_list	*redirections(t_command_list *new, char **aux, char **paths);
-
 #endif
