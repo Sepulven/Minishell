@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:11:06 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 22:29:31 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:12:47 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int				**create_pipes(int com);
 void			free_pipes(int **id, int com);
 
 t_command_list	*no_redirections(t_command_list *new, char **aux, char **paths);
-// t_command_list	*get_input(t_command_list *new, char **aux, int i);
-// t_command_list	*get_output(t_command_list *new, char **aux, int i);
 t_command_list	*get_parameters(t_command_list *new, char **aux);
 t_command_list	*redirections(t_command_list *new, char **aux, char **paths);
 #endif

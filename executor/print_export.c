@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:35:54 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/28 11:28:31 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:10:02 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
+#include "./executor.h"
 
 void	printf_env(char **env)
 {

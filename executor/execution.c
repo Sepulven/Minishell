@@ -6,12 +6,14 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 21:24:42 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:27:45 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 int	get_com(t_command_list *lst)
 {

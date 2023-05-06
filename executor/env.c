@@ -6,12 +6,14 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 21:23:51 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:27:42 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 // void	free_env(t_env *env)
 // {

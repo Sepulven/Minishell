@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 21:24:58 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:05:13 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "../utils/utils.h"
 # include "../libft/libft.h"
-# include "../parser/parser.h"
-# include "../minishell.h"
+// # include "../parser/parser.h"
+// # include "../minishell.h"
 
 # include <unistd.h>
 # include <stdio.h>
@@ -30,7 +30,7 @@
 /*execution.c*/
 void			execute(t_command_list *lst, int com);
 void			execute_one(t_command_list *lst);
-int 			do_fork(t_command_list *lst, int **id, int i, int com);
+int				do_fork(t_command_list *lst, int **id, int i, int com);
 void			command(int **fd, t_command_list *lst, int i, int com);
 
 /*pipes.c*/

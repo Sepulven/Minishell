@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 22:33:49 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:23:25 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 # define DEBUG1 write(1, "PING1\n", 7);
 # define DEBUG2 write(1, "PING2\n", 7);
-
 typedef struct s_env
 {
 	char			*name;
@@ -46,6 +45,8 @@ void				print_parser(t_command_list *parser);
 
 /*frees.c*/
 void				free_double(char **array);
+void				free_lst(t_command_list *lst);
+void				free_tokens(char ***tokens);
 
 /*validator.c*/
 int					validator(char *line);
