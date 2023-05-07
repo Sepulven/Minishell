@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 23:29:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 23:29:11 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:44:48 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "expander.h"
+#include "./expander.h"
 
 char	*get_env_value(char *var_name, char **envp)
 {

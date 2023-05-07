@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   important.h                                        :+:      :+:    :+:   */
+/*   __important.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:54:35 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 15:58:07 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:37:23 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMPORTANT_H
-# define IMPORTANT_H
+# define IMPORTANT_H 1
 
 extern int	g_exit_s;
-
 #endif
