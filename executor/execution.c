@@ -6,11 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/04/30 23:24:15 by asepulve         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/04 16:39:08 by mvicente         ###   ########.fr       */
->>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
+/*   Updated: 2023/05/07 14:00:39 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,20 +120,14 @@ void	execute(t_command_list *lst, int com)
 	int	i;
 	int	pid;
 	int	**id;
-<<<<<<< HEAD
-=======
 	int	status;
 	int	f;
->>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
 
 	i = 0;
 	id = 0;
-<<<<<<< HEAD
-=======
 	f = 0;
 	status = 0;
 	g_exit_s = 0;
->>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:22:59 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 12:44:00 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:52:25 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_env(t_env *env)
 	{
 		ptr = env->next;
 		free(env->name);
-		if (env->value)	
+		if (env->value)
 			free(env->value);
 		free(env);
 		env = ptr;
