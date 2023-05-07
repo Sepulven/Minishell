@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 15:59:27 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:27:48 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 void	command_export2(char *param, t_env *env_lst)
 {

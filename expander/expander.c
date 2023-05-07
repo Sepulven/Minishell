@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 16:22:23 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:28:14 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./expander.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 static char	*get_var_name(char *str)
 {

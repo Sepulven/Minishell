@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 14:02:36 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:10:44 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	g_exit_s;
 	* Expander -> Lexer -> Parser -> Executor
 	* Desta forma temos uma segurança quanto a modulirização
 */
+
 void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -38,16 +39,6 @@ void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-/*
-	TODO: Dado a organização não quero ter no root do projeto nenhum outro ficheiro que não seja a main.
-	TODO: Quando temos uma variavel de ambiente que nao existe substitui por "", quando passamos pelo lexer que realiza a tokenização ele vai colocar esta string nula entre parentese, corrigir isso.
-		* acasd $PATHasdf ola
-		* dentro
-		* [0]"acasd"
-		* [1]""
-		* [2]"ola"
-	* A solução para o problema é simples.
-*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
@@ -58,10 +49,16 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
+<<<<<<< HEAD
 		// ft_printf("myshell:> ");
 		str = get_next_line(0);
 		str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
 		add_history(str);
+=======
+		str = get_next_line(0);
+		str[ft_strlen(str) - 1] = '\0';
+		minishell(str);
+>>>>>>> re_struct_project
 	}
 }

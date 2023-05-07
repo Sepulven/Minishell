@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   aux_executor.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 21:47:21 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 15:59:31 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:27:26 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "executor.h"
-#include "../important.h"
+#include "./executor.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 void	write_error(char *str, int status)
 {

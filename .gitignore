@@ -1,2 +1,2 @@
-minishell_tester/*
-vscode/*
+./minishell_tester/*
+./.vscode/*

@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 11:47:26 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 20:53:12 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:28:17 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "./utils.h"
 
 int	get_com_number(char *str)
 {

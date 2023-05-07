@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:01:55 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/28 20:23:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/06 22:34:26 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,6 @@ int	pos_of_c_in_str(char *str, char *c)
 		i++;
 	}
 	return (-1);
-}
-
-// TODO: Remove it! Basicamente esta verificando se encontra vazio entre pipes;
-int	check_words(char const *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] != ' ')
-			return (1);
-		i++;
-	}
-	return (0);
 }
 
 void	initialize_lst(t_command_list **new)
