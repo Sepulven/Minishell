@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 15:53:58 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:37:29 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	minishell(char *str)
 	int				token_num;
 	int				com;
 
-	(void)com;
 	validator(str);
 	com = get_com_number(str);
 	str = expander(str);
