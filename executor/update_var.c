@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 12:30:40 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:00:02 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	update_all(t_env *env_lst, char **envp)
 	char	*aux;
 
 	i = 0;
-	new_env = ft_calloc(__ft_lstsize_env(env_lst) + 1, sizeof (char *));
+	new_env = ft_calloc(__ft_lstsize_env(env_lst) + 1, sizeof(char *));
 	str_list = NULL;
 	while (env_lst)
 	{

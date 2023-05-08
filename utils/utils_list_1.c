@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 12:49:28 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:00:06 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	__ft_lstadd_env(t_env **env, t_env *new)
 		aux = aux->next;
 	}
 	current->next = new;
+	//printf("new %s\n", current->next->name);
 }
 
 t_command_list	*__ft_lstlast(t_command_list *lst)
