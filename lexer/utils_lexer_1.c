@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:13:41 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 00:31:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/07 13:44:29 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lexer.h"
+#include "./lexer.h"
 
 /*
 	* Verifica se é um redirect, caso seja retorna o tamanho do redirect.

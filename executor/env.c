@@ -6,12 +6,14 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 14:35:23 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:23:36 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 // void	free_env(t_env *env)
 // {
@@ -56,7 +58,6 @@ void	initialize_env(t_env **new)
 	(*new)->value = 0;
 	(*new)->next = 0;
 }
-
 
 t_env	*get_env(void)
 {

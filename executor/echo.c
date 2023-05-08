@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/04 15:59:11 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:58:51 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-#include "../important.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 int	check_flag_n(char *str)
 {
@@ -40,7 +42,6 @@ void	command_echo(char **param)
 {
 	int	n;
 	int	i;
-	int	f;
 
 	n = 0;
 	i = 0;
@@ -48,21 +49,9 @@ void	command_echo(char **param)
 		n = 1;
 	while (param[i])
 	{
-		f = 0;
-		while (param[i][f])
-		{
-			if (param[i][f] == '$' && param[i][f + 1] == '?')
-			{
-				ft_printf("%i", g_exit_s);
-				f++;
-			}
-			else
-				ft_printf("%c", param[i][f]);
-			f++;
-		}
-		if (param[i + 1])
+		ft_printf("%s", param[i]);
+		if (param[++i])
 			write(1, " ", 1);
-		i++;
 	}
 	if (n == 0)
 		write(1, "\n", 1);

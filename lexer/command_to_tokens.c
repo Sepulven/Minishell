@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/29 00:10:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/07 17:37:21 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 	* Receives the token address, where it starts and ends.
 	* Create the token based on the rules. Add quotes.
 	* Return te token if the process works, and NULL if it doesn't;
+	! Todo: There is an error with the redirects, when I change the sides
 */
 static char	*create_token(char *str, int start, int end)
 {
 	char	*token;
 	char	*formatted;
-	int		i;
+	int		flag;
 
-	i = 0;
+	flag = ft_isredirects(&str[start + jump_white_spaces(&str[start])]);
+	// ft_printf("flag %d str[%s]\n", flag, &str[start]);
 	token = ft_calloc(end - start + 3, sizeof (char));
 	if (!token)
 		return (NULL);
@@ -38,8 +40,8 @@ static char	*create_token(char *str, int start, int end)
 	ft_strlcat(token, "\"", 2);
 	ft_strlcat(token, formatted, ft_strlen(formatted) + 2);
 	ft_strlcat(token, "\"", ft_strlen(formatted) + 3);
-	i = ft_isredirects(&token[1]);
-	ft_swap(&token[0], &token[i]);
+	if (flag)
+		ft_swap(&token[0], &token[flag]);
 	free(formatted);
 	return (token);
 }

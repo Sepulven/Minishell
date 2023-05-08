@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 16:22:23 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:52:00 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./expander.h"
-#include "../important.h"
+
+extern int	g_exit_s;
 
 static char	*get_var_name(char *str)
 {
@@ -77,6 +78,21 @@ static void	expande_to_new_str(char *str, char **new_str, int *i, int *j)
 	free(var_name);
 }
 
+int	ft_isvar(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i++] != '$' || !(ft_isalnum(str[i]) \
+	|| str[i] == '_' || str[i] == '?'))
+		return (0);
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
+		i++;
+	if (i <= 1 && (ft_isdigit(str[1]) || str[i] == '_'))
+		return (0);
+	return (1);
+}
+
 static void	expand_rules(char *str, char **new_str, int *i, int *j)
 {
 	int		single_quotes_len;
@@ -95,14 +111,14 @@ static void	expand_rules(char *str, char **new_str, int *i, int *j)
 		(*new_str)[(*j)++] = str[(*i)++];
 		while (str[*i] && str[*i] != '"')
 		{
-			if (str[*i] == '$')
+			if (ft_isvar(&str[*i]))
 				expande_to_new_str(str, new_str, i, j);
 			else
 				(*new_str)[(*j)++] = str[(*i)++];
 		}
 		(*new_str)[(*j)++] = str[(*i)++];
 	}
-	else if (str[*i] == '$')
+	else if (ft_isvar(&str[*i]))
 		expande_to_new_str(str, new_str, i, j);
 }
 
@@ -119,7 +135,7 @@ char	*expander(char *str)
 		return (NULL);
 	while (str[i])
 	{
-		if (str[i] == '\'' || str[i] == '$' || str[i] == '"')
+		if (str[i] == '\'' || str[i] == '"' || ft_isvar(&str[i]))
 			expand_rules(str, &new_str, &i, &j);
 		else
 			new_str[j++] = str[i++];
