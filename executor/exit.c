@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 23:28:30 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:04:48 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	command_exit(t_command_list *lst)
 		clear_exit(lst);
 	else if (check_exit(lst->param[1]) == -1)
 	{
-		error_m("exit", lst->param[1], "Numeric argument required\n", 2);
+		error_m("exit", lst->param[1], "numeric argument required\n", 2);
 		clear_exit(lst);
 	}
 	else if (lst->param[2])

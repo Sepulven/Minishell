@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 23:27:36 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:24:47 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,13 @@ int	go_home(char **param, t_env *env_lst)
 
 	aux = env_lst;
 	flag = -1;
+	getcwd(oldpwd, sizeof(oldpwd));
 	if (!param[1])
 		flag = home_dir(aux);
 	else if (ft_strcmp(param[1], "~") == 0)
 		flag = til_dir(aux);
 	if (flag == 0)
-		update_var(aux, getcwd(oldpwd, sizeof(oldpwd)));
+		update_var(aux, oldpwd);
 	return (flag);
 }
 

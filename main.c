@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/08 15:23:30 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:09:13 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
+		ft_printf("ourshell> ");
 		str = get_next_line(0);
 		str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
