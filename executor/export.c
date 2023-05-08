@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 15:23:14 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:08:25 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,21 @@
 // #include "../important.h"
 
 extern int	g_exit_s;
+
+void	export_no_p(t_env *env_lst)
+{
+	t_env	*aux;
+	int		num_var;
+
+	aux = env_lst;
+	num_var = 0;
+	while (aux)
+	{
+		num_var++;
+		aux = aux->next;
+	}
+	print_env_order(env_lst, num_var);
+}
 
 void	command_export2(char *param, t_env *env_lst)
 {
@@ -36,29 +51,10 @@ void	command_export2(char *param, t_env *env_lst)
 			}
 			i++;
 		}
-		printf("\ncheck 0\n");
 		node = create_node(param);
 		__ft_lstadd_env(&env_lst, node);
 		update_all(env_lst, *env());
-		printf("check 1\n");
-		export_no_p(env_lst);
-		printf("check 2\n\n");
 	}
-}
-
-void	export_no_p(t_env *env_lst)
-{
-	t_env	*aux;
-	int		num_var;
-
-	aux = env_lst;
-	num_var = 0;
-	while (aux)
-	{
-		num_var++;
-		aux = aux->next;
-	}
-	print_env_order(env_lst, num_var);
 }
 
 void	command_export(char **param)
@@ -82,4 +78,3 @@ void	command_export(char **param)
 	free_env(env_lst);
 	//free(env_lst);
 }
-

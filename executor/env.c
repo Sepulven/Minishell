@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 15:23:36 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:55:51 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,6 @@
 // #include "../important.h"
 
 extern int	g_exit_s;
-
-// void	free_env(t_env *env)
-// {
-// 	t_env	*ptr;
-
-// 	while (env)
-// 	{
-// 		ptr = env->next;
-// 		free(env->name);
-// 		if (env->value)	
-// 			free(env->value);
-// 		free(env);
-// 		env = ptr;
-// 	}
-// }
 
 void	command_env(char **param)
 {

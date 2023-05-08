@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 15:00:02 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:57:55 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,33 @@ char	*get_newenv(char **envp, char *str_lst, int i)
 	return (str);
 }
 
+// void	update_all(t_env *env_lst, char **envp)
+// {
+// 	int		i;
+// 	char	**new_env;
+// 	char	*str_list;
+// 	char	*aux;
+
+// 	i = 0;
+// 	new_env = ft_calloc(__ft_lstsize_env(env_lst) + 1, sizeof(char *));
+// 	str_list = NULL;
+// 	while (env_lst)
+// 	{
+// 		aux = ft_strjoin(env_lst->name, "=");
+// 		str_list = get_strlist(env_lst, aux);
+// 		new_env[i] = get_newenv(envp, str_list, i);
+// 		free(aux);
+// 		free(str_list);
+// 		i++;
+// 		if (!env_lst->next)
+// 			break ;
+// 		env_lst = env_lst->next;
+// 	}
+// 	free_double(envp);
+// 	*env() = new_env;
+// }
+
+
 void	update_all(t_env *env_lst, char **envp)
 {
 	int		i;
@@ -58,7 +85,7 @@ void	update_all(t_env *env_lst, char **envp)
 	char	*aux;
 
 	i = 0;
-	new_env = ft_calloc(__ft_lstsize_env(env_lst) + 1, sizeof(char *));
+	new_env = ft_calloc(__ft_lstsize_env(env_lst) + 1, sizeof (char *));
 	str_list = NULL;
 	while (env_lst)
 	{
@@ -72,9 +99,10 @@ void	update_all(t_env *env_lst, char **envp)
 			break ;
 		env_lst = env_lst->next;
 	}
-	free_double(envp);
+	free(envp);
 	*env() = new_env;
 }
+
 
 void	update_var(t_env *env_lst, char *oldpwd)
 {

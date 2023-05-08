@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 23:27:31 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:07:32 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ int	check_builtin_one(t_command_list *lst)
 	int	flag;
 
 	flag = 0;
-	if (ft_strcmp(lst->command, "cd") == 0)
+	if (ft_strcmp(lst->command, "export") == 0)
+		command_export(lst->param);
+	else if (ft_strcmp(lst->command, "cd") == 0)
 		command_cd(lst->param, get_env());
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);

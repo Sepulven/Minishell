@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/07 14:11:12 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:59:41 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void	execute(t_command_list *lst, int com)
 	id = 0;
 	f = 0;
 	status = 0;
+	pid = 0;
 	g_exit_s = 0;
 	if (com == 1)
 	{
@@ -157,5 +158,8 @@ void	execute(t_command_list *lst, int com)
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
 	}
+	// waitpid(pid, &status, 0);
+	// if (WIFEXITED(status))
+	// 	g_exit_s = WEXITSTATUS(status);
 	free_pipes(id, com);
 }
