@@ -6,12 +6,11 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 21:47:21 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:24:12 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:27:08 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-// #include "../important.h"
 
 extern int	g_exit_s;
 

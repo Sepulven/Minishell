@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 18:21:42 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:47:34 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,28 @@ void	command_middle(int **fd, t_command_list *node, int i)
 	}
 	else
 		dup2(fd[i][1], STDOUT_FILENO);
+}
+
+void	command(int **fd, t_command_list *lst, int i, int com)
+{
+	t_command_list	*node;
+	//struct stat	path_stat;
+
+	node = get_lst(lst, i);
+	if (i == 0)
+		command_one(fd, node, i);
+	else if (i == com - 1)
+		command_final(fd, node, i);
+	else
+		command_middle(fd, node, i);
+	// stat(lst->path, &path_stat);
+	// if (S_ISDIR(path_stat.st_mode))
+	// {
+	// 	error_m(0, lst->path, "Is a directory\n", 126);
+	// 	error_function(lst, 0, 126);
+	// }
+	check_builtin(node);
+	execve(node->path, node->param, *env());
+	perror(node->command);
+	error_function(node, fd, 127);
 }

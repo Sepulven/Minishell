@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 12:16:32 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:47:47 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void			command_cd(char **param, t_env *env);
 void			command_one(int **fd, t_command_list *node, int i);
 void			command_final(int **fd, t_command_list *node, int i);
 void			command_middle(int **fd, t_command_list *node, int i);
+void			command(int **fd, t_command_list *lst, int i, int com);
 
 /*echo.c*/
 void			command_echo(char **param);
@@ -56,7 +57,6 @@ void			initialize_env(t_env **new);
 t_env			*get_env(void);
 
 /*execution.c*/
-void			command(int **fd, t_command_list *lst, int i, int com);
 int				do_fork(t_command_list *lst, int **id, int i, int com);
 void			execute_one(t_command_list *lst);
 void			execute(t_command_list *lst, int com);
