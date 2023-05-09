@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 15:52:00 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:58:02 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ char	*expander(char *str)
 		else
 			new_str[j++] = str[i++];
 	}
-	free(str);
+	if (str != NULL)
+		free(str);
 	return (new_str);
 }

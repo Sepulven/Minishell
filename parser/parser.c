@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 12:45:44 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:28:48 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_command_list	*get_node(char **command_token, char **paths)
 		return (NULL);
 	initialize_lst(&new);
 	i = 0;
-	while (command_token[i])
+	while (command_token[i] && (new->inf != -1 && new->outf != -1))
 	{
 		if (!new->command && command_token[i][0] == '"')
 		{

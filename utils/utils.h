@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 14:10:47 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 13:57:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void				free_lst(t_command_list *lst);
 void				free_tokens(char ***tokens);
 
 /*validator.c*/
-int					validator(char *line);
+int					validator(char **line);
 int					is_empty_to_next_pipe(char *str);
 
 /*get_com_number.c*/

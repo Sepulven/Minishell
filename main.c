@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 12:56:07 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:13:13 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ void	minishell(char *str)
 {
 	t_command_list	*parser_list;
 	char			***tokens;
-	int				token_num;
 	int				com;
 
-	validator(str);
+	(void)parser_list;
+	(void)tokens;
+	validator(&str);
 	com = get_com_number(str);
 	str = expander(str);
-	token_num = count_tokens_in_command(str);
-	tokens = lexer(str, token_num);
-	print_lexer(tokens);
+	tokens = lexer(str, com);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
@@ -39,6 +38,8 @@ void	minishell(char *str)
 		execute(parser_list, com);
 	free_lst(parser_list);
 }
+
+// cat <"1""2""3""4""5"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -50,7 +51,7 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		ft_printf("ourshell> ");
+		// ft_printf("ourshell> ");
 		str = get_next_line(0);
 		str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
