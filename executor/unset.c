@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 23:27:59 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:04:07 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,28 @@ int	check_param(char *param)
 	return (0);
 }
 
-void	unset_var(char *param, t_env *env_lst)
+t_env	*loop_lst(int *flag, t_env **lst, char *param)
 {
 	t_env	*aux;
+
+	while ((*lst) && (*lst)->next)
+	{
+		aux = (*lst);
+		if (ft_strcmp((*lst)->next->name, param) == 0)
+		{
+			*flag = 1;
+			break ;
+		}
+		(*lst) = (*lst)->next;
+	}
+	return (aux);
+}
+
+void	unset_var(char *param, t_env *env_lst)
+{
 	t_env	*first_node;
 	int		flag;
+	t_env	*aux;
 
 	first_node = env_lst;
 	flag = 0;
@@ -50,16 +67,7 @@ void	unset_var(char *param, t_env *env_lst)
 		g_exit_s = 1;
 		return ;
 	}
-	while (env_lst && env_lst->next)
-	{
-		aux = env_lst;
-		if (ft_strcmp(env_lst->next->name, param) == 0)
-		{
-			flag = 1;
-			break ;
-		}
-		env_lst = env_lst->next;
-	}
+	aux = loop_lst(&flag, &env_lst, param);
 	if (flag == 0)
 		return ;
 	else

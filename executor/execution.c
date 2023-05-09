@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 15:59:41 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:25:45 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,6 @@
 // #include "../important.h"
 
 extern int	g_exit_s;
-
-int	get_com(t_command_list *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
-
-void	error_function(t_command_list *lst, int **fd, int status)
-{
-	g_exit_s = status;
-	if (fd)
-		free_pipes(fd, get_com(lst));
-	free_lst(lst);
-	free_envp(*env());
-	exit(g_exit_s);
-}
 
 void	command(int **fd, t_command_list *lst, int i, int com)
 {
@@ -68,7 +45,6 @@ int	do_fork(t_command_list *lst, int **id, int i, int com)
 	else if (pid == 0)
 		command(id, lst, i, com);
 	return (pid);
-		
 }
 
 void	execute_one(t_command_list *lst)
@@ -89,7 +65,7 @@ void	execute_one(t_command_list *lst)
 		stat(lst->path, &path_stat);
 		if (S_ISDIR(path_stat.st_mode))
 		{
-			ft_putendl_fd("Is a directory\n", 2);
+			error_m(0, lst->path, "Is a directory\n", 126);
 			error_function(lst, 0, 126);
 		}
 		check_builtin(lst);
@@ -102,18 +78,6 @@ void	execute_one(t_command_list *lst)
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
-	}
-}
-
-void	close_pipes(int **id, int com)
-{
-	int	i;
-
-	i = 0;
-	while (i != com - 1)
-	{
-		close(id[i][0]);
-		i++;
 	}
 }
 
@@ -158,8 +122,5 @@ void	execute(t_command_list *lst, int com)
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
 	}
-	// waitpid(pid, &status, 0);
-	// if (WIFEXITED(status))
-	// 	g_exit_s = WEXITSTATUS(status);
 	free_pipes(id, com);
 }

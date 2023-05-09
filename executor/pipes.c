@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:35:54 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/21 17:11:24 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:12:29 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,16 @@ void	free_pipes(int **id, int com)
 		i++;
 	}
 	free(id);
+}
+
+void	close_pipes(int **id, int com)
+{
+	int	i;
+
+	i = 0;
+	while (i != com - 1)
+	{
+		close(id[i][0]);
+		i++;
+	}
 }
