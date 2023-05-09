@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 15:07:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:59:46 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 		wait(NULL);
 		*i -= 1;
 	}
+	free_pipes(id, com);
 	return (id);
 }
 
@@ -132,5 +133,4 @@ void	execute(t_command_list *lst, int com)
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
 	}
-	free_pipes(id, com);
 }

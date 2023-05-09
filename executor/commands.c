@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 15:11:02 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:57:29 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 	else
 		command_middle(fd, node, i);
 	check_builtin(node);
+	free_envp(*env());
+	free_pipes(fd, com);
 	execve(node->path, node->param, *env());
 	perror(node->command);
 	error_function(node, fd, 127);

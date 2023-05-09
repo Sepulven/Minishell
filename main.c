@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:15:38 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:21:52 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	minishell(char *str)
 		execute(parser_list, com);
 	free_lst(parser_list);
 }
-
-// cat <"1""2""3""4""5"
 
 int	main(int argc, char **argv, char **envp)
 {

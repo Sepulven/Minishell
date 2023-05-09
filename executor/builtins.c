@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:27:12 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:16:58 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ t_env	*create_node(char *str)
 
 void	check_builtin(t_command_list *lst)
 {
-	int	flag;
+	int		flag;
+	t_env	*aux;
 
+	aux = get_env();
 	flag = 0;
 	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
@@ -77,13 +79,16 @@ void	check_builtin(t_command_list *lst)
 	else if (ft_strcmp(lst->command, "echo") == 0)
 		command_echo(lst->param);
 	else if (ft_strcmp(lst->command, "cd") == 0)
-		command_cd(lst->param, get_env());
+		command_cd(lst->param, aux);
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, get_env());
+		command_unset(lst->param, aux);
 	else
 		flag = -1;
+	free_env(aux);
+	free_envp(*env());
+	free_lst(lst);
 	if (flag == 0)
 		exit(g_exit_s);
 }

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:48:23 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:05:42 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ extern int	g_exit_s;
 
 void	command_pwd(t_env *env_lst)
 {
-	char	*pwd;
+	char	pwd[1024];
 	t_env	*aux;
+	char	*path;
 
-	pwd = NULL;
 	g_exit_s = 0;
-	getcwd(pwd, 500);
-	if (pwd)
+	path = getcwd(pwd, 500);
+	if (path[0] != '\0')
 		ft_printf("%s\n", pwd);
 	else
 	{
@@ -38,5 +38,5 @@ void	command_pwd(t_env *env_lst)
 			write(1, "\n", 1);
 		}
 	}
-	free(pwd);
+	free_env(env_lst);
 }
