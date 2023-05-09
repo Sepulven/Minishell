@@ -6,12 +6,11 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/08 16:08:25 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:48:09 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-// #include "../important.h"
 
 extern int	g_exit_s;
 
@@ -76,5 +75,4 @@ void	command_export(char **param)
 		}
 	}
 	free_env(env_lst);
-	//free(env_lst);
 }

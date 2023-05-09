@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 14:09:58 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:18:25 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	validator(char **_line)
 	free(*_line);
 	*_line = ft_strtrim(buff, "|");
 	if (ft_strncmp(*_line, buff, ft_strlen(buff)))
-		err("Unclosed pipes.	", *_line, '|', 0);
+		err("Unclosed pipes.", *_line, '|', 0);
 	free(buff);
 	i = 0;
 	line = *_line;
@@ -93,7 +93,7 @@ int	validator(char **_line)
 		if (!isallowed(line[i]) || repeat_out_rule(&line[i]))
 			err("Unexpected character\n", line, line[i], i);
 		if (line[i] == '|' && is_empty_to_next_pipe(&line[i]))
-			err("Empty pipes.	", line, line[i], i);
+			err("Empty pipes.", line, line[i], i);
 		i += 1 - (line[i] == '\'' || line[i] == '"');
 	}
 	return (1);

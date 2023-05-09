@@ -6,31 +6,13 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:25:45 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:07:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
-// #include "../important.h"
 
 extern int	g_exit_s;
-
-void	command(int **fd, t_command_list *lst, int i, int com)
-{
-	t_command_list	*node;
-
-	node = get_lst(lst, i);
-	if (i == 0)
-		command_one(fd, node, i);
-	else if (i == com - 1)
-		command_final(fd, node, i);
-	else
-		command_middle(fd, node, i);
-	check_builtin(node);
-	execve(node->path, node->param, *env());
-	perror(node->command);
-	error_function(node, fd, 127);
-}
 
 int	do_fork(t_command_list *lst, int **id, int i, int com)
 {
@@ -47,10 +29,41 @@ int	do_fork(t_command_list *lst, int **id, int i, int com)
 	return (pid);
 }
 
+void	dups_dir(t_command_list *lst)
+{
+	struct stat	path_stat;
+
+	if (lst->inf == -1)
+		error_function(lst, 0, 1);
+	if (lst->inf != 0)
+	{
+		dup2(lst->inf, STDIN_FILENO);
+		close(lst->inf);
+	}
+	if (lst->outf != 0)
+	{
+		dup2(lst->outf, STDOUT_FILENO);
+		close(lst->outf);
+	}
+	stat(lst->path, &path_stat);
+	if (S_ISDIR(path_stat.st_mode))
+	{
+		if (ft_strncmp(lst->command, "./", 2) == 0)
+		{
+			error_m(0, lst->command, "Is a directory\n", 126);
+			error_function(lst, 0, 126);
+		}
+		else
+		{
+			error_m(0, lst->command, "Command not found\n", 127);
+			error_function(lst, 0, 127);
+		}
+	}
+}
+
 void	execute_one(t_command_list *lst)
 {
 	int			pid;
-	struct stat	path_stat;
 	int			status;
 
 	pid = fork();
@@ -58,16 +71,7 @@ void	execute_one(t_command_list *lst)
 		error_function(lst, 0, 127);
 	else if (pid == 0)
 	{
-		if (lst->inf != 0)
-			dup2(lst->inf, STDIN_FILENO);
-		if (lst->outf != 0)
-			dup2(lst->outf, STDOUT_FILENO);
-		stat(lst->path, &path_stat);
-		if (S_ISDIR(path_stat.st_mode))
-		{
-			error_m(0, lst->path, "Is a directory\n", 126);
-			error_function(lst, 0, 126);
-		}
+		dups_dir(lst);
 		check_builtin(lst);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
@@ -81,20 +85,42 @@ void	execute_one(t_command_list *lst)
 	}
 }
 
+int	**do_loop(t_command_list *lst, int com, int *i, int *status)
+{
+	int	pid;
+	int	**id;
+
+	id = create_pipes(com);
+	pid = 0;
+	while (*i < com)
+	{
+		if (*i != com - 1)
+			pipe(id[*i]);
+		pid = do_fork(lst, id, *i, com);
+		if (*i != com - 1)
+			close(id[*i][1]);
+		*i += 1;
+	}
+	close_pipes(id, com);
+	waitpid(pid, status, 0);
+	while (*i >= 0)
+	{
+		wait(NULL);
+		*i -= 1;
+	}
+	return (id);
+}
+
 void	execute(t_command_list *lst, int com)
 {
 	int	i;
-	int	pid;
 	int	**id;
 	int	status;
-	int	f;
 
 	i = 0;
 	id = 0;
-	f = 0;
-	status = 0;
-	pid = 0;
 	g_exit_s = 0;
+	status = 0;
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
@@ -102,23 +128,7 @@ void	execute(t_command_list *lst, int com)
 	}
 	else
 	{
-		id = create_pipes(com);
-		while (i < com)
-		{
-			if (i != com - 1)
-				pipe(id[i]);
-			pid = do_fork(lst, id, i, com);
-			if (i != com - 1)
-				close(id[i][1]);
-			i++;
-		}
-		close_pipes(id, com);
-		waitpid(pid, &status, 0);
-		while (f <= i)
-		{
-			wait(NULL);
-			f++;
-		}
+		id = do_loop(lst, com, &i, &status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
 	}
