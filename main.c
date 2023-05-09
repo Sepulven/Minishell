@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/08 17:09:13 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:55:10 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	minishell(char *str)
 	int				token_num;
 	int				com;
 
-	validator(str);
+	validator(&str);
 	com = get_com_number(str);
 	str = expander(str);
 	token_num = count_tokens_in_command(str);

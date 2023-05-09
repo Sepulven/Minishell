@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 22:27:06 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 14:39:35 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,28 @@ int	is_empty_to_next_pipe(char *str)
 	return (1);
 }
 
-int	validator(char *line)
+int	validator(char **_line)
 {
 	int		i;
 	char	*buff;
+	char	*line;
 
-	buff = ft_strtrim(line, " \n\t\r\f");
-	free(line);
-	line = ft_strtrim(buff, "|");
-	if (ft_strncmp(line, buff, ft_strlen(buff)))
-		err("Unclosed pipes.	", line, '|', 0);
+	buff = ft_strtrim(*_line, " \n\t\r\f");
+	free(*_line);
+	*_line = ft_strtrim(buff, "|");
+	if (ft_strncmp(*_line, buff, ft_strlen(buff)))
+		err("Unclosed pipes.    ", *_line, '|', 0);
 	free(buff);
 	i = 0;
+	line = *_line;
 	while (line[i])
 	{
 		i += jump_quotes(&line[i]);
 		if (!isallowed(line[i]) || repeat_out_rule(&line[i]))
 			err("Unexpected character\n", line, line[i], i);
 		if (line[i] == '|' && is_empty_to_next_pipe(&line[i]))
-			err("Empty pipes.	", line, line[i], i);
-		i++;
+			err("Empty pipes.   ", line, line[i], i);
+		i += 1 - (line[i] == '\'' || line[i] == '"');
 	}
 	return (1);
 }

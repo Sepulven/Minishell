@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 13:15:24 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:07:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,18 @@ void	dups_dir(t_command_list *lst)
 {
 	struct stat	path_stat;
 
+	if (lst->inf == -1)
+		error_function(lst, 0, 1);
 	if (lst->inf != 0)
+	{
 		dup2(lst->inf, STDIN_FILENO);
+		close(lst->inf);
+	}
 	if (lst->outf != 0)
+	{
 		dup2(lst->outf, STDOUT_FILENO);
+		close(lst->outf);
+	}
 	stat(lst->path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 	{
