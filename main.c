@@ -6,19 +6,19 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 12:53:21 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:56:07 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
-int	g_exit_s = 0;
-
+int	g_exit_s;
 /*
 	* Executa o processo convencional do bash, seguro.
 	* Expander -> Lexer -> Parser -> Executor
 	* Desta forma temos uma segurança quanto a modulirização
 */
+
 void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -26,7 +26,8 @@ void	minishell(char *str)
 	int				token_num;
 	int				com;
 
-	com = get_com_number(&str);
+	validator(str);
+	com = get_com_number(str);
 	str = expander(str);
 	token_num = count_tokens_in_command(str);
 	tokens = lexer(str, token_num);
@@ -49,10 +50,9 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		ft_printf("myshell:> ");
+		ft_printf("ourshell> ");
 		str = get_next_line(0);
-		str[ft_strlen(str)] = '\0';
+		str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
-		get_next_line(-1);
 	}
 }

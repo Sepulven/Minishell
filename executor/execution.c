@@ -6,34 +6,14 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/02 17:19:43 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:25:45 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+// #include "../important.h"
 
-int	get_com(t_command_list *lst)
-{
-	int	i;
-
-	i = 0;
-	while (lst)
-	{
-		i++;
-		lst = lst->next;
-	}
-	return (i);
-}
-
-void	error_function(t_command_list *lst, int **fd, int status)
-{
-	g_exit_s = status;
-	if (fd)
-		free_pipes(fd, get_com(lst));
-	free_lst(lst);
-	free_envp(*env());
-	exit(g_exit_s);
-}
+extern int	g_exit_s;
 
 void	command(int **fd, t_command_list *lst, int i, int com)
 {
@@ -46,14 +26,13 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
-	check_builtin_first(node);
-	check_builtin_second(node);
+	check_builtin(node);
 	execve(node->path, node->param, *env());
 	perror(node->command);
 	error_function(node, fd, 127);
 }
 
-void	do_fork(t_command_list *lst, int **id, int i, int com)
+int	do_fork(t_command_list *lst, int **id, int i, int com)
 {
 	int	pid;
 
@@ -65,12 +44,14 @@ void	do_fork(t_command_list *lst, int **id, int i, int com)
 	}
 	else if (pid == 0)
 		command(id, lst, i, com);
+	return (pid);
 }
 
 void	execute_one(t_command_list *lst)
 {
 	int			pid;
 	struct stat	path_stat;
+	int			status;
 
 	pid = fork();
 	if (pid == -1)
@@ -84,38 +65,36 @@ void	execute_one(t_command_list *lst)
 		stat(lst->path, &path_stat);
 		if (S_ISDIR(path_stat.st_mode))
 		{
-			ft_putendl_fd("Is a directory\n", 2);
+			error_m(0, lst->path, "Is a directory\n", 126);
 			error_function(lst, 0, 126);
 		}
+		check_builtin(lst);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
 		error_function(lst, 0, 127);
 	}
-}
-
-void	close_pipes(int **id, int com)
-{
-	int	i;
-
-	i = 0;
-	while (i != com - 1)
+	else
 	{
-		close(id[i][0]);
-		i++;
+		wait(&status);
+		if (WIFEXITED(status))
+			g_exit_s = WEXITSTATUS(status);
 	}
 }
 
 void	execute(t_command_list *lst, int com)
 {
 	int	i;
-	int	f;
+	int	pid;
 	int	**id;
 	int	status;
+	int	f;
 
 	i = 0;
-	f = 0;
 	id = 0;
+	f = 0;
 	status = 0;
+	pid = 0;
+	g_exit_s = 0;
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
@@ -128,20 +107,20 @@ void	execute(t_command_list *lst, int com)
 		{
 			if (i != com - 1)
 				pipe(id[i]);
-			do_fork(lst, id, i, com);
+			pid = do_fork(lst, id, i, com);
 			if (i != com - 1)
 				close(id[i][1]);
 			i++;
 		}
 		close_pipes(id, com);
+		waitpid(pid, &status, 0);
+		while (f <= i)
+		{
+			wait(NULL);
+			f++;
+		}
+		if (WIFEXITED(status))
+			g_exit_s = WEXITSTATUS(status);
 	}
-	f = 0;
-	while (f <= i)
-	{
-		wait(NULL);
-		f++;
-	}
-	if (WIFEXITED(status))
-		g_exit_s = WEXITSTATUS(status);
 	free_pipes(id, com);
 }

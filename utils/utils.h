@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 17:00:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:10:47 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 
 # define DEBUG1 write(1, "PING1\n", 7);
 # define DEBUG2 write(1, "PING2\n", 7);
-
-extern int	g_exit_s;
 
 typedef struct s_env
 {
@@ -46,8 +44,29 @@ void				print_lexer(char ***lexer);
 void				print_char_matrix(char **matrix);
 void				print_parser(t_command_list *parser);
 
+/*frees.c*/
+void				free_double(char **array);
+void				free_lst(t_command_list *lst);
+void				free_tokens(char ***tokens);
+
+/*validator.c*/
+int					validator(char *line);
+int					is_empty_to_next_pipe(char *str);
+
+/*get_com_number.c*/
+int					get_com_number(char *str);
+
+/* aux.c ! Funcoes libft alteradas ! */
+char				*ft_substr_mini(char const *s, unsigned int start, \
+					unsigned int end);
+int					ft_strcmp_mini(char *a, char *b);
+void				print_char_matrix(char **matrix);
+char				**dup_env(char **envp);
+void				free_envp(char **env);
+
 /*__def_env.c*/
 char				***env(void);
+void				free_env(t_env *env);
 
 /*utils_list_1.c*/
 void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);
@@ -63,4 +82,5 @@ int					jump_white_spaces(char *str);
 
 /*utils_general_1.c*/
 void				ft_swap(char *x, char *y);
+int					check_words(char const *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 22:46:41 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:05:30 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	update_all(t_env *env_lst, char **envp)
 			break ;
 		env_lst = env_lst->next;
 	}
-	free(envp);
+	free_double(envp);
 	*env() = new_env;
 }
 

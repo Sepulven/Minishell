@@ -6,27 +6,28 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/02 17:29:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:08:25 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+// #include "../important.h"
 
-int	check_repeat(t_env *var, t_env **lst)
+extern int	g_exit_s;
+
+void	export_no_p(t_env *env_lst)
 {
-	while (*lst)
+	t_env	*aux;
+	int		num_var;
+
+	aux = env_lst;
+	num_var = 0;
+	while (aux)
 	{
-		if (ft_strcmp(var->name, (*lst)->name) == 0)
-		{
-			if (var->value)
-				(*lst)->value = ft_strdup(var->value);
-			else
-				(*lst)->value = NULL;
-			return (1);
-		}
-		(*lst) = (*lst)->next;
+		num_var++;
+		aux = aux->next;
 	}
-	return (0);
+	print_env_order(env_lst, num_var);
 }
 
 void	command_export2(char *param, t_env *env_lst)
@@ -56,21 +57,6 @@ void	command_export2(char *param, t_env *env_lst)
 	}
 }
 
-void	export_no_p(t_env *env_lst)
-{
-	t_env	*aux;
-	int		num_var;
-
-	aux = env_lst;
-	num_var = 0;
-	while (aux)
-	{
-		num_var++;
-		aux = aux->next;
-	}
-	print_env_order(env_lst, num_var);
-}
-
 void	command_export(char **param)
 {
 	int		i;
@@ -90,4 +76,5 @@ void	command_export(char **param)
 		}
 	}
 	free_env(env_lst);
+	//free(env_lst);
 }

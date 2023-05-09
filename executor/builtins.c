@@ -6,11 +6,14 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 23:15:27 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:07:32 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+// #include "../important.h"
+
+extern int	g_exit_s;
 
 t_env	*do_node(int f, int i, t_env *node, char *str)
 {
@@ -61,17 +64,7 @@ t_env	*create_node(char *str)
 	return (do_node(f, i, node, str));
 }
 
-void	check_builtin_first(t_command_list *lst)
-{
-	if (ft_strcmp(lst->command, "cd") == 0)
-		exit(0);
-	else if (ft_strcmp(lst->command, "unset") == 0)
-		exit(0);
-	else if (ft_strcmp(lst->command, "exit") == 0)
-		exit(0);
-}
-
-void	check_builtin_second(t_command_list *lst)
+void	check_builtin(t_command_list *lst)
 {
 	int	flag;
 
@@ -84,6 +77,12 @@ void	check_builtin_second(t_command_list *lst)
 		command_env(lst->param);
 	else if (ft_strcmp(lst->command, "echo") == 0)
 		command_echo(lst->param);
+	else if (ft_strcmp(lst->command, "cd") == 0)
+		command_cd(lst->param, get_env());
+	else if (ft_strcmp(lst->command, "exit") == 0)
+		command_exit(lst);
+	else if (ft_strcmp(lst->command, "unset") == 0)
+		command_unset(lst->param, get_env());
 	else
 		flag = -1;
 	if (flag == 0)
@@ -95,20 +94,14 @@ int	check_builtin_one(t_command_list *lst)
 	int	flag;
 
 	flag = 0;
-	if (ft_strcmp(lst->command, "cd") == 0)
-		command_cd(lst->param, get_env());
-	else if (ft_strcmp(lst->command, "export") == 0)
+	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
-	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, get_env());
+	else if (ft_strcmp(lst->command, "cd") == 0)
+		command_cd(lst->param, get_env());
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
-	else if (ft_strcmp(lst->command, "pwd") == 0)
-		command_pwd(get_env());
-	else if (ft_strcmp(lst->command, "env") == 0)
-		command_env(lst->param);
-	else if (ft_strcmp(lst->command, "echo") == 0)
-		command_echo(lst->param);
+	else if (ft_strcmp(lst->command, "unset") == 0)
+		command_unset(lst->param, get_env());
 	else
 		flag = -1;
 	return (flag);

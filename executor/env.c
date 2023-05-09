@@ -6,26 +6,14 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/04/30 22:01:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:55:51 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
+// #include "../important.h"
 
-void	free_env(t_env *env)
-{
-	t_env	*ptr;
-
-	while (env)
-	{
-		ptr = env->next;
-		free(env->name);
-		if (env->value)
-			free(env->value);
-		free(env);
-		env = ptr;
-	}
-}
+extern int	g_exit_s;
 
 void	command_env(char **param)
 {
@@ -55,7 +43,6 @@ void	initialize_env(t_env **new)
 	(*new)->value = 0;
 	(*new)->next = 0;
 }
-
 
 t_env	*get_env(void)
 {
