@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 20:18:45 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:45:44 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*token_to_field(char *command_token)
 	char	*buff;
 	char	*field;
 
+	if (ft_strlen(command_token) == 2)
+		return (ft_strdup(""));
 	buff = ft_strdup(command_token);
 	buff[ft_strlen(buff) - 1] = '\0';
 	field = ft_strdup(&buff[1]);
@@ -92,7 +94,7 @@ t_command_list	*get_node(char **command_token, char **paths)
 			new->path = check_path(paths, new->command);
 			new->param = add_param(new->param, command_token[i]);
 		}
-		else if (command_token[i][0] == '"' && ft_strlen(command_token[i]) > 2)
+		else if (command_token[i][0] == '"')
 			new->param = add_param(new->param, command_token[i]);
 		else if (ft_isredirects(command_token[i]))
 			treat_redirects(new, command_token[i]);

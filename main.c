@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/02 17:08:31 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:53:21 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	minishell(char *str)
 	int				token_num;
 	int				com;
 
-	(void)com;
 	com = get_com_number(&str);
 	str = expander(str);
 	token_num = count_tokens_in_command(str);
 	tokens = lexer(str, token_num);
+	print_lexer(tokens);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
@@ -39,16 +39,6 @@ void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-/*
-	TODO: Dado a organização não quero ter no root do projeto nenhum outro ficheiro que não seja a main.
-	TODO: Quando temos uma variavel de ambiente que nao existe substitui por "", quando passamos pelo lexer que realiza a tokenização ele vai colocar esta string nula entre parentese, corrigir isso.
-		* acasd $PATHasdf ola
-		* dentro
-		* [0]"acasd"
-		* [1]""
-		* [2]"ola"
-	* A solução para o problema é simples.
-*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
@@ -64,6 +54,5 @@ int	main(int argc, char **argv, char **envp)
 		str[ft_strlen(str)] = '\0';
 		minishell(str);
 		get_next_line(-1);
-		//add_history(str);
 	}
 }
