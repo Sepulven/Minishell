@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:15:38 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 16:50:47 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	g_exit_s;
 	* Desta forma temos uma segurança quanto a modulirização
 */
 
-void	minishell(char *str)
+static void	minishell(char *str)
 {
 	t_command_list	*parser_list;
 	char			***tokens;
@@ -36,9 +36,26 @@ void	minishell(char *str)
 		execute(parser_list, com);
 	free_lst(parser_list);
 }
+// void	handler(int signal, siginfo_t *si, void *data)
+// {
+// 	ft_printf("SIGNAL[%d]\n", signal);
+// }
+// static int	sethandler(void)
+// {
+// 	struct sigaction	act;
 
-// cat <"1""2""3""4""5"
-
+// 	act.sa_sigaction = handler;
+// 	act.sa_flags = SA_SIGINFO;
+// 	sigaction(SIGUSR1, &act, NULL);
+// 	sigaction(SIGUSR2, &act, NULL);
+// 	return (1);
+// }
+/*
+	Arranjar um forma de criar um garbage collector para manter um registo 
+	de tudo que e alocado.
+	Conforme executa o comando
+	Atencao sig_icn;
+*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
@@ -46,6 +63,7 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	(void)argc;
 	(void)argv;
+	// set_signals();
 	*env() = dup_env(envp);
 	while (1)
 	{

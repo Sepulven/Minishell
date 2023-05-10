@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:19:48 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 15:44:54 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:20:54 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ char	*expander(char *str);
 
 /*utils_expander.c*/
 char	*get_env_value(char *var_name, char **envp);
-
+int		ft_isvar(char *str);
 #endif

@@ -6,11 +6,26 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 23:29:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 13:44:48 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:20:43 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./expander.h"
+
+int	ft_isvar(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i++] != '$' || !(ft_isalnum(str[i]) \
+	|| str[i] == '_' || str[i] == '?'))
+		return (0);
+	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
+		i++;
+	if (i <= 1 && (ft_isdigit(str[1]) || str[i] == '_'))
+		return (0);
+	return (1);
+}
 
 char	*get_env_value(char *var_name, char **envp)
 {

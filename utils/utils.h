@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:17:27 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:33:42 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include <unistd.h>
 # include <stdio.h>
+# include <signal.h>
 
 # define DEBUG1 write(1, "PING1\n", 7);
 # define DEBUG2 write(1, "PING2\n", 7);
