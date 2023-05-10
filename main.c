@@ -6,11 +6,13 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/10 14:35:08 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:08:29 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
+#include <signal.h>
+#include <stdlib.h>
 
 int	g_exit_s;
 
@@ -36,13 +38,24 @@ static void	minishell(char *str)
 		execute(parser_list, com);
 	free_lst(parser_list);
 }
+
 // void	handler(int signal, siginfo_t *si, void *data)
 // {
-// 	ft_printf("SIGNAL[%d]\n", signal);
+// 	(void)si;
+// 	(void)data;
+// 	ft_printf("\nSIGNAL[%d]\n", signal);
 // }
-// static int	sethandler(void)
+
+// int	set_signals(void)
 // {
 // 	struct sigaction	act;
+
+// 	act.sa_sigaction = handler;
+// 	act.sa_flags = SA_SIGINFO;
+// 	sigaction(SIGINT, &act, NULL);
+// 	sigaction(SIGUSR1, &act, NULL);
+// 	return (1);
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
