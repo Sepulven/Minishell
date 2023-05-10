@@ -6,19 +6,19 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 16:50:47 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:35:08 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
 
 int	g_exit_s;
+
 /*
 	* Executa o processo convencional do bash, seguro.
 	* Expander -> Lexer -> Parser -> Executor
 	* Desta forma temos uma segurança quanto a modulirização
 */
-
 static void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -44,18 +44,6 @@ static void	minishell(char *str)
 // {
 // 	struct sigaction	act;
 
-// 	act.sa_sigaction = handler;
-// 	act.sa_flags = SA_SIGINFO;
-// 	sigaction(SIGUSR1, &act, NULL);
-// 	sigaction(SIGUSR2, &act, NULL);
-// 	return (1);
-// }
-/*
-	Arranjar um forma de criar um garbage collector para manter um registo 
-	de tudo que e alocado.
-	Conforme executa o comando
-	Atencao sig_icn;
-*/
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
