@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 15:48:23 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:45:19 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	sig_quit_case(void)
 
 void	handler(int signal)
 {
-	if (signal == SIGQUIT)
+	if (signal == SIGINT)
 	{
 		printf("\n");
 		rl_on_new_line();
@@ -86,12 +86,9 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		// ft_printf("ourshell> ");
-		// str = get_next_line(0);
-		str = readline("ARTEZA:"); // readline for the evaluation
+		str = readline("ARTEZA:");
 		if (!str)
 			exit(EXIT_FAILURE);
-		// str[ft_strlen(str) - 1] = '\0';
-		//  minishell(str);
+		minishell(str);
 	}
 }
