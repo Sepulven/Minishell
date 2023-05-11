@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 14:57:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:26:06 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void			printf_env(char **env);
 void			print_env_order(t_env *env_lst, int num_var);
 
 /*pwd.c*/
-void			command_pwd(t_env *env_lst);
+void			command_pwd(t_env *env_lst, char **param);
 
 /*unset.c*/
 void			command_unset(char **param);
