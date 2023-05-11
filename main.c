@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/10 15:08:29 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:48:23 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,39 @@ static void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-// void	handler(int signal, siginfo_t *si, void *data)
-// {
-// 	(void)si;
-// 	(void)data;
-// 	ft_printf("\nSIGNAL[%d]\n", signal);
-// }
+void	sig_int_case(void)
+{
+	// No leaks
+	ft_printf("SIGQUIT\n");
+	return ;
+}
 
-// int	set_signals(void)
-// {
-// 	struct sigaction	act;
+void	sig_quit_case(void)
+{
+	// Leaks
+	ft_printf("SIGQUIT\n");
+	return ;
+}
 
-// 	act.sa_sigaction = handler;
-// 	act.sa_flags = SA_SIGINFO;
-// 	sigaction(SIGINT, &act, NULL);
-// 	sigaction(SIGUSR1, &act, NULL);
-// 	return (1);
-// }
+void	handler(int signal)
+{
+	if (signal == SIGQUIT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+	// if (signal == SIGQUIT)
+	// 	sig_quit_case();
+}
+
+int	set_signals(void)
+{
+	// signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
+	return (1);
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -64,13 +80,18 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	// set_signals();
+	(void)str;
+	(void)minishell;
+	set_signals();
 	*env() = dup_env(envp);
 	while (1)
 	{
 		// ft_printf("ourshell> ");
-		str = get_next_line(0);
-		str[ft_strlen(str) - 1] = '\0';
-		minishell(str);
+		// str = get_next_line(0);
+		str = readline("ARTEZA:"); // readline for the evaluation
+		if (!str)
+			exit(EXIT_FAILURE);
+		// str[ft_strlen(str) - 1] = '\0';
+		//  minishell(str);
 	}
 }
