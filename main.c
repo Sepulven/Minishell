@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 16:15:26 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:32:46 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ int	set_signals(void)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	int	i;
-	int	*aux;
 
 	str = NULL;
 	(void)argc;
@@ -88,17 +86,12 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		i = 0;
-
 		str = readline("ARTEZA:"); // readline for the evaluation
 		if (!str)
-			exit(EXIT_FAILURE);
-		aux = *pid();
-		while (i < 4)
 		{
-			printf("i %i\n", aux[i]);	
-			i++;
+			free_double(*env());
+			exit(EXIT_FAILURE);
 		}
-		 minishell(str);
+		minishell(str);
 	}
 }
