@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 16:16:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:33:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ void	check_builtin(t_command_list *lst)
 	else
 		flag = -1;
 	free_env(aux);
-	free_envp(*env());
-	free_lst(lst);
 	if (flag == 0)
+	{
+		free_envp(*env());
+		free_lst(lst);
 		exit(g_exit_s);
+	}
 }
 
 int	check_builtin_one(t_command_list *lst)
