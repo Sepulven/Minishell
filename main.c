@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 16:45:19 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:51:53 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,30 @@ int	set_signals(void)
 	return (1);
 }
 
+#include <unistd.h>
+#include <fcntl.h>
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
+	int		fd;
 
 	str = NULL;
 	(void)argc;
 	(void)argv;
 	(void)str;
+	(void)envp;
 	(void)minishell;
-	set_signals();
-	*env() = dup_env(envp);
-	while (1)
-	{
-		str = readline("ARTEZA:");
-		if (!str)
-			exit(EXIT_FAILURE);
-		minishell(str);
-	}
+	fd = open("exampleXXXXXX", O_TMPFILE | O_RDWR, 0600);
+	sleep(10);
+	close(fd);
+	// set_signals();
+	// *env() = dup_env(envp);
+	// while (1)
+	// {
+	// 	str = readline("ARTEZA:");
+	// 	if (!str)
+	// 		exit(EXIT_FAILURE);
+	// 	minishell(str);
+	// }
 }
