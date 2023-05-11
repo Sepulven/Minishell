@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/11 14:33:27 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 14:57:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	*create_node(char *str)
 	return (do_node(f, i, node, str));
 }
 
-void	check_builtin(t_command_list *lst)
+void	check_builtin(int **fd, t_command_list *lst, int com)
 {
 	int		flag;
 	t_env	*aux;
@@ -83,7 +83,7 @@ void	check_builtin(t_command_list *lst)
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, aux);
+		command_unset(lst->param);
 	else
 		flag = -1;
 	free_env(aux);
@@ -91,6 +91,8 @@ void	check_builtin(t_command_list *lst)
 	{
 		free_envp(*env());
 		free_lst(lst);
+		if (fd)
+			free_pipes(fd, com);
 		exit(g_exit_s);
 	}
 }
@@ -107,7 +109,7 @@ int	check_builtin_one(t_command_list *lst)
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, get_env());
+		command_unset(lst->param);
 	else
 		flag = -1;
 	return (flag);

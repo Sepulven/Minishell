@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:11:06 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/06 23:12:47 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:06:27 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			command_middle(int **fd, t_command_list *lst, int i);
 
 void			command(int **fd, t_command_list *lst, int i, int com);
 int				do_fork(t_command_list *lst, int **id, int i, int com);
-void			execute_one(t_command_list *lst);
+void			execute_one(t_command_list *lst, int com);
 void			execute(t_command_list *lst, int com);
 
 int				get_num_words(char *str, char c);
