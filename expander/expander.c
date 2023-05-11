@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 13:58:02 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:20:38 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,21 +76,6 @@ static void	expande_to_new_str(char *str, char **new_str, int *i, int *j)
 	*i += ft_strlen(var_name) + 1;
 	*j = ft_strlen(*new_str);
 	free(var_name);
-}
-
-int	ft_isvar(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i++] != '$' || !(ft_isalnum(str[i]) \
-	|| str[i] == '_' || str[i] == '?'))
-		return (0);
-	while (str[i] && (ft_isalnum(str[i]) || str[i] == '_' || str[i] == '?'))
-		i++;
-	if (i <= 1 && (ft_isdigit(str[1]) || str[i] == '_'))
-		return (0);
-	return (1);
 }
 
 static void	expand_rules(char *str, char **new_str, int *i, int *j)
