@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 16:05:42 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:03:05 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,32 @@
 
 extern int	g_exit_s;
 
-void	command_pwd(t_env *env_lst)
+int check_flags(char **param)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (param[i])
+	{
+		j = 0;
+		while (param[i][j])
+		{
+			if (param[i][j] == '-' && param[i][j + 1])
+			{
+				ft_putchar_fd(param[i][j], 2);
+				ft_putchar_fd(param[i][j + 1], 2);
+				ft_putendl_fd(": not a valid option\n", 2);
+				return (-1);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	command_pwd(t_env *env_lst, char **param)
 {
 	char	pwd[1024];
 	t_env	*aux;
@@ -22,6 +47,8 @@ void	command_pwd(t_env *env_lst)
 
 	g_exit_s = 0;
 	path = getcwd(pwd, 500);
+	if (check_flags(param) == -1)
+		error_function(0, 0, 2);
 	if (path[0] != '\0')
 		ft_printf("%s\n", pwd);
 	else

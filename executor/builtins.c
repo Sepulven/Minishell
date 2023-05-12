@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 16:16:58 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:25:57 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_env	*create_node(char *str)
 	return (do_node(f, i, node, str));
 }
 
-void	check_builtin(t_command_list *lst)
+void	check_builtin(int **fd, t_command_list *lst, int com)
 {
 	int		flag;
 	t_env	*aux;
@@ -73,7 +73,7 @@ void	check_builtin(t_command_list *lst)
 	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
 	else if (ft_strcmp(lst->command, "pwd") == 0)
-		command_pwd(get_env());
+		command_pwd(get_env(), lst->param);
 	else if (ft_strcmp(lst->command, "env") == 0)
 		command_env(lst->param);
 	else if (ft_strcmp(lst->command, "echo") == 0)
@@ -83,14 +83,18 @@ void	check_builtin(t_command_list *lst)
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, aux);
+		command_unset(lst->param);
 	else
 		flag = -1;
 	free_env(aux);
-	free_envp(*env());
-	free_lst(lst);
 	if (flag == 0)
+	{
+		free_envp(*env());
+		free_lst(lst);
+		if (fd)
+			free_pipes(fd, com);
 		exit(g_exit_s);
+	}
 }
 
 int	check_builtin_one(t_command_list *lst)
@@ -105,7 +109,7 @@ int	check_builtin_one(t_command_list *lst)
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param, get_env());
+		command_unset(lst->param);
 	else
 		flag = -1;
 	return (flag);

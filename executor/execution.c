@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/10 15:01:51 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:27:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	dups_dir(t_command_list *lst)
 	}
 }
 
-void	execute_one(t_command_list *lst)
+void	execute_one(t_command_list *lst, int com)
 {
 	int			pid;
 	int			status;
@@ -72,7 +72,7 @@ void	execute_one(t_command_list *lst)
 	else if (pid == 0)
 	{
 		dups_dir(lst);
-		check_builtin(lst);
+		check_builtin(0, lst, com);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
 		error_function(lst, 0, 127);
@@ -85,24 +85,35 @@ void	execute_one(t_command_list *lst)
 	}
 }
 
+int	*create_pid(int com)
+{
+	int	*aux;
+
+	aux = malloc(sizeof(int) * com);
+	if (!aux)
+		exit(127);
+	return (aux);
+}
+
 int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 {
-	int	pid;
 	int	**id;
+	int	*aux;
 
 	id = create_pipes(com);
-	pid = 0;
+	aux = create_pid(com);
 	while (*i < com)
 	{
 		if (*i != com - 1)
 			pipe(id[*i]);
-		pid = do_fork(lst, id, *i, com);
+		aux[*i] = do_fork(lst, id, *i, com);
 		if (*i != com - 1)
 			close(id[*i][1]);
 		*i += 1;
 	}
+	*pid() = aux;
 	close_pipes(id, com);
-	waitpid(pid, status, 0);
+	waitpid(aux[com - 1], status, 0);
 	while (*i >= 0)
 	{
 		wait(NULL);
@@ -126,7 +137,7 @@ void	execute(t_command_list *lst, int com)
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
-			execute_one(lst);
+			execute_one(lst, com);
 	}
 	else
 	{

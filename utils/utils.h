@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:33:42 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:16:00 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void				free_envp(char **env);
 /*__def_env.c*/
 char				***env(void);
 void				free_env(t_env *env);
+
+int					**pid(void);
 
 /*utils_list_1.c*/
 void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);

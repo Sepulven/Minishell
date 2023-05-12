@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/12 12:55:15 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:58:26 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ static void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-void	sig_int_case(void)
-{
-	// No leaks
-	ft_printf("SIGQUIT\n");
-	return ;
-}
+// void	sig_int_case(void)
+// {
+// 	ft_printf("SIGQUIT\n");
+// 	return ;
+// }
 
-void	sig_quit_case(void)
+void	sig_int_case(int signal)
 {
-	// Leaks
-	ft_printf("SIGQUIT\n");
+	int	i;
+	int	*pids;
+
+	pids = *pid();
+	i = 0;
+	while (i < 4)
+		kill(pids[i++], signal);
 	return ;
 }
 
@@ -57,6 +61,7 @@ void	handler(int signal)
 {
 	if (signal == SIGINT)
 	{
+		// sig_int_case(signal);
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
@@ -73,9 +78,6 @@ int	set_signals(void)
 	return (1);
 }
 
-#include <unistd.h>
-#include <fcntl.h>
-
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
@@ -87,9 +89,17 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		str = readline("ARTEZA:");
+		ft_printf("ARTEZA:");
+		str = get_next_line(0);
+		// str = readline("ARTEZA:"); // readline for the evaluation
 		if (!str)
+		{
+			free_double(*env());
+			ft_printf("\n");
 			exit(EXIT_FAILURE);
+		}
+		else
+			str[ft_strlen(str) - 1] = 0;
 		minishell(str);
 	}
 }
