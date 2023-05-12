@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 17:51:53 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:55:15 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	handler(int signal)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	// if (signal == SIGQUIT)
-	// 	sig_quit_case();
+	if (signal == SIGQUIT)
+		sig_quit_case();
 }
 
 int	set_signals(void)
 {
-	// signal(SIGINT, handler);
+	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
 	return (1);
 }
@@ -79,24 +79,17 @@ int	set_signals(void)
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	int		fd;
 
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	(void)str;
-	(void)envp;
-	(void)minishell;
-	fd = open("exampleXXXXXX", O_TMPFILE | O_RDWR, 0600);
-	sleep(10);
-	close(fd);
-	// set_signals();
-	// *env() = dup_env(envp);
-	// while (1)
-	// {
-	// 	str = readline("ARTEZA:");
-	// 	if (!str)
-	// 		exit(EXIT_FAILURE);
-	// 	minishell(str);
-	// }
+	set_signals();
+	*env() = dup_env(envp);
+	while (1)
+	{
+		str = readline("ARTEZA:");
+		if (!str)
+			exit(EXIT_FAILURE);
+		minishell(str);
+	}
 }
