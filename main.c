@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/12 12:58:26 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:59:22 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	handler(int signal)
 		rl_replace_line("", 0);
 		rl_redisplay();
 	}
-	if (signal == SIGQUIT)
-		sig_quit_case();
+	// if (signal == SIGQUIT)
+	// 	sig_quit_case();
 }
 
 int	set_signals(void)
