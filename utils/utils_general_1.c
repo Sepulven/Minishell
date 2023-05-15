@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_general_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 02:22:59 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 14:10:52 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 19:03:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ void	free_env(t_env *env)
 	while (env)
 	{
 		ptr = env->next;
-		free(env->name);
+		if (env->name)
+			free(env->name);
 		if (env->value)
 			free(env->value);
-		free(env);
+		if (env)
+			free(env);
 		env = ptr;
 	}
+	if (env)
+		free(env);
 }
 
 // TODO: Remove it! Basicamente esta verificando se encontra vazio entre pipes;

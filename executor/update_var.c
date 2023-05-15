@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:05:30 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:23:01 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ void	update_var(t_env *env_lst, char *oldpwd)
 	t_env	*aux;
 	char	pwd[1024];
 
-	aux = env_lst;
-	env_lst = fetch_node(aux, "PWD");
-	if (env_lst)
-		env_lst->value = getcwd(pwd, sizeof(pwd));
-	env_lst = fetch_node(aux, "OLDPWD");
-	if (env_lst)
-		env_lst->value = oldpwd;
-	update_all(aux, *env());
+	aux = NULL;
+	aux = fetch_node(env_lst, "PWD");
+	if (aux)
+		aux->value = getcwd(pwd, sizeof(pwd));
+	aux = fetch_node(env_lst, "OLDPWD");
+	if (aux)
+		aux->value = oldpwd;
+	update_all(env_lst, *env());
 }

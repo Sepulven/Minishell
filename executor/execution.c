@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 17:14:34 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:17:03 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 		*i -= 1;
 	}
 	free_pipes(id, com);
-	free(aux);
 	return (id);
 }
 

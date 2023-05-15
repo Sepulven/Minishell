@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 16:43:34 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:13:54 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,24 @@ t_env	*create_node(char *str)
 void	check_builtin(int **fd, t_command_list *lst, int com)
 {
 	int		flag;
-	t_env	*aux;
 
-	aux = get_env();
 	flag = 0;
 	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
 	else if (ft_strcmp(lst->command, "pwd") == 0)
-		command_pwd(aux, lst->param);
+		command_pwd(lst->param);
 	else if (ft_strcmp(lst->command, "env") == 0)
 		command_env(lst->param);
 	else if (ft_strcmp(lst->command, "echo") == 0)
 		command_echo(lst->param);
 	else if (ft_strcmp(lst->command, "cd") == 0)
-		command_cd(lst->param, aux);
+		command_cd(lst->param);
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
 		command_unset(lst->param);
 	else
 		flag = -1;
-	free_env(aux);
 	if (flag == 0)
 	{
 		free_envp(*env());
@@ -99,18 +96,24 @@ void	check_builtin(int **fd, t_command_list *lst, int com)
 
 int	check_builtin_one(t_command_list *lst)
 {
-	int	flag;
+	int		flag;
 
 	flag = 0;
 	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
 	else if (ft_strcmp(lst->command, "cd") == 0)
-		command_cd(lst->param, get_env());
+		command_cd(lst->param);
 	else if (ft_strcmp(lst->command, "exit") == 0)
 		command_exit(lst);
 	else if (ft_strcmp(lst->command, "unset") == 0)
 		command_unset(lst->param);
 	else
 		flag = -1;
+	// if (flag == 0)
+	// {
+	// 	//free_envp(*env());
+	// 	//free_lst(lst);
+	// 	//exit(g_exit_s);
+	// }
 	return (flag);
 }

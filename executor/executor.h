@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 16:51:22 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:01:25 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			write_error(char *str, int status);
 void			error_m(char *command, char *param, char *str, int s);
 int				get_com(t_command_list *lst);
 void			error_function(t_command_list *lst, int **fd, int status);
-int             check_flags_one(char **param, char *command);
+int             check_flags_one(char *param, char *command);
 int             check_flags_two(char **param, char *command);
 
 /*builtins.c*/
@@ -42,7 +42,7 @@ void			check_builtin(int **fd, t_command_list *lst, int com);
 int				check_builtin_one(t_command_list *lst);
 
 /*cd.c*/
-void			command_cd(char **param, t_env *env);
+void			command_cd(char **param);
 
 /*commands.c*/
 void			command_one(int **fd, t_command_list *node, int i);
@@ -81,7 +81,7 @@ void			printf_env(char **env);
 void			print_env_order(t_env *env_lst, int num_var);
 
 /*pwd.c*/
-void			command_pwd(t_env *env_lst, char **param);
+void			command_pwd(char **param);
 
 /*unset.c*/
 void			command_unset(char **param);

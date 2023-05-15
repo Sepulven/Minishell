@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 17:14:04 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:54:50 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,32 @@ static void	minishell(char *str)
 	// str = readline("ARTEZA:"); // readline for the evaluation
 */
 
+void	sh_level(char **envp)
+{
+	char	**aux;
+	int		i;
+	char	*number;
+	int		num;
+
+	*env() = dup_env(envp);
+	aux = *env();
+	i = 0;
+	while (aux[i])
+	{
+		if (ft_strncmp(aux[i], "SHLVL", 5) == 0)
+		{
+			number = ft_substr(aux[i], 6, ft_strlen(aux[i]));
+			num = ft_atoi(number);
+			free(number);
+			free(aux[i]);
+			number = ft_itoa(num + 1);
+			aux[i] = ft_strjoin("SHLVL=", number);
+			free(number);
+		}
+		i++;
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
@@ -58,7 +84,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	signal(SIGINT, handler);
 	signal(SIGQUIT, handler);
-	*env() = dup_env(envp);
+	sh_level(envp);
 	while (1)
 	{
 		ft_printf("ARTEZA:");

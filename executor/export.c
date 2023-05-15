@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:32:01 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 14:23:12 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:23:33 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	command_export2(char *param, t_env *env_lst)
 	int		i;
 
 	i = 0;
-	if (param[i] == '-' && param[i + 1])
-		error_m("export", param, "invalid option\n", 2);
-	else if (ft_isalpha(param[i]) == 0)
+	if (check_flags_one(param, "export") == -1)
+		return ;
+	else if (ft_isalpha(param[0]) == 0)
 		error_m("export", param, "not a valid identifier\n", 1);
 	else
 	{
