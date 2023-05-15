@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 12:47:47 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:26:06 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			error_function(t_command_list *lst, int **fd, int status);
 /*builtins.c*/
 t_env			*do_node(int f, int i, t_env *node, char *str);
 t_env			*create_node(char *str);
-void			check_builtin(t_command_list *lst);
+void			check_builtin(int **fd, t_command_list *lst, int com);
 int				check_builtin_one(t_command_list *lst);
 
 /*cd.c*/
@@ -58,7 +58,7 @@ t_env			*get_env(void);
 
 /*execution.c*/
 int				do_fork(t_command_list *lst, int **id, int i, int com);
-void			execute_one(t_command_list *lst);
+void			execute_one(t_command_list *lst, int com);
 void			execute(t_command_list *lst, int com);
 
 /*exit.c*/
@@ -79,10 +79,10 @@ void			printf_env(char **env);
 void			print_env_order(t_env *env_lst, int num_var);
 
 /*pwd.c*/
-void			command_pwd(t_env *env_lst);
+void			command_pwd(t_env *env_lst, char **param);
 
 /*unset.c*/
-void			command_unset(char **param, t_env *env_lst);
+void			command_unset(char **param);
 
 /*update_var.c*/
 t_env			*fetch_node(t_env *env_lst, char *name);

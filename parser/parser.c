@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:16:44 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:41:00 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,30 @@ char	**add_param(char **matrix, char *param)
 
 static void	treat_redirects(t_command_list *new, char *command_token)
 {
+	// if (!ft_strncmp(command_token, "<<", 2))
+	// {
+	// 	if (new->inf)
+	// 		close(new->inf);
+	// 	new->inf = heredoc(command_token);
+	// }
 	if (!ft_strncmp(command_token, ">>", 2))
+	{
+		if (new->outf)
+			close(new->outf);
 		new->outf = append(command_token);
+	}
 	else if (!ft_strncmp(command_token, "<", 1))
+	{
+		if (new->inf)
+			close(new->inf);
 		new->inf = redirect_inf(command_token);
+	}
 	else if (!ft_strncmp(command_token, ">", 1))
+	{
+		if (new->outf)
+			close(new->outf);
 		new->outf = redirect_outf(command_token);
+	}
 }
 
 /*

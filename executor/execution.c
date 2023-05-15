@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 15:59:46 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:51:07 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	do_fork(t_command_list *lst, int **id, int i, int com)
 		error_function(lst, 0, 127);
 	}
 	else if (pid == 0)
+	{
+		signal(SIGQUIT, handler_quit);
 		command(id, lst, i, com);
+	}
 	return (pid);
 }
 
@@ -61,7 +64,7 @@ void	dups_dir(t_command_list *lst)
 	}
 }
 
-void	execute_one(t_command_list *lst)
+void	execute_one(t_command_list *lst, int com)
 {
 	int			pid;
 	int			status;
@@ -72,13 +75,14 @@ void	execute_one(t_command_list *lst)
 	else if (pid == 0)
 	{
 		dups_dir(lst);
-		check_builtin(lst);
+		check_builtin(0, lst, com);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
 		error_function(lst, 0, 127);
 	}
 	else
 	{
+		signal(SIGQUIT, handler_quit);
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
@@ -87,22 +91,21 @@ void	execute_one(t_command_list *lst)
 
 int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 {
-	int	pid;
 	int	**id;
+	int	aux;
 
 	id = create_pipes(com);
-	pid = 0;
 	while (*i < com)
 	{
 		if (*i != com - 1)
 			pipe(id[*i]);
-		pid = do_fork(lst, id, *i, com);
+		aux = do_fork(lst, id, *i, com);
 		if (*i != com - 1)
 			close(id[*i][1]);
 		*i += 1;
 	}
 	close_pipes(id, com);
-	waitpid(pid, status, 0);
+	waitpid(aux, status, 0);
 	while (*i >= 0)
 	{
 		wait(NULL);
@@ -120,12 +123,13 @@ void	execute(t_command_list *lst, int com)
 
 	i = 0;
 	id = 0;
+	(void)id;
 	g_exit_s = 0;
 	status = 0;
 	if (com == 1)
 	{
 		if (check_builtin_one(lst) == -1)
-			execute_one(lst);
+			execute_one(lst, com);
 	}
 	else
 	{

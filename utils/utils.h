@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:33:42 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:18:53 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int					is_empty_to_next_pipe(char *str);
 /*get_com_number.c*/
 int					get_com_number(char *str);
 
+/*signals.c*/
+void				handler_quit(int signal);
+void				handler(int signal);
+
 /* aux.c ! Funcoes libft alteradas ! */
 char				*ft_substr_mini(char const *s, unsigned int start, \
 					unsigned int end);
@@ -68,6 +72,8 @@ void				free_envp(char **env);
 /*__def_env.c*/
 char				***env(void);
 void				free_env(t_env *env);
+
+int					**pid(void);
 
 /*utils_list_1.c*/
 void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);

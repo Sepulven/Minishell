@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:48:26 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:05:23 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,13 @@ void	unset_var(char *param, t_env *env_lst)
 	}
 }
 
-void	command_unset(char **param, t_env *env_lst)
+void	command_unset(char **param)
 {
 	int	i;
+	t_env	*env_lst;
 
 	i = 1;
+	env_lst = get_env();
 	g_exit_s = 0;
 	while (param[i])
 	{

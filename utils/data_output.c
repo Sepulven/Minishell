@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_output.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:12:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/04 13:44:54 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:14:37 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	print_parser(t_command_list *parser)
 			i++;
 		}		
 		ft_printf("\nPATH: %s\n", parser->path);
-		ft_printf("INFILE: %d 	OUTFILE: %d\n");
+		ft_printf("INFILE: %d 	OUTFILE: %d\n", parser->inf, parser->outf);
 		j++;
 		parser = parser->next;
 	}

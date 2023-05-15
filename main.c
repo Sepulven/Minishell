@@ -6,19 +6,21 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 15:07:34 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 15:15:22 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
+#include <signal.h>
+#include <stdlib.h>
 
-int	g_exit_s;
+int g_exit_s;
 
 /*
-	* Executa o processo convencional do bash, seguro.
-	* Expander -> Lexer -> Parser -> Executor
-	* Desta forma temos uma segurança quanto a modulirização
-*/
+ * Executa o processo convencional do bash, seguro.
+ * Expander -> Lexer -> Parser -> Executor
+ * Desta forma temos uma segurança quanto a modulirização
+ */
 static void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -36,13 +38,16 @@ static void	minishell(char *str)
 		execute(parser_list, com);
 	free_lst(parser_list);
 }
-// void	handler(int signal, siginfo_t *si, void *data)
-// {
-// 	ft_printf("SIGNAL[%d]\n", signal);
-// }
-// static int	sethandler(void)
-// {
-// 	struct sigaction	act;
+
+/*
+	! Don't delete it !
+	Readline context useful:
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	// str = readline("ARTEZA:"); // readline for the evaluation
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -51,13 +56,21 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	// set_signals();
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 	*env() = dup_env(envp);
 	while (1)
 	{
-		// ft_printf("ourshell> ");
+		ft_printf("ARTEZA:");
 		str = get_next_line(0);
-		str[ft_strlen(str) - 1] = '\0';
+		if (!str)
+		{
+			free_double(*env());
+			ft_printf("\n");
+			exit(EXIT_FAILURE);
+		}
+		else
+			str[ft_strlen(str) - 1] = 0;
 		minishell(str);
 	}
 }

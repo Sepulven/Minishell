@@ -1,14 +1,5 @@
 {
-	"files.associations": {
-		"sstream": "c",
-		"lexer.h": "c",
-<<<<<<< HEAD
-		"random": "c"
-=======
-		"expander.h": "c",
-		"minishell.h": "c",
-		"utils.h": "c",
-		"executor.h": "c"
->>>>>>> 05d8197ee50effea40bd8f07b5ac1c129ad783f7
-	}
+    "files.associations": {
+        "executor.h": "c"
+    }
 }
