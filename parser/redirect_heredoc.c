@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/12 17:47:15 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:42:53 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,21 @@ char	*get_delimidator(char *token)
 	return (delimitador);
 }
 
-#define TESTE :
+// #define TESTE :
 
-int	heredoc(char *token)
-{
-	char	*delimitador;
-	char	*line;
-	int		pipefd[2];
+// int	heredoc(char *token)
+// {
+// 	char	*delimitador;
+// 	char	*line;
+// 	int		pipefd[2];
 
-
-	delimitador = get_delimitador(token);
-	pipe(pipefd);
-	while (ft_strncmp())
-	{
-		line = get_next_line(0);
-		write(pipefd[1], line, ft_strlen(line));
-		free(line);
-	}
-	close(pideft[1]);
-}
+// 	delimitador = get_delimitador(token);
+// 	pipe(pipefd);
+// 	while (ft_strncmp())
+// 	{
+// 		line = get_next_line(0);
+// 		write(pipefd[1], line, ft_strlen(line));
+// 		free(line);
+// 	}
+// 	close(pideft[1]);
+// }

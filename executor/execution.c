@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/12 16:17:48 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 14:51:07 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	execute_one(t_command_list *lst, int com)
 		error_function(lst, 0, 127);
 	else if (pid == 0)
 	{
-		signal(SIGQUIT, handler_quit);
 		dups_dir(lst);
 		check_builtin(0, lst, com);
 		execve(lst->path, lst->param, *env());
@@ -83,6 +82,7 @@ void	execute_one(t_command_list *lst, int com)
 	}
 	else
 	{
+		signal(SIGQUIT, handler_quit);
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
