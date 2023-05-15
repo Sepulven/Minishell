@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 16:17:56 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:50:13 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 	}
 	close_pipes(id, com);
 	waitpid(aux, status, 0);
+	signal(SIGQUIT, handler_quit);
 	while (*i >= 0)
 	{
 		wait(NULL);
