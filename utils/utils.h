@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/11 16:16:00 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:18:53 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int					is_empty_to_next_pipe(char *str);
 
 /*get_com_number.c*/
 int					get_com_number(char *str);
+
+/*signals.c*/
+void				handler_quit(int signal);
+void				handler(int signal);
 
 /* aux.c ! Funcoes libft alteradas ! */
 char				*ft_substr_mini(char const *s, unsigned int start, \

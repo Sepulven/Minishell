@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/12 12:59:22 by asepulve         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/11 17:08:23 by mvicente         ###   ########.fr       */
->>>>>>> 869e669d5aae25a4f4af7ce5e4c8533ec4938182
+/*   Updated: 2023/05/12 16:17:59 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +17,10 @@
 int	g_exit_s;
 
 /*
-	* Executa o processo convencional do bash, seguro.
-	* Expander -> Lexer -> Parser -> Executor
-	* Desta forma temos uma segurança quanto a modulirização
-*/
+ * Executa o processo convencional do bash, seguro.
+ * Expander -> Lexer -> Parser -> Executor
+ * Desta forma temos uma segurança quanto a modulirização
+ */
 static void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -43,44 +39,14 @@ static void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-// void	sig_int_case(void)
-// {
-// 	ft_printf("SIGQUIT\n");
-// 	return ;
-// }
-
-void	sig_int_case(int signal)
-{
-	int	i;
-	int	*pids;
-
-	pids = *pid();
-	i = 0;
-	while (i < 4)
-		kill(pids[i++], signal);
-	return ;
-}
-
-void	handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		// sig_int_case(signal);
+/*
+	! Don't delete it !
+	Readline context useful:
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-	}
-	// if (signal == SIGQUIT)
-	// 	sig_quit_case();
-}
-
-int	set_signals(void)
-{
-	signal(SIGINT, handler);
-	signal(SIGQUIT, handler);
-	return (1);
-}
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -89,7 +55,8 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	set_signals();
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 	*env() = dup_env(envp);
 	while (1)
 	{
