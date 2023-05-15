@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 15:15:22 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:16:35 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <signal.h>
 #include <stdlib.h>
 
-int g_exit_s;
+int	g_exit_s;
 
 /*
  * Executa o processo convencional do bash, seguro.

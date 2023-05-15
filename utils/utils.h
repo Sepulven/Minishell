@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/12 16:18:53 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:02:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ int					is_empty_to_next_pipe(char *str);
 
 /*get_com_number.c*/
 int					get_com_number(char *str);
+
+/*utils_files.c*/
+void				delete_heredoc_files(void);
+char				*get_pathname(int index);
 
 /*signals.c*/
 void				handler_quit(int signal);

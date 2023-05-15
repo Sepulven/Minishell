@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/12 17:13:40 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:04:50 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int				ft_strcmp_mini(char *a, char *b);
 
 /*parser.c*/
 t_command_list	*parser(char ***tokens, char **envp);
-t_command_list	*get_node(char **command_token, char **paths);
+t_command_list	*get_node(char **command_token, char **paths, \
+				int command_index);
 
 /*redirect_outf_inf.c*/
 int				redirect_inf(char *token);
@@ -49,7 +50,7 @@ int				redirect_outf(char *token);
 int				append(char *token);
 
 /*redirect_heredoc.c*/
-int				heredoc(char *token);
+int				heredoc(char *token, int command_index);
 
 /*env_utils.c*/
 char			**get_paths(char **envp);

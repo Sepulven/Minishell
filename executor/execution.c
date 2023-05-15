@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 14:51:07 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:17:56 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	execute_one(t_command_list *lst, int com)
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
+		delete_heredoc_files();
 	}
 }
 
@@ -136,5 +137,6 @@ void	execute(t_command_list *lst, int com)
 		id = do_loop(lst, com, &i, &status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
+		delete_heredoc_files();
 	}
 }
