@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 12:00:22 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:14:34 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	do_fork(t_command_list *lst, int **id, int i, int com)
 		error_function(lst, 0, 127);
 	}
 	else if (pid == 0)
+	{
+		signal(SIGQUIT, handler_quit);
 		command(id, lst, i, com);
+	}
 	return (pid);
 }
 
@@ -79,41 +82,31 @@ void	execute_one(t_command_list *lst, int com)
 	}
 	else
 	{
+		signal(SIGQUIT, handler_quit);
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
+		delete_heredoc_files();
 	}
-}
-
-int	*create_pid(int com)
-{
-	int	*aux;
-
-	aux = malloc(sizeof(int) * com);
-	if (!aux)
-		exit(127);
-	return (aux);
 }
 
 int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 {
 	int	**id;
-	int	*aux;
+	int	aux;
 
 	id = create_pipes(com);
-	aux = create_pid(com);
 	while (*i < com)
 	{
 		if (*i != com - 1)
 			pipe(id[*i]);
-		aux[*i] = do_fork(lst, id, *i, com);
+		aux = do_fork(lst, id, *i, com);
 		if (*i != com - 1)
 			close(id[*i][1]);
 		*i += 1;
 	}
-	*pid() = aux;
 	close_pipes(id, com);
-	waitpid(aux[com - 1], status, 0);
+	waitpid(aux, status, 0);
 	while (*i >= 0)
 	{
 		wait(NULL);
@@ -145,5 +138,6 @@ void	execute(t_command_list *lst, int com)
 		id = do_loop(lst, com, &i, &status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
+		delete_heredoc_files();
 	}
 }

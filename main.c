@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 14:24:54 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:14:04 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 int	g_exit_s;
 
 /*
-	* Executa o processo convencional do bash, seguro.
-	* Expander -> Lexer -> Parser -> Executor
-	* Desta forma temos uma segurança quanto a modulirização
-*/
+ * Executa o processo convencional do bash, seguro.
+ * Expander -> Lexer -> Parser -> Executor
+ * Desta forma temos uma segurança quanto a modulirização
+ */
 static void	minishell(char *str)
 {
 	t_command_list	*parser_list;
@@ -39,44 +39,15 @@ static void	minishell(char *str)
 	free_lst(parser_list);
 }
 
-// void	sig_int_case(void)
-// {
-// 	ft_printf("SIGQUIT\n");
-// 	return ;
-// }
-
-void	sig_int_case(int signal)
-{
-	int	i;
-	int	*pids;
-
-	pids = *pid();
-	i = 0;
-	while (i < 4)
-		kill(pids[i++], signal);
-	return ;
-}
-
-void	handler(int signal)
-{
-	if (signal == SIGINT)
-	{
-		// sig_int_case(signal);
+/*
+	! Don't delete it !
+	Readline context useful:
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-	}
-	// if (signal == SIGQUIT)
-	// 	sig_quit_case();
-}
-
-int	set_signals(void)
-{
-	signal(SIGINT, handler);
-	signal(SIGQUIT, handler);
-	return (1);
-}
+	// str = readline("ARTEZA:"); // readline for the evaluation
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -85,13 +56,13 @@ int	main(int argc, char **argv, char **envp)
 	str = NULL;
 	(void)argc;
 	(void)argv;
-	set_signals();
+	signal(SIGINT, handler);
+	signal(SIGQUIT, handler);
 	*env() = dup_env(envp);
 	while (1)
 	{
-		//ft_printf("ARTEZA:");
+		ft_printf("ARTEZA:");
 		str = get_next_line(0);
-		// str = readline("ARTEZA:"); // readline for the evaluation
 		if (!str)
 		{
 			free_double(*env());
