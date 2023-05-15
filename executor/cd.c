@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 16:17:23 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:52:33 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ void	command_cd(char **param, t_env *env_lst)
 	i = 0;
 	while (param[i])
 		i++;
+	if (check_flags_one(param, "cd") == -1)
+		return ;
 	if (i >= 3)
 	{
 		write_error("cd: too many arguments\n", 1);
@@ -111,5 +113,4 @@ void	command_cd(char **param, t_env *env_lst)
 	else if (chdir(param[1]) != 0)
 		error_m("cd", param[1], "No such file or directory\n", 1);
 	update_var(aux, oldpwd);
-	free_env(env_lst);
 }

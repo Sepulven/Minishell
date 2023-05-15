@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 19:48:17 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:27:34 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:02:55 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	command_env(char **param)
 	g_exit_s = 0;
 	if (param[1])
 	{
+		if (check_flags_two(param, "env") == -1)
+			return ;
 		error_m("env", param[1], "No such file or directory\n", 127);
 		return ;
 	}

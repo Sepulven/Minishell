@@ -6,11 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/12 12:59:22 by asepulve         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/11 17:08:23 by mvicente         ###   ########.fr       */
->>>>>>> 869e669d5aae25a4f4af7ce5e4c8533ec4938182
+/*   Updated: 2023/05/15 14:24:54 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +89,7 @@ int	main(int argc, char **argv, char **envp)
 	*env() = dup_env(envp);
 	while (1)
 	{
-		ft_printf("ARTEZA:");
+		//ft_printf("ARTEZA:");
 		str = get_next_line(0);
 		// str = readline("ARTEZA:"); // readline for the evaluation
 		if (!str)

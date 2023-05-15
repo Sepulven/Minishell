@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/11 17:25:57 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:43:34 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	check_builtin(int **fd, t_command_list *lst, int com)
 	if (ft_strcmp(lst->command, "export") == 0)
 		command_export(lst->param);
 	else if (ft_strcmp(lst->command, "pwd") == 0)
-		command_pwd(get_env(), lst->param);
+		command_pwd(aux, lst->param);
 	else if (ft_strcmp(lst->command, "env") == 0)
 		command_env(lst->param);
 	else if (ft_strcmp(lst->command, "echo") == 0)
