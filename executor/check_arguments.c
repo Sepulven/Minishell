@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 12:03:46 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:18:02 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	check_flags_one(char *param, char *command)
 	int		j;
 
 	j = 0;
+	if (param[0] != '-')
+		return (0);
 	while (param[j])
 	{
 		if (param[j] == '-' && param[j + 1])
@@ -60,6 +62,8 @@ int	check_flags_two(char **param, char *command)
 	j = 1;
 	if (!param[1])
 		return (0);
+	if (param[1][0] != '-')
+		return (0);
 	while (param[1][j])
 	{
 		if (param[1][j] == '-' && param[1][j + 1])
@@ -79,15 +83,10 @@ void	is_dir(t_com_list *lst)
 	stat(lst->path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 	{
-		if (ft_strncmp(lst->command, "./", 2) == 0)
+		if (ft_strncmp(lst->command, "./", 2) == 0 || ft_strncmp(lst->command, "/", 1) == 0)
 		{
 			error_m(0, lst->command, "Is a directory\n", 126);
-			error_function(lst, 0, 126);
-		}
-		else
-		{
-			error_m(0, lst->command, "Command not found\n", 127);
-			error_function(lst, 0, 127);
+			error_function(lst, 0, 126, -1);
 		}
 	}
 }

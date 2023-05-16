@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 21:47:21 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 12:00:28 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:10:05 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	get_com(t_com_list *lst)
 	return (i);
 }
 
-void	error_function(t_com_list *lst, int **fd, int status)
+void	error_function(t_com_list *lst, int **fd, int status, int flag)
 {
 	g_exit_s = status;
-	if (fd)
+	if (fd && flag == 1)
 		free_pipes(fd, get_com(lst));
 	free_lst(lst);
 	free_envp(*env());

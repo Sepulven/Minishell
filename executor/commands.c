@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 11:57:01 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:28:53 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	command(int **fd, t_com_list *lst, int i, int com)
 {
-	t_com_list	*node;
-	//struct stat	path_stat;
+	t_com_list		*node;
 
 	node = get_lst(lst, i);
 	if (i == 0)
@@ -24,23 +23,26 @@ void	command(int **fd, t_com_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
+	is_dir(node);
 	builtins(lst, fd, node, com);
 	free_pipes(fd, com);
 	execve(node->path, node->param, *env());
 	perror(node->command);
-	error_function(node, fd, 127);
+	error_function(lst, fd, 127, -1);
 }
 
 void	command_one(int **fd, t_com_list *node, int i)
 {
 	close(fd[i][0]);
 	if (node->inf == -1)
-		error_function(node, fd, 1);
+		error_function(node, fd, 1, 1);
 	if (node->inf != 0)
 	{
 		dup2(node->inf, STDIN_FILENO);
 		close(node->inf);
 	}
+	if (node->outf == -1)
+		error_function(node, fd, 1, 1);
 	if (node->outf != 0)
 	{
 		dup2(node->outf, STDOUT_FILENO);
@@ -54,7 +56,7 @@ void	command_final(int **fd, t_com_list *node, int i)
 {
 	close(fd[i - 1][1]);
 	if (node->inf == -1)
-		error_function(node, fd, 1);
+		error_function(node, fd, 1, 1);
 	else if (node->inf != 0)
 		dup2(node->inf, STDIN_FILENO);
 	else
@@ -62,6 +64,8 @@ void	command_final(int **fd, t_com_list *node, int i)
 		dup2(fd[i - 1][0], STDIN_FILENO);
 		close(fd[i - 1][0]);
 	}
+	if (node->outf == -1)
+		error_function(node, fd, 1, 1);
 	if (node->outf != 0)
 	{
 		dup2(node->outf, STDOUT_FILENO);
@@ -74,7 +78,7 @@ void	command_middle(int **fd, t_com_list *node, int i)
 	close(fd[i][0]);
 	close(fd[i - 1][1]);
 	if (node->inf == -1)
-		error_function(node, fd, 1);
+		error_function(node, fd, 1, 1);
 	else if (node->inf != 0)
 	{
 		dup2(node->inf, STDIN_FILENO);
@@ -82,6 +86,8 @@ void	command_middle(int **fd, t_com_list *node, int i)
 	}
 	else
 		dup2(fd[i - 1][0], STDIN_FILENO);
+	if (node->outf == -1)
+		error_function(node, fd, 1, 1);
 	if (node->outf != 0)
 	{
 		dup2(node->outf, STDOUT_FILENO);

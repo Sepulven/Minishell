@@ -6,11 +6,13 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:52 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 14:58:03 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:07:01 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./parser.h"
+
+extern int	g_exit_s;
 
 int	append(char *token)
 {
@@ -24,8 +26,8 @@ int	append(char *token)
 	fd = open(file_name, O_RDWR | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
+		g_exit_s = 1;
 		perror(&buff[2]);
-		return (-1);
 	}
 	free(buff);
 	return (fd);
