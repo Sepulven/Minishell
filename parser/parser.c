@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:28:07 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ char	**add_param(char **matrix, char *param)
 	return (new_matrix);
 }
 
-static void	delete_current_heredoc(int inf, int command_index)
+static void	delete_current_heredoc(int inf)
 {
 	char	*pathname;
 
-	pathname = get_pathname(command_index);
+	close(inf);
+	pathname = take_current_pathname();
 	unlink(pathname);
 	free(pathname);
-	close(inf);
 }
 
 static void	treat_redirects(t_com_list *new, char *command_token, \
@@ -77,7 +77,7 @@ static void	treat_redirects(t_com_list *new, char *command_token, \
 	if (!ft_strncmp(command_token, "<<", 2))
 	{
 		if (new->inf)
-			delete_current_heredoc(new->inf, command_index);
+			delete_current_heredoc(new->inf);
 		new->inf = heredoc(command_token, command_index);
 	}
 	else if (!ft_strncmp(command_token, ">>", 2))

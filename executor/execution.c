@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 12:03:43 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:06:26 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	execute_one(t_com_list *lst, int com)
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
-		delete_heredoc_files();
 	}
 }
 
@@ -123,6 +122,7 @@ void	execute(t_com_list *lst, int com)
 		id = do_loop(lst, com, &i, &status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
-		delete_heredoc_files();
 	}
+	delete_heredoc_files();
+	free_lst(lst);
 }

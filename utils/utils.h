@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:46:34 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int					get_com_number(char *str);
 /*utils_files.c*/
 void				delete_heredoc_files(void);
 char				*get_pathname(int index);
+char				*take_avaible_filename(void);
+char				*take_current_pathname(void);
 
 /*signals.c*/
 void				handler_quit(int signal);
@@ -84,7 +86,7 @@ void				__ft_lstadd_back(t_com_list **lst, t_com_list *new);
 void				__ft_lstadd_env(t_env **env, t_env *new);
 int					__ft_lstsize_env(t_env *lst);
 t_env				*__ft_lstlast_env(t_env *env);
-t_com_list		*__ft_lstlast(t_com_list *lst);
+t_com_list			*__ft_lstlast(t_com_list *lst);
 
 /*string_jumps.c*/
 int					jump_quotes(char *str);

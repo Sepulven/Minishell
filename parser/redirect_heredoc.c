@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 18:40:12 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:50:52 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*get_delimitador(char *token)
 {
 	char	*delimitador;
 
-	delimitador = ft_strdup(&token[3]);
+	delimitador = ft_strdup(&token[3 + ft_iswhitespace(token[3])]);
 	delimitador[ft_strlen(delimitador) - 1] = '\0';
 	return (delimitador);
 }
@@ -24,18 +24,29 @@ char	*get_delimitador(char *token)
 static void	heredoc_process(int fd, char *delimitador)
 {
 	char	*line;
+	int		i;
 
-	line = ft_strdup("");
-	while (ft_strncmp(line, delimitador, ft_strlen(delimitador)) != 0)
+	i = 0;
+	while (1)
 	{
-		free(line);
-		ft_printf("here_doc:>");
+		ft_printf("heredoc:>");
 		line = get_next_line(0);
+		i++;
+		if (line == NULL || !ft_strncmp(line, delimitador, \
+		ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n')))
+		{
+			if (!line)
+				ft_printf("\nhere-document at line %d delimited \
+				by end-of-file (wanted '%s')\n", i, delimitador);
+			else if (line)
+				free(line);
+			free(delimitador);
+			close(fd);
+			break ;
+		}
 		write(fd, line, ft_strlen(line));
-	}
-	if (line)
 		free(line);
-	close(fd);
+	}
 }
 
 int	heredoc(char *token, int command_index)
@@ -44,7 +55,8 @@ int	heredoc(char *token, int command_index)
 	char	*pathname;
 	char	*delimitador;
 
-	pathname = get_pathname(command_index);
+	(void)command_index;
+	pathname = take_avaible_filename();
 	delimitador = get_delimitador(token);
 	pid = fork();
 	if (pid == -1)

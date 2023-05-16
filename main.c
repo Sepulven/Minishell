@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 14:06:14 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	g_exit_s;
 static void	minishell(char *str)
 {
 	t_com_list	*parser_list;
-	char			***tokens;
-	int				com;
+	char		***tokens;
+	int			com;
 
 	validator(&str);
 	com = get_com_number(str);
@@ -36,7 +36,6 @@ static void	minishell(char *str)
 		return ;
 	if (parser_list && parser_list->command)
 		execute(parser_list, com);
-	free_lst(parser_list);
 }
 
 /*
