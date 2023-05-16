@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 14:06:14 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:43:44 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	g_exit_s;
  */
 static void	minishell(char *str)
 {
-	t_com_list	*parser_list;
-	char		***tokens;
-	int			com;
+	t_com_list		*parser_list;
+	char			***tokens;
+	int				com;
 
 	validator(&str);
 	com = get_com_number(str);
@@ -45,7 +45,7 @@ static void	minishell(char *str)
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();
-	// str = readline("ARTEZA:"); // readline for the evaluation
+	str = readline("ARTEZA:"); // readline for the evaluation
 */
 
 void	sh_level(char **envp)
@@ -95,7 +95,7 @@ int	main(int argc, char **argv, char **envp)
 			exit(EXIT_FAILURE);
 		}
 		else
-			str[ft_strlen(str) - 1] = 0;
+			str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
 	}
 }

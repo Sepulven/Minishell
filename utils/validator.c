@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:18:25 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:21:35 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ static int	repeat_out_rule(char *c)
 	if (!ft_strncmp(c, ">>", 2) || !ft_strncmp(c, "<<", 2))
 	{
 		i += jump_white_spaces(&c[2]) + 2;
-		return (!isallowed(c[i]) || c[i] == '<' || c[i] == '>');
+		return (!isallowed(c[i]) || c[i] == '<' \
+		|| c[i] == '>' || c[i] == '|' || c[i] == '\0');
 	}
 	else if (c[i] == '<' || c [i] == '>')
 	{
 		i += jump_white_spaces(&c[1]) + 1;
-		return (!isallowed(c[i]) || c[i] == '<' || c[i] == '>');
+		return (!isallowed(c[i]) || c[i] == '<' \
+		|| c[i] == '>' || c[i] == '|' || c[i] == '\0');
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 14:06:26 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:41:39 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	do_fork(t_com_list *lst, int **id, int i, int com)
 	if (pid == -1)
 	{
 		ft_putendl_fd("Forked failed\n", 2);
-		error_function(lst, 0, 127);
+		error_function(lst, 0, 127, -1);
 	}
 	else if (pid == 0)
 	{
@@ -35,12 +35,14 @@ int	do_fork(t_com_list *lst, int **id, int i, int com)
 void	dups_dir(t_com_list *lst)
 {
 	if (lst->inf == -1)
-		error_function(lst, 0, 1);
+		error_function(lst, 0, 1, -1);
 	if (lst->inf != 0)
 	{
 		dup2(lst->inf, STDIN_FILENO);
 		close(lst->inf);
 	}
+	if (lst->outf == -1)
+		error_function(lst, 0, 1, -1);
 	if (lst->outf != 0)
 	{
 		dup2(lst->outf, STDOUT_FILENO);
@@ -56,14 +58,14 @@ void	execute_one(t_com_list *lst, int com)
 
 	pid = fork();
 	if (pid == -1)
-		error_function(lst, 0, 127);
+		error_function(lst, 0, 127, -1);
 	else if (pid == 0)
 	{
 		dups_dir(lst);
 		builtins(lst, 0, lst, com);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
-		error_function(lst, 0, 127);
+		error_function(lst, 0, 127, -1);
 	}
 	else
 	{

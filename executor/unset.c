@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 10:50:21 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 13:49:38 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,11 @@ int	check_param(char *param)
 	int	i;
 
 	i = 0;
+	if (check_flags_one(param, "unset") == -1)
+		return (-1);
 	while (param[i])
 	{
-		if (param[i] == '-' && param[i + 1])
-		{
-			error_m("unset", param, "invalid option\n", 2);
-			return (-1);
-		}
-		else if (param[i] == '=' || ft_isalnum(param[i]) == 0)
+		if (param[i] == '=' || ft_isalnum(param[i]) == 0)
 		{
 			error_m("unset", param, "not a valid identifier\n", 1);
 			return (-1);

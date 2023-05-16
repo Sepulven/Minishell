@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 15:28:07 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:40:36 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static void	treat_redirects(t_com_list *new, char *command_token, \
 t_com_list	*get_node(char **command_token, char **paths, int command_index)
 {
 	t_com_list	*new;
-	int				i;
+	int			i;
 
 	new = malloc(sizeof(t_com_list));
 	if (!new)
@@ -143,8 +143,8 @@ t_com_list	*parser(char ***tokens, char **envp)
 {
 	t_com_list	*lst;
 	t_com_list	*node;
-	int				i;
-	char			**paths;
+	int			i;
+	char		**paths;
 
 	if (!tokens || !*tokens || !**tokens || !***tokens)
 		return (NULL);

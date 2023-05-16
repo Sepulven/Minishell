@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 12:03:55 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:11:57 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 void			write_error(char *str, int status);
 void			error_m(char *command, char *param, char *str, int s);
 int				get_com(t_com_list *lst);
-void			error_function(t_com_list *lst, int **fd, int status);
+void			error_function(t_com_list *lst, int **fd, int status, int flag);
 int				check_flags_one(char *param, char *command);
 int				check_flags_two(char **param, char *command);
 
@@ -77,7 +77,7 @@ void			command_export(char **param);
 
 /*pipes.c*/
 void			do_dups(int fin, int fout, int fd_close);
-t_com_list	*get_lst(t_com_list *lst, int i);
+t_com_list		*get_lst(t_com_list *lst, int i);
 int				**create_pipes(int com);
 void			free_pipes(int **id, int com);
 void			close_pipes(int **id, int com);

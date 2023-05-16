@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 17:37:21 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 20:41:06 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static char	**command_to_tokens_util(char **command_tokens, char *str, \
 	int		i;
 
 	i = 0;
+	i += jump_white_spaces(&str[i]) - (i > 0 && !ft_iswhitespace(str[i]));
+	i += ft_isredirects(&str[i]);
 	i += jump_white_spaces(&str[i]);
 	while (str[i])
 	{
