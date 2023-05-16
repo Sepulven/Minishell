@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 17:17:03 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:11:51 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	execute_one(t_command_list *lst, int com)
 	else if (pid == 0)
 	{
 		dups_dir(lst);
-		check_builtin(0, lst, com);
+		check_builtin(lst, 0, lst, com);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
 		error_function(lst, 0, 127);
@@ -107,6 +107,7 @@ int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 	}
 	close_pipes(id, com);
 	waitpid(aux, status, 0);
+	signal(SIGQUIT, handler_quit);
 	while (*i >= 0)
 	{
 		wait(NULL);

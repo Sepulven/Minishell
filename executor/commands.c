@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 12:00:29 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:08:49 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
-	check_builtin(fd, node, com);
+	check_builtin(lst, fd, node, com);
 	free_pipes(fd, com);
 	execve(node->path, node->param, *env());
 	perror(node->command);

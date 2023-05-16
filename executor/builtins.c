@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/15 18:13:54 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:38:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,32 @@ t_env	*create_node(char *str)
 	return (do_node(f, i, node, str));
 }
 
-void	check_builtin(int **fd, t_command_list *lst, int com)
+void	check_builtin(t_command_list *lst, int **fd, t_command_list *node, int com)
 {
 	int		flag;
 
 	flag = 0;
-	if (ft_strcmp(lst->command, "export") == 0)
-		command_export(lst->param);
-	else if (ft_strcmp(lst->command, "pwd") == 0)
-		command_pwd(lst->param);
-	else if (ft_strcmp(lst->command, "env") == 0)
-		command_env(lst->param);
-	else if (ft_strcmp(lst->command, "echo") == 0)
-		command_echo(lst->param);
-	else if (ft_strcmp(lst->command, "cd") == 0)
-		command_cd(lst->param);
-	else if (ft_strcmp(lst->command, "exit") == 0)
-		command_exit(lst);
-	else if (ft_strcmp(lst->command, "unset") == 0)
-		command_unset(lst->param);
+	if (ft_strcmp(node->command, "export") == 0)
+		command_export(node->param);
+	else if (ft_strcmp(node->command, "pwd") == 0)
+		command_pwd(node->param);
+	else if (ft_strcmp(node->command, "env") == 0)
+		command_env(node->param);
+	else if (ft_strcmp(node->command, "echo") == 0)
+		command_echo(node->param);
+	else if (ft_strcmp(node->command, "cd") == 0)
+		command_cd(node->param);
+	else if (ft_strcmp(node->command, "exit") == 0)
+		command_exit(node);
+	else if (ft_strcmp(node->command, "unset") == 0)
+		command_unset(node->param);
 	else
 		flag = -1;
 	if (flag == 0)
 	{
-		free_envp(*env());
+		printf("check\n");
+		if (*env())
+			free_envp(*env());
 		free_lst(lst);
 		if (fd)
 			free_pipes(fd, com);
@@ -109,11 +111,5 @@ int	check_builtin_one(t_command_list *lst)
 		command_unset(lst->param);
 	else
 		flag = -1;
-	// if (flag == 0)
-	// {
-	// 	//free_envp(*env());
-	// 	//free_lst(lst);
-	// 	//exit(g_exit_s);
-	// }
 	return (flag);
 }

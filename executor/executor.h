@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 18:01:25 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:11:35 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void			write_error(char *str, int status);
 void			error_m(char *command, char *param, char *str, int s);
 int				get_com(t_command_list *lst);
 void			error_function(t_command_list *lst, int **fd, int status);
-int             check_flags_one(char *param, char *command);
-int             check_flags_two(char **param, char *command);
+int				check_flags_one(char *param, char *command);
+int				check_flags_two(char **param, char *command);
 
 /*builtins.c*/
 t_env			*do_node(int f, int i, t_env *node, char *str);
 t_env			*create_node(char *str);
-void			check_builtin(int **fd, t_command_list *lst, int com);
+void			check_builtin(t_command_list *lst, int **fd, t_command_list *node, int com);
 int				check_builtin_one(t_command_list *lst);
 
 /*cd.c*/

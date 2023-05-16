@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 17:08:41 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:40:12 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_delimitador(char *token)
 	return (delimitador);
 }
 
-static void	heredoc_process(int fd, char	*delimitador)
+static void	heredoc_process(int fd, char *delimitador)
 {
 	char	*line;
 
@@ -33,6 +33,8 @@ static void	heredoc_process(int fd, char	*delimitador)
 		line = get_next_line(0);
 		write(fd, line, ft_strlen(line));
 	}
+	if (line)
+		free(line);
 	close(fd);
 }
 
@@ -49,9 +51,10 @@ int	heredoc(char *token, int command_index)
 		ft_putendl_fd("Forked failed\n", 2);
 	else if (pid == 0)
 	{
+		signal(SIGINT, NULL);
 		signal(SIGQUIT, SIG_IGN);
-		signal(SIGINT, handler);
 		heredoc_process(open(pathname, O_WRONLY | O_CREAT, 0644), delimitador);
+		exit(EXIT_SUCCESS);
 	}
 	wait(NULL);
 	return (open(pathname, O_RDONLY, 0444));
