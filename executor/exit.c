@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 15:41:03 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	check_exit(const char *nptr)
 	return (number * signal);
 }
 
-void	clear_exit(t_command_list *lst)
+void	clear_exit(t_com_list *lst)
 {
 	free_lst(lst);
 	free_envp(*env());
 	exit(g_exit_s);
 }
 
-void	command_exit(t_command_list *lst)
+void	command_exit(t_com_list *lst)
 {
 	ft_printf("exit\n");
 	g_exit_s = 0;

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 10:11:51 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:03:43 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern int	g_exit_s;
 
-int	do_fork(t_command_list *lst, int **id, int i, int com)
+int	do_fork(t_com_list *lst, int **id, int i, int com)
 {
 	int	pid;
 
@@ -32,10 +32,8 @@ int	do_fork(t_command_list *lst, int **id, int i, int com)
 	return (pid);
 }
 
-void	dups_dir(t_command_list *lst)
+void	dups_dir(t_com_list *lst)
 {
-	struct stat	path_stat;
-
 	if (lst->inf == -1)
 		error_function(lst, 0, 1);
 	if (lst->inf != 0)
@@ -48,23 +46,10 @@ void	dups_dir(t_command_list *lst)
 		dup2(lst->outf, STDOUT_FILENO);
 		close(lst->outf);
 	}
-	stat(lst->path, &path_stat);
-	if (S_ISDIR(path_stat.st_mode))
-	{
-		if (ft_strncmp(lst->command, "./", 2) == 0)
-		{
-			error_m(0, lst->command, "Is a directory\n", 126);
-			error_function(lst, 0, 126);
-		}
-		else
-		{
-			error_m(0, lst->command, "Command not found\n", 127);
-			error_function(lst, 0, 127);
-		}
-	}
+	is_dir(lst);
 }
 
-void	execute_one(t_command_list *lst, int com)
+void	execute_one(t_com_list *lst, int com)
 {
 	int			pid;
 	int			status;
@@ -75,7 +60,7 @@ void	execute_one(t_command_list *lst, int com)
 	else if (pid == 0)
 	{
 		dups_dir(lst);
-		check_builtin(lst, 0, lst, com);
+		builtins(lst, 0, lst, com);
 		execve(lst->path, lst->param, *env());
 		perror(lst->command);
 		error_function(lst, 0, 127);
@@ -90,7 +75,7 @@ void	execute_one(t_command_list *lst, int com)
 	}
 }
 
-int	**do_loop(t_command_list *lst, int com, int *i, int *status)
+int	**do_loop(t_com_list *lst, int com, int *i, int *status)
 {
 	int	**id;
 	int	aux;
@@ -117,7 +102,7 @@ int	**do_loop(t_command_list *lst, int com, int *i, int *status)
 	return (id);
 }
 
-void	execute(t_command_list *lst, int com)
+void	execute(t_com_list *lst, int com)
 {
 	int	i;
 	int	**id;

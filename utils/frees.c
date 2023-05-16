@@ -31,9 +31,9 @@ void	free_tokens(char ***tokens)
 		free(tokens);
 }
 
-void	free_lst(t_command_list *lst)
+void	free_lst(t_com_list *lst)
 {
-	t_command_list	*ptr;
+	t_com_list	*ptr;
 
 	while (lst)
 	{

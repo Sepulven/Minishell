@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:35:54 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/09 12:12:29 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:04:30 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	do_dups(int fin, int fout, int fd_close)
 		close(fd_close);
 }
 
-t_command_list	*get_lst(t_command_list *lst, int i)
+t_com_list	*get_lst(t_com_list *lst, int i)
 {
 	int				f;
-	t_command_list	*node;
+	t_com_list		*node;
 
 	f = 0;
 	node = lst;

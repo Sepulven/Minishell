@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 10:38:15 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:59:18 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,17 @@ t_env	*create_node(char *str)
 	return (do_node(f, i, node, str));
 }
 
-void	check_builtin(t_command_list *lst, int **fd, t_command_list *node, int com)
+void	exit_builtins(t_com_list *lst, int **fd, int com)
+{
+	if (*env())
+		free_envp(*env());
+	free_lst(lst);
+	if (fd)
+		free_pipes(fd, com);
+	exit(g_exit_s);
+}
+
+void	builtins(t_com_list *lst, int **fd, t_com_list *node, int com)
 {
 	int		flag;
 
@@ -85,18 +95,10 @@ void	check_builtin(t_command_list *lst, int **fd, t_command_list *node, int com)
 	else
 		flag = -1;
 	if (flag == 0)
-	{
-		printf("check\n");
-		if (*env())
-			free_envp(*env());
-		free_lst(lst);
-		if (fd)
-			free_pipes(fd, com);
-		exit(g_exit_s);
-	}
+		exit_builtins(lst, fd, com);
 }
 
-int	check_builtin_one(t_command_list *lst)
+int	check_builtin_one(t_com_list *lst)
 {
 	int		flag;
 

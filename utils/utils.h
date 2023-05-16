@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 16:02:32 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ typedef struct s_command_list
 	int						inf;
 	int						outf;
 	struct s_command_list	*next;
-}	t_command_list;
+}	t_com_list;
 
 /*data_output.c*/
 void				print_env(char **env);
 void				print_lexer(char ***lexer);
 void				print_char_matrix(char **matrix);
-void				print_parser(t_command_list *parser);
+void				print_parser(t_com_list *parser);
 
 /*frees.c*/
 void				free_double(char **array);
-void				free_lst(t_command_list *lst);
+void				free_lst(t_com_list *lst);
 void				free_tokens(char ***tokens);
 
 /*validator.c*/
@@ -80,11 +80,11 @@ void				free_env(t_env *env);
 int					**pid(void);
 
 /*utils_list_1.c*/
-void				__ft_lstadd_back(t_command_list **lst, t_command_list *new);
+void				__ft_lstadd_back(t_com_list **lst, t_com_list *new);
 void				__ft_lstadd_env(t_env **env, t_env *new);
 int					__ft_lstsize_env(t_env *lst);
 t_env				*__ft_lstlast_env(t_env *env);
-t_command_list		*__ft_lstlast(t_command_list *lst);
+t_com_list		*__ft_lstlast(t_com_list *lst);
 
 /*string_jumps.c*/
 int					jump_quotes(char *str);

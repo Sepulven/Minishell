@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 09:53:59 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	g_exit_s;
  */
 static void	minishell(char *str)
 {
-	t_command_list	*parser_list;
+	t_com_list	*parser_list;
 	char			***tokens;
 	int				com;
 

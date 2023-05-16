@@ -6,15 +6,15 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/08 16:08:37 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./utils.h"
 
-void	__ft_lstadd_back(t_command_list **lst, t_command_list *new)
+void	__ft_lstadd_back(t_com_list **lst, t_com_list *new)
 {
-	t_command_list	*current;
+	t_com_list	*current;
 
 	if (!lst)
 		return ;
@@ -89,9 +89,9 @@ void	__ft_lstadd_env(t_env **env, t_env *new)
 }
 
 
-t_command_list	*__ft_lstlast(t_command_list *lst)
+t_com_list	*__ft_lstlast(t_com_list *lst)
 {
-	t_command_list	*current;
+	t_com_list	*current;
 
 	current = lst;
 	while (current != NULL)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 16:04:50 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 /*parser_lexer_utils.c*/
 int				pos_of_c_in_str(char *str, char *c);
-void			initialize_lst(t_command_list **new);
+void			initialize_lst(t_com_list **new);
 
 // FIM PARSER UTILS //
 
@@ -38,8 +38,8 @@ char			*ft_substr_mini(char const *s, \
 int				ft_strcmp_mini(char *a, char *b);
 
 /*parser.c*/
-t_command_list	*parser(char ***tokens, char **envp);
-t_command_list	*get_node(char **command_token, char **paths, \
+t_com_list	*parser(char ***tokens, char **envp);
+t_com_list	*get_node(char **command_token, char **paths, \
 				int command_index);
 
 /*redirect_outf_inf.c*/
@@ -56,5 +56,5 @@ int				heredoc(char *token, int command_index);
 char			**get_paths(char **envp);
 char			*check_path(char **paths, char *command);
 
-t_command_list	*here_doc(t_command_list *new, char **aux, int *i, int fd);
+t_com_list	*here_doc(t_com_list *new, char **aux, int *i, int fd);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 12:03:11 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 11:00:14 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:59:44 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,12 @@ void	command_cd(char **param)
 {
 	char	oldpwd[1024];
 	t_env	*aux;
-	int		i;
 
 	g_exit_s = 0;
 	(void)aux;
 	getcwd(oldpwd, sizeof(oldpwd));
-	i = 0;
-	while (param[i])
-		i++;
-	if (param[1] && check_flags_one(param[1], "cd") == -1)
+	if (check_cd(param) == -1)
 		return ;
-	if (i >= 3)
-	{
-		write_error("cd: too many arguments\n", 1);
-		return ;
-	}
 	aux = get_env();
 	if (go_home(param, aux) == 0 || g_exit_s != 0)
 	{

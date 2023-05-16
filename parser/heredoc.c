@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 13:41:42 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_strcmp_getline(char *a, char *b)
 	return (1);
 }
 
-t_command_list	*here_doc(t_command_list *new, char **aux, int *i, int fd)
+t_com_list	*here_doc(t_com_list *new, char **aux, int *i, int fd)
 {
 	char	*buf;
 	char	*limiter;

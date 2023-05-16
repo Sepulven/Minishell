@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_output.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:12:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/10 15:14:37 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	print_char_matrix(char **matrix)
 	}
 }
 
-void	print_parser(t_command_list *parser)
+void	print_parser(t_com_list *parser)
 {
 	int	i;
 	int	j;

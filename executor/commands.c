@@ -6,15 +6,15 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 10:08:49 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:57:01 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./executor.h"
 
-void	command(int **fd, t_command_list *lst, int i, int com)
+void	command(int **fd, t_com_list *lst, int i, int com)
 {
-	t_command_list	*node;
+	t_com_list	*node;
 	//struct stat	path_stat;
 
 	node = get_lst(lst, i);
@@ -24,14 +24,14 @@ void	command(int **fd, t_command_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
-	check_builtin(lst, fd, node, com);
+	builtins(lst, fd, node, com);
 	free_pipes(fd, com);
 	execve(node->path, node->param, *env());
 	perror(node->command);
 	error_function(node, fd, 127);
 }
 
-void	command_one(int **fd, t_command_list *node, int i)
+void	command_one(int **fd, t_com_list *node, int i)
 {
 	close(fd[i][0]);
 	if (node->inf == -1)
@@ -50,7 +50,7 @@ void	command_one(int **fd, t_command_list *node, int i)
 		dup2(fd[i][1], STDOUT_FILENO);
 }
 
-void	command_final(int **fd, t_command_list *node, int i)
+void	command_final(int **fd, t_com_list *node, int i)
 {
 	close(fd[i - 1][1]);
 	if (node->inf == -1)
@@ -69,7 +69,7 @@ void	command_final(int **fd, t_command_list *node, int i)
 	}
 }
 
-void	command_middle(int **fd, t_command_list *node, int i)
+void	command_middle(int **fd, t_com_list *node, int i)
 {
 	close(fd[i][0]);
 	close(fd[i - 1][1]);

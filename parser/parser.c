@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 16:45:06 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	delete_current_heredoc(int inf, int command_index)
 	close(inf);
 }
 
-static void	treat_redirects(t_command_list *new, char *command_token, \
+static void	treat_redirects(t_com_list *new, char *command_token, \
 			int command_index)
 {
 	if (!ft_strncmp(command_token, "<<", 2))
@@ -105,12 +105,12 @@ static void	treat_redirects(t_command_list *new, char *command_token, \
 	
 	* Percorro a matrix redefindo os inf e ouf, dependendo de cada situção.
 */
-t_command_list	*get_node(char **command_token, char **paths, int command_index)
+t_com_list	*get_node(char **command_token, char **paths, int command_index)
 {
-	t_command_list	*new;
+	t_com_list	*new;
 	int				i;
 
-	new = malloc(sizeof(t_command_list));
+	new = malloc(sizeof(t_com_list));
 	if (!new)
 		return (NULL);
 	initialize_lst(&new);
@@ -139,10 +139,10 @@ t_command_list	*get_node(char **command_token, char **paths, int command_index)
 	* Tinhamos algums problemas com os free... Devo tomar cuidado pois temos uma função que dando
 	* free conforme vai recebendo os parametros.
 */
-t_command_list	*parser(char ***tokens, char **envp)
+t_com_list	*parser(char ***tokens, char **envp)
 {
-	t_command_list	*lst;
-	t_command_list	*node;
+	t_com_list	*lst;
+	t_com_list	*node;
 	int				i;
 	char			**paths;
 

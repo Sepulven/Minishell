@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 10:11:35 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:03:55 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,31 @@
 /*aux.c*/
 void			write_error(char *str, int status);
 void			error_m(char *command, char *param, char *str, int s);
-int				get_com(t_command_list *lst);
-void			error_function(t_command_list *lst, int **fd, int status);
+int				get_com(t_com_list *lst);
+void			error_function(t_com_list *lst, int **fd, int status);
 int				check_flags_one(char *param, char *command);
 int				check_flags_two(char **param, char *command);
 
 /*builtins.c*/
 t_env			*do_node(int f, int i, t_env *node, char *str);
 t_env			*create_node(char *str);
-void			check_builtin(t_command_list *lst, int **fd, t_command_list *node, int com);
-int				check_builtin_one(t_command_list *lst);
+void			builtins(t_com_list *lst, int **fd, t_com_list *node, int com);
+int				check_builtin_one(t_com_list *lst);
 
 /*cd.c*/
 void			command_cd(char **param);
 
+/*check_arguments.c*/
+int				check_cd(char **param);
+int				check_flags_one(char *param, char *command);
+int				check_flags_two(char **param, char *command);
+void			is_dir(t_com_list *lst);
+
 /*commands.c*/
-void			command_one(int **fd, t_command_list *node, int i);
-void			command_final(int **fd, t_command_list *node, int i);
-void			command_middle(int **fd, t_command_list *node, int i);
-void			command(int **fd, t_command_list *lst, int i, int com);
+void			command_one(int **fd, t_com_list *node, int i);
+void			command_final(int **fd, t_com_list *node, int i);
+void			command_middle(int **fd, t_com_list *node, int i);
+void			command(int **fd, t_com_list *lst, int i, int com);
 
 /*echo.c*/
 void			command_echo(char **param);
@@ -59,19 +65,19 @@ void			initialize_env(t_env **new);
 t_env			*get_env(void);
 
 /*execution.c*/
-int				do_fork(t_command_list *lst, int **id, int i, int com);
-void			execute_one(t_command_list *lst, int com);
-void			execute(t_command_list *lst, int com);
+int				do_fork(t_com_list *lst, int **id, int i, int com);
+void			execute_one(t_com_list *lst, int com);
+void			execute(t_com_list *lst, int com);
 
 /*exit.c*/
-void			command_exit(t_command_list *lst);
+void			command_exit(t_com_list *lst);
 
 /*export.c*/
 void			command_export(char **param);
 
 /*pipes.c*/
 void			do_dups(int fin, int fout, int fd_close);
-t_command_list	*get_lst(t_command_list *lst, int i);
+t_com_list	*get_lst(t_com_list *lst, int i);
 int				**create_pipes(int com);
 void			free_pipes(int **id, int com);
 void			close_pipes(int **id, int com);

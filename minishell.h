@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:11:06 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/11 15:06:27 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@
 
 int				check_words(char const *s);
 
-void			command_one(int **fd, t_command_list *lst, int i);
-void			command_final(int **fd, t_command_list *lst, int i);
-void			command_middle(int **fd, t_command_list *lst, int i);
+void			command_one(int **fd, t_com_list *lst, int i);
+void			command_final(int **fd, t_com_list *lst, int i);
+void			command_middle(int **fd, t_com_list *lst, int i);
 
-void			command(int **fd, t_command_list *lst, int i, int com);
-int				do_fork(t_command_list *lst, int **id, int i, int com);
-void			execute_one(t_command_list *lst, int com);
-void			execute(t_command_list *lst, int com);
+void			command(int **fd, t_com_list *lst, int i, int com);
+int				do_fork(t_com_list *lst, int **id, int i, int com);
+void			execute_one(t_com_list *lst, int com);
+void			execute(t_com_list *lst, int com);
 
 int				get_num_words(char *str, char c);
 
 void			do_dups(int fin, int fout, int fd_close);
-t_command_list	*get_lst(t_command_list *lst, int i);
+t_com_list	*get_lst(t_com_list *lst, int i);
 int				**create_pipes(int com);
 void			free_pipes(int **id, int com);
 
-t_command_list	*no_redirections(t_command_list *new, char **aux, char **paths);
-t_command_list	*get_parameters(t_command_list *new, char **aux);
-t_command_list	*redirections(t_command_list *new, char **aux, char **paths);
+t_com_list	*no_redirections(t_com_list *new, char **aux, char **paths);
+t_com_list	*get_parameters(t_com_list *new, char **aux);
+t_com_list	*redirections(t_com_list *new, char **aux, char **paths);
 #endif

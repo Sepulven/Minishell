@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_parser_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 23:01:55 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/06 22:34:26 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	pos_of_c_in_str(char *str, char *c)
 	return (-1);
 }
 
-void	initialize_lst(t_command_list **new)
+void	initialize_lst(t_com_list **new)
 {
 	(*new)->command = 0;
 	(*new)->param = ft_calloc(1, sizeof (char *));
