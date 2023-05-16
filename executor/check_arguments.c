@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 15:18:02 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:54:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,30 @@ void	is_dir(t_com_list *lst)
 	stat(lst->path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 	{
-		if (ft_strncmp(lst->command, "./", 2) == 0 || ft_strncmp(lst->command, "/", 1) == 0)
+		if (ft_strncmp(lst->command, "./", 2) == 0)
 		{
 			error_m(0, lst->command, "Is a directory\n", 126);
 			error_function(lst, 0, 126, -1);
 		}
+		else
+		{
+			error_m(0, lst->command, "Command not found\n", 127);
+			error_function(lst, 0, 127, -1);
+		}
 	}
 }
+
+// void	is_dir(t_com_list *lst)
+// {
+// 	struct stat	path_stat;
+
+// 	stat(lst->path, &path_stat);
+// 	if (S_ISDIR(path_stat.st_mode))
+// 	{
+// 		if (ft_strncmp(lst->command, "./", 2) == 0 || ft_strncmp(lst->command, "/", 1) == 0)
+// 		{
+// 			error_m(0, lst->command, "Is a directory\n", 126);
+// 			error_function(lst, 0, 126, -1);
+// 		}
+// 	}
+// }
