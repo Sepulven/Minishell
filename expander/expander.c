@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:20:38 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:24:27 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ static char	*concat_env_to_str(char *current, char *var_name,
 		env_value = ft_itoa(g_exit_s);
 	else
 		env_value = get_env_value(var_name, envp);
+	if (!env_value)
+	{
+		DEBUG1;
+		return (NULL);
+	}
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 				ft_strlen(current) + rest + 2, sizeof(char));
 	ft_strlcat(new_str, current, ft_strlen(current) + 1);
-	ft_strlcat(new_str, "\"", ft_strlen(current) + 2);
 	ft_strlcat(new_str, env_value,
 		ft_strlen(current) + ft_strlen(env_value) + 1 + 2);
 	free(env_value);
 	free(current);
-	new_str[ft_strlen(new_str)] = '"';
 	return (new_str);
 }
 
@@ -107,7 +110,7 @@ static void	expand_rules(char *str, char **new_str, int *i, int *j)
 		expande_to_new_str(str, new_str, i, j);
 }
 
-char	*expander(char *str)
+static char	*_expander(char *str)
 {
 	char	*new_str;
 	int		i;
@@ -125,7 +128,35 @@ char	*expander(char *str)
 		else
 			new_str[j++] = str[i++];
 	}
-	if (str != NULL)
+	if (str)
+	{
 		free(str);
+		str = NULL;
+	}
 	return (new_str);
+}
+
+/*
+	* It will need to shrink the lexer size if the token return
+*/
+char	***expander(char ***tokens)
+{
+	int		i;
+	int		from;
+	int		to;
+
+	i = 0;
+	while (tokens[i])
+	{
+		from = 0;
+		to = 0;
+		while (tokens[i][from])
+		{
+			tokens[i][to] = _expander(tokens[i][from++]);
+			if (tokens[i][to])
+				to++;
+		}
+		i++;
+	}
+	return (tokens);
 }

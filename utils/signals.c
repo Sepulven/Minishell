@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 16:18:11 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/15 17:48:03 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:55:13 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,4 @@ void	handler(int signal)
 {
 	if (signal == SIGINT || signal == SIGQUIT)
 		return ;
-}
-
-
-void	set_handler(void)
-{
-	
 }
