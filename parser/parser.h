@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 11:29:35 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:55:23 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+
+# define ERR_CTRL_D "\nhere-document at line %d delimited by end-of-file (wanted '%s')\n"
 
 // PARSER UTILS //
 
