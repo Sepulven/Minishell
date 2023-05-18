@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:10:27 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 10:04:57 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:10:13 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ static char	*_filename(char *token)
 	int		i;
 	char	*filename;
 
-	i = 0;
-	i = ft_redirects(&token[0]);
+	i = ft_isredirects(&token[0]);
 	i += jump_white_spaces(&token[i]);
 	filename = formatter(expander(ft_strdup(&token[i])));
 	if (!filename)

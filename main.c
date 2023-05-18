@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 09:51:31 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:09:30 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ static void	minishell(char *str)
 	(void)parser_list;
 	validator(&str);
 	com = get_com_number(str);
-	str = formatter(str);
 	tokens = lexer(str, com);
-	// print_lexer(tokens);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;

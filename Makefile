@@ -23,7 +23,7 @@ RM = rm -f
 
 EXPANDER_SRC	= expander.c utils_expander.c
 
-LEXER_SRC		= lexer.c utils_lexer_1.c command_to_tokens.c
+LEXER_SRC		= lexer.c command_to_tokens.c
 
 PARSER_SRC		= env_utils.c utils_parser_1.c parser.c\
 				  redirect_outf_inf.c redirect_heredoc.c
@@ -34,7 +34,7 @@ EXECUTOR_SRC	= cd.c echo.c builtins.c pwd.c commands.c execution.c \
 
 UTILS_SRC		= data_output.c string_jumps.c utils_list_1.c __def_env.c utils_general_1.c \
 				  validator.c frees.c get_com_number.c aux.c signals.c utils_files.c \
-				  formatter.c 
+				  formatter.c utils_lexer_1.c 
 
 SRC				= $(addprefix expander/,$(EXPANDER_SRC)) \
 				  $(addprefix lexer/,$(LEXER_SRC)) \

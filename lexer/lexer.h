@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:43:08 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 02:32:26 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:27:26 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@
 /*lexer.c*/
 size_t	count_tokens_in_command(char *str);
 char	***lexer(char *str, size_t num);
-
-/*utils_lexer_1.c*/
-int		ft_isredirects(char *str);
-int		ft_jump_redirect_token(char *str);
 
 /*command_to_tokens.c*/
 char	**command_to_tokens(char *str);

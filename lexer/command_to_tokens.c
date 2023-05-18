@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 09:51:06 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:25:01 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,47 @@ static char	*create_token(char *str, int start, int end)
 	return (token);
 }
 
+// static char	**command_to_tokens_util(char **command_tokens, char *str, \
+// 			int __token, int *j)
+// {
+// 	int		i;
+
+// 	i = 0;
+// 	i += jump_white_spaces(&str[i]) - (i > 0 && !ft_iswhitespace(str[i]));
+// 	i += ft_isredirects(&str[i]);
+// 	i += jump_white_spaces(&str[i]);
+// 	while (str[i])
+// 	{
+// 		while (str[i] && !ft_iswhitespace(str[i]) \
+// 			&& !ft_isredirects(&str[i]))
+// 		{
+// 			if (str[i] == '"' || str[i] == '\'')
+// 				i += jump_quotes(&str[i]);
+// 			else
+// 				i += 1 - (str[i] == '\'' || str[i] == '"');
+// 		}
+// 		if (__token != i)
+// 			command_tokens[(*j)++] = create_token(str, __token, i);
+// 		__token = i;
+// 		i += jump_white_spaces(&str[i]);
+// 		i += ft_isredirects(&str[i]);
+// 		i += jump_white_spaces(&str[i]);
+// 	}
+// 	return (command_tokens);
+// }
+
 static char	**command_to_tokens_util(char **command_tokens, char *str, \
 			int __token, int *j)
 {
 	int		i;
 
 	i = 0;
-	i += jump_white_spaces(&str[i]) - (i > 0 && !ft_iswhitespace(str[i]));
-	i += ft_isredirects(&str[i]);
-	i += jump_white_spaces(&str[i]);
 	while (str[i])
 	{
-		while (str[i] && !ft_iswhitespace(str[i]) \
-			&& !ft_isredirects(&str[i]))
-		{
-			if (str[i] == '"' || str[i] == '\'')
-				i += jump_quotes(&str[i]);
-			else
-				i += 1 - (str[i] == '\'' || str[i] == '"');
-		}
-		if (__token != i)
-			command_tokens[(*j)++] = create_token(str, __token, i);
+		i += ft_jump_redirect_token(&str[i]);
+		i += jump_white_spaces(&str[i]);
+		command_tokens[(*j)++] = create_token(str, __token, i);
 		__token = i;
-		i += jump_white_spaces(&str[i]);
-		i += ft_isredirects(&str[i]);
-		i += jump_white_spaces(&str[i]);
 	}
 	return (command_tokens);
 }
@@ -78,6 +94,7 @@ char	**command_to_tokens(char *str)
 	if (!str)
 		return (NULL);
 	number_tokens = count_tokens_in_command(str);
+	ft_printf("number_tokens:%d\n", number_tokens);
 	command_tokens = ft_calloc(number_tokens + 1, sizeof (char *));
 	if (!command_tokens)
 		return (NULL);

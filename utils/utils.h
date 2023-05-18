@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 09:38:54 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:27:52 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,10 @@ t_com_list			*__ft_lstlast(t_com_list *lst);
 int					jump_quotes(char *str);
 int					jump_str_out_quotes(char *str);
 int					jump_white_spaces(char *str);
+
+/*utils_lexer_1.c*/
+int					ft_isredirects(char *str);
+int					ft_jump_redirect_token(char *str);
 
 /*utils_general_1.c*/
 void				ft_swap(char *x, char *y);
