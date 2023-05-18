@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:11:12 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 15:11:57 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:03:29 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			command_cd(char **param);
 int				check_cd(char **param);
 int				check_flags_one(char *param, char *command);
 int				check_flags_two(char **param, char *command);
-void			is_dir(t_com_list *lst);
+void			is_dir(t_com_list *lst, int **fd);
 
 /*commands.c*/
 void			command_one(int **fd, t_com_list *node, int i);

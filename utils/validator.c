@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 18:21:35 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:24:20 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	err(char *msg, char *str, char c, int pos)
 	ft_putchar_fd(c, 2);
 	ft_putchar_fd('\n', 2);
 	free(str);
+	free_envp(*env());
 	exit(EXIT_FAILURE);
 }
 
@@ -85,7 +86,10 @@ int	validator(char **_line)
 	free(*_line);
 	*_line = ft_strtrim(buff, "|");
 	if (ft_strncmp(*_line, buff, ft_strlen(buff)))
+	{
+		free(buff);
 		err("Unclosed pipes.", *_line, '|', 0);
+	}
 	free(buff);
 	i = 0;
 	line = *_line;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/16 20:45:07 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:20:21 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	dups_dir(t_com_list *lst)
 		dup2(lst->outf, STDOUT_FILENO);
 		close(lst->outf);
 	}
-	is_dir(lst);
+	if (access(lst->path, R_OK) == 0)
+		is_dir(lst, 0);
 }
 
 void	execute_one(t_com_list *lst, int com)
