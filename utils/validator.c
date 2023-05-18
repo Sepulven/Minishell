@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 15:36:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:49:37 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	is_empty_to_next_pipe(char *str)
 	}
 	return (1);
 }
-
 
 int	validator(char **str)
 {

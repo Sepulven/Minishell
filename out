@@ -1,14 +1,1 @@
-executor
-expander
-lexer
-libft
-main.c
-main.o
-Makefile
-minishell
-minishell.h
-out
-parser
-syntatic_grammar.txt
-utils
-valgrind.txt
+ola

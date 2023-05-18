@@ -3,44 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 14:32:21 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:33:51 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-extern int	g_exit_s;
-
 char	*get_delimitador(char *token)
 {
 	int		i;
+	char	*aux;
 
 	i = 0;
 	i += jump_white_spaces(&token[i]);
 	i += ft_isredirects(&token[i]);
 	i += jump_white_spaces(&token[i]);
-	return (ft_strdup(&token[i]));
+	aux = token;
+	return (&aux[i]);
 }
 
 void	close_heredoc(int fd, char *delimitador, char *line, int i)
 {
+	(void)fd;
 	if (!line)
 		ft_printf(ERR_CTRL_D, i, delimitador);
 	else if (line)
 		free(line);
-	free(delimitador);
-	free_envp(*env());
-	close(fd);
-	g_exit_s = EXIT_SUCCESS;
-	exit(g_exit_s);
-}
-
-static void	stop_execution(void)
-{
-	return ;
+	exit(EXIT_SUCCESS);
 }
 
 static void	heredoc_process(int fd, char *token)
@@ -52,10 +44,11 @@ static void	heredoc_process(int fd, char *token)
 
 	i = 0;
 	expand_flag = 1;
+	(void)expand_flag;
 	delimitador = get_delimitador(token);
-	if (ft_strrchr(delimitador, '"') || ft_strrchr(delimitador, '\''))
-		expand_flag = 0;
-	delimitador = formatter(delimitador);
+	// if (ft_strrchr(delimitador, '"') || ft_strrchr(delimitador, '\''))
+	// 	expand_flag = 0;
+	// delimitador = formatter(delimitador);
 	while (1)
 	{
 		ft_printf("heredoc:>");
@@ -64,10 +57,9 @@ static void	heredoc_process(int fd, char *token)
 		if (line == NULL || !ft_strncmp(line, delimitador, \
 		ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n')))
 			close_heredoc(fd, delimitador, line, i);
-		if (expand_flag)
-			line = expander(line);
-		if (write(fd, line, ft_strlen(line)) == -1)
-			stop_execution();
+		// if (expand_flag)
+		// 	line = expander(line);
+		write(fd, line, ft_strlen(line));
 		free(line);
 	}
 }
@@ -76,10 +68,11 @@ int	heredoc(char *token)
 {
 	int		pid;
 	char	*pathname;
-	char	*delimitador;
+	int		fd;
 
+	(void)pid;
 	pathname = take_avaible_filename();
-	delimitador = get_delimitador(token);
+	fd = open(pathname, O_WRONLY | O_CREAT, 0644);
 	pid = fork();
 	if (pid == -1)
 		ft_putendl_fd("Forked failed\n", 2);
@@ -87,8 +80,12 @@ int	heredoc(char *token)
 	{
 		signal(SIGINT, NULL);
 		signal(SIGQUIT, SIG_IGN);
-		heredoc_process(open(pathname, O_WRONLY | O_CREAT, 0644), delimitador);
+		heredoc_process(fd, token);
 	}
 	wait(NULL);
-	return (open(pathname, O_RDONLY, 0444));
+	close(fd);
+	fd = open(pathname, O_RDONLY, 0444);
+	if (pathname)
+		free(pathname);
+	return (fd);
 }
