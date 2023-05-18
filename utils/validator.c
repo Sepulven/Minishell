@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 14:27:28 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:36:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,26 +79,29 @@ int	is_empty_to_next_pipe(char *str)
 	return (1);
 }
 
-int	validator(char **_line)
+
+int	validator(char **str)
 {
 	int		i;
-	char	*buff;
 	char	*line;
 
-	buff = ft_strtrim(*_line, " \n\t\r\f");
-	free(*_line);
-	*_line = buff;
-	if (buff && (*_line[0] == '|' || *_line[ft_strlen(*_line) - 1] == '|'))
-		err("Unclosed pipes.", *_line, '|', 0);
+	line = ft_strtrim(*str, " \n\t\r\f");
+	free(*str);
+	*str = line;
+	if (line && (line[0] == '|' || line[ft_strlen(line) - 1] == '|'))
+		err("Unclosed pipes.", line, '|', 0);
 	i = 0;
-	line = *_line;
 	while (line[i])
 	{
+		if (jump_quotes(&line[i]) == -1)
+			err("Unclosed quotes", line, line[i], i);
 		i += jump_quotes(&line[i]);
-		if (!isallowed(line[i]) || repeat_out_rule(&line[i]))
+		if (line[i] && (!isallowed(line[i]) || repeat_out_rule(&line[i])))
 			err("Unexpected character\n", line, line[i], i);
-		if (line[i] == '|' && is_empty_to_next_pipe(&line[i]))
+		else if (line[i] && (line[i] == '|' && is_empty_to_next_pipe(&line[i])))
 			err("Empty pipes.", line, line[i], i);
+		else
+			break ;
 		i += 1 - (line[i] == '\'' || line[i] == '"');
 	}
 	return (1);

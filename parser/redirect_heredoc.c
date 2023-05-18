@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 14:04:58 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:32:21 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+extern int	g_exit_s;
 
 char	*get_delimitador(char *token)
 {
@@ -30,8 +32,10 @@ void	close_heredoc(int fd, char *delimitador, char *line, int i)
 	else if (line)
 		free(line);
 	free(delimitador);
+	free_envp(*env());
 	close(fd);
-	exit(EXIT_SUCCESS);
+	g_exit_s = EXIT_SUCCESS;
+	exit(g_exit_s);
 }
 
 static void	stop_execution(void)

@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   string_jumps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:52:41 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/27 12:31:06 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:28:18 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "./utils.h"
 
+extern int	g_exit_s;
+
 /*
 	* Retorna a quantidade de casa que deve ser percorrida até encontrar
 	* a outra aspa igual.
 */
+
 int	jump_quotes(char *str)
 {
 	int		i;
@@ -31,10 +34,7 @@ int	jump_quotes(char *str)
 		if (str[i++] == c)
 			return (i);
 	}
-	ft_printf("%s %d\n", str, i);
-	ft_printf("BAD SYNTAX: UNCLOSED QUOTES\n");
-	exit(EXIT_FAILURE);
-	return (i + 1);
+	return (-1);
 }
 
 int	jump_white_spaces(char *str)

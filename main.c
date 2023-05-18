@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 14:27:41 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:48:17 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ static void	minishell(char *str)
 	(void)com;
 	(void)parser_list;
 	validator(&str);
-	printf("check 3\n");
-	printf("str:%s.\n", str);
+	if (!str)
+		return ;
 	com = get_com_number(str);
 	tokens = lexer(str, com);
 	parser_list = parser(tokens, *env());
@@ -92,6 +92,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		ft_printf("ARTEZA:");
 		str = get_next_line(0);
+		str = readline(" ");
 		if (!str)
 		{
 			free_double(*env());
