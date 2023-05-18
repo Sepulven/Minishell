@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 12:24:20 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:24:55 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 // Allowed characters: > >> < << " '
 // | & ; < > ( ) $ ` \ ' " whitespaces # * ?
+
+extern int	g_exit_s;
 
 static int	isallowed(char c)
 {
@@ -59,7 +61,8 @@ void	err(char *msg, char *str, char c, int pos)
 	ft_putchar_fd('\n', 2);
 	free(str);
 	free_envp(*env());
-	exit(EXIT_FAILURE);
+	g_exit_s = EXIT_FAILURE;
+	exit(g_exit_s);
 }
 
 int	is_empty_to_next_pipe(char *str)

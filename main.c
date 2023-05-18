@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 20:43:44 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:54:37 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	minishell(char *str)
 	int				com;
 
 	validator(&str);
+	printf("check 3\n");
+	printf("str:%s.\n", str);
 	com = get_com_number(str);
 	str = expander(str);
 	tokens = lexer(str, com);
