@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 12:46:34 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 11:27:52 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ int					is_empty_to_next_pipe(char *str);
 /*get_com_number.c*/
 int					get_com_number(char *str);
 
+/*formatter.c*/
+char				*formatter(char *unformatted);
+char				*ft_strjoin_free(char *s1, char *s2, char *opt);
+
+
 /*utils_files.c*/
 void				delete_heredoc_files(void);
 char				*get_pathname(int index);
@@ -92,6 +97,10 @@ t_com_list			*__ft_lstlast(t_com_list *lst);
 int					jump_quotes(char *str);
 int					jump_str_out_quotes(char *str);
 int					jump_white_spaces(char *str);
+
+/*utils_lexer_1.c*/
+int					ft_isredirects(char *str);
+int					ft_jump_redirect_token(char *str);
 
 /*utils_general_1.c*/
 void				ft_swap(char *x, char *y);

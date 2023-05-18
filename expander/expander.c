@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:20:38 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:45:28 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ static char	*concat_env_to_str(char *current, char *var_name,
 		env_value = ft_itoa(g_exit_s);
 	else
 		env_value = get_env_value(var_name, envp);
+	if (!env_value)
+	{
+		DEBUG1;
+		return (NULL);
+	}
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 				ft_strlen(current) + rest + 2, sizeof(char));
 	ft_strlcat(new_str, current, ft_strlen(current) + 1);
-	ft_strlcat(new_str, "\"", ft_strlen(current) + 2);
 	ft_strlcat(new_str, env_value,
 		ft_strlen(current) + ft_strlen(env_value) + 1 + 2);
 	free(env_value);
 	free(current);
-	new_str[ft_strlen(new_str)] = '"';
 	return (new_str);
 }
 
@@ -125,7 +128,10 @@ char	*expander(char *str)
 		else
 			new_str[j++] = str[i++];
 	}
-	if (str != NULL)
+	if (str)
+	{
 		free(str);
+		str = NULL;
+	}
 	return (new_str);
 }

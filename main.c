@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 13:54:37 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:27:41 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ static void	minishell(char *str)
 	char			***tokens;
 	int				com;
 
+	(void)tokens;
+	(void)com;
+	(void)parser_list;
 	validator(&str);
 	printf("check 3\n");
 	printf("str:%s.\n", str);
 	com = get_com_number(str);
-	str = expander(str);
 	tokens = lexer(str, com);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)

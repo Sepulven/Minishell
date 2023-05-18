@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 18:40:36 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:51:01 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,11 @@
 */
 char	*token_to_field(char *command_token)
 {
-	char	*buff;
 	char	*field;
 
-	if (ft_strlen(command_token) == 2)
+	if (0 && ft_strlen(command_token) == 2)
 		return (ft_strdup(""));
-	buff = ft_strdup(command_token);
-	buff[ft_strlen(buff) - 1] = '\0';
-	field = ft_strdup(&buff[1]);
-	free(buff);
+	field = formatter(expander(ft_strdup(command_token)));
 	return (field);
 }
 
@@ -71,14 +67,13 @@ static void	delete_current_heredoc(int inf)
 	free(pathname);
 }
 
-static void	treat_redirects(t_com_list *new, char *command_token, \
-			int command_index)
+static void	treat_redirects(t_com_list *new, char *command_token)
 {
 	if (!ft_strncmp(command_token, "<<", 2))
 	{
 		if (new->inf)
 			delete_current_heredoc(new->inf);
-		new->inf = heredoc(command_token, command_index);
+		new->inf = heredoc(command_token);
 	}
 	else if (!ft_strncmp(command_token, ">>", 2))
 	{
@@ -105,7 +100,7 @@ static void	treat_redirects(t_com_list *new, char *command_token, \
 	
 	* Percorro a matrix redefindo os inf e ouf, dependendo de cada situção.
 */
-t_com_list	*get_node(char **command_token, char **paths, int command_index)
+t_com_list	*get_node(char **command_token, char **paths)
 {
 	t_com_list	*new;
 	int			i;
@@ -117,16 +112,16 @@ t_com_list	*get_node(char **command_token, char **paths, int command_index)
 	i = 0;
 	while (command_token[i] && (new->inf != -1 && new->outf != -1))
 	{
-		if (!new->command && command_token[i][0] == '"')
+		if (!new->command && !ft_isredirects(command_token[i]))
 		{
 			new->command = token_to_field(command_token[i]);
 			new->path = check_path(paths, new->command);
 			new->param = add_param(new->param, command_token[i]);
 		}
-		else if (command_token[i][0] == '"')
+		else if (!ft_isredirects(command_token[i]))
 			new->param = add_param(new->param, command_token[i]);
 		else if (ft_isredirects(command_token[i]))
-			treat_redirects(new, command_token[i], command_index);
+			treat_redirects(new, command_token[i]);
 		i++;
 	}
 	return (new);
@@ -153,7 +148,7 @@ t_com_list	*parser(char ***tokens, char **envp)
 	lst = NULL;
 	while (tokens[i])
 	{
-		node = get_node(tokens[i], paths, i);
+		node = get_node(tokens[i], paths);
 		i++;
 		if (!node)
 			exit(EXIT_FAILURE);

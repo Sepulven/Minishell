@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:13:41 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 13:44:29 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:23:43 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lexer.h"
+#include "./utils.h"
 
 /*
 	* Verifica se é um redirect, caso seja retorna o tamanho do redirect.
@@ -35,10 +35,16 @@ int	ft_jump_redirect_token(char *str)
 	int	i;
 
 	i = 0;
+	i += jump_white_spaces(&str[i]);
 	i += ft_isredirects(&str[i]);
 	i += jump_white_spaces(&str[i]);
 	while (str[i] && !ft_iswhitespace(str[i]) && !ft_isredirects(&str[i]))
-		i++;
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+			i += jump_quotes(&str[i]);
+		else
+			i++;
+	}
 	return (i);
 }
 
