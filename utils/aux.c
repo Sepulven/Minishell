@@ -6,13 +6,13 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 20:02:08 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 18:09:17 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:38:13 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./utils.h"
 
-char	**`		dup_env(char **envp)
+char	**dup_env(char **envp)
 {
 	int		i;
 	int		count;
