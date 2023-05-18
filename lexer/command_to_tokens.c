@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 23:04:28 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 12:25:01 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:50:15 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ char	**command_to_tokens(char *str)
 	if (!str)
 		return (NULL);
 	number_tokens = count_tokens_in_command(str);
-	ft_printf("number_tokens:%d\n", number_tokens);
 	command_tokens = ft_calloc(number_tokens + 1, sizeof (char *));
 	if (!command_tokens)
 		return (NULL);

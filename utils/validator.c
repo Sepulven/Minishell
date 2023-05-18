@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 18:21:35 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:49:37 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ int	validator(char **_line)
 	buff = ft_strtrim(*_line, " \n\t\r\f");
 	free(*_line);
 	*_line = ft_strtrim(buff, "|");
-	if (ft_strncmp(*_line, buff, ft_strlen(buff)))
+	if (buff && *_line && ft_strncmp(*_line, buff, ft_strlen(buff) - 1))
 		err("Unclosed pipes.", *_line, '|', 0);
-	free(buff);
 	i = 0;
 	line = *_line;
 	while (line[i])
