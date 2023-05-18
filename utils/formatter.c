@@ -6,11 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:47:01 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/07 13:44:37 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:33:32 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./lexer.h"
+#include "./utils.h"
 
 /*
 	* * Notas velhas, podem ser importantes no futuro.

@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 12:46:34 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:32:56 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int					is_empty_to_next_pipe(char *str);
 
 /*get_com_number.c*/
 int					get_com_number(char *str);
+
+/*formatter.c*/
+char	*formatter(char *unformatted);
+char	*ft_strjoin_free(char *s1, char *s2, char *opt);
+
 
 /*utils_files.c*/
 void				delete_heredoc_files(void);

@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/17 18:24:27 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:45:28 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static void	expand_rules(char *str, char **new_str, int *i, int *j)
 		expande_to_new_str(str, new_str, i, j);
 }
 
-static char	*_expander(char *str)
+char	*expander(char *str)
 {
 	char	*new_str;
 	int		i;
@@ -134,29 +134,4 @@ static char	*_expander(char *str)
 		str = NULL;
 	}
 	return (new_str);
-}
-
-/*
-	* It will need to shrink the lexer size if the token return
-*/
-char	***expander(char ***tokens)
-{
-	int		i;
-	int		from;
-	int		to;
-
-	i = 0;
-	while (tokens[i])
-	{
-		from = 0;
-		to = 0;
-		while (tokens[i][from])
-		{
-			tokens[i][to] = _expander(tokens[i][from++]);
-			if (tokens[i][to])
-				to++;
-		}
-		i++;
-	}
-	return (tokens);
 }

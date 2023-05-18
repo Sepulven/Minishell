@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 18:40:36 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:46:05 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,11 @@
 */
 char	*token_to_field(char *command_token)
 {
-	char	*buff;
 	char	*field;
 
-	if (ft_strlen(command_token) == 2)
+	if (0 && ft_strlen(command_token) == 2)
 		return (ft_strdup(""));
-	buff = ft_strdup(command_token);
-	buff[ft_strlen(buff) - 1] = '\0';
-	field = ft_strdup(&buff[1]);
-	free(buff);
+	field = formatter(expander(ft_strdup(command_token)));
 	return (field);
 }
 

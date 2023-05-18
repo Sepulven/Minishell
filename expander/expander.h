@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:19:48 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/17 16:12:15 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:45:38 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../utils/utils.h"
 
 /*expander.c*/
-char	***expander(char ***tokens);
+char	*expander(char *str);
 
 /*utils_expander.c*/
 char	*get_env_value(char *var_name, char **envp);
