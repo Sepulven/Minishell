@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 15:48:17 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:53:06 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,17 @@ int	main(int argc, char **argv, char **envp)
 	sh_level(envp);
 	while (1)
 	{
-		ft_printf("ARTEZA:");
-		str = get_next_line(0);
-		str = readline(" ");
+		//ft_printf("ARTEZA:");
+		//str = get_next_line(0);
+		str = readline("> ");
 		if (!str)
 		{
 			free_double(*env());
 			ft_printf("\n");
 			exit(EXIT_FAILURE);
 		}
-		else
-			str[ft_strlen(str) - 1] = '\0';
+		// else
+		// 	str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
 	}
 }

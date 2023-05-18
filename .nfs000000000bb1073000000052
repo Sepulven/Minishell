@@ -6,11 +6,12 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 21:28:55 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 16:00:03 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:02:38 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 size_t	getlength(int n)
 {
@@ -48,6 +49,20 @@ char	*convert(char *str, size_t sign, int n)
 	str[i] = '\0';
 	return (str);
 }
+
+void	*ft_memcpy(void *dest, const void *src, size_t n)
+{
+	size_t	count;
+
+	count = 0;
+	while (count < n)
+	{
+		((unsigned char *)dest)[count] = ((unsigned char *)src)[count];
+		count++;
+	}
+	return ((void *) dest);
+}
+
 
 char	*ft_itoa(int n)
 {
