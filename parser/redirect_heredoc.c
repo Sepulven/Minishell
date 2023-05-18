@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 14:50:52 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:43:51 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ static void	heredoc_process(int fd, char *delimitador)
 	}
 }
 
-int	heredoc(char *token, int command_index)
+int	heredoc(char *token)
 {
 	int		pid;
 	char	*pathname;
 	char	*delimitador;
 
-	(void)command_index;
 	pathname = take_avaible_filename();
 	delimitador = get_delimitador(token);
 	pid = fork();
