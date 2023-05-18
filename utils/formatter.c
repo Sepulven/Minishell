@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:47:01 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 02:33:32 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:20:43 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ char	*formatter(char *unformatted)
 	int		str_size;
 
 	unformatted = prepare_unformatted(unformatted, &str_size, &i, &formatted);
-	while (unformatted[i])
+	if (!unformatted)
+		return (ft_strdup(""));
+	while (unformatted && unformatted[i])
 	{
 		str_size = jump_quotes(&unformatted[i]);
 		if (str_size)

@@ -17,9 +17,9 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
-RM = rm -f
+RM = rm -f #-fsanitizer==address
 
 EXPANDER_SRC	= expander.c utils_expander.c
 

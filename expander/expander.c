@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 02:45:28 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:21:11 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ static char	*concat_env_to_str(char *current, char *var_name,
 	else
 		env_value = get_env_value(var_name, envp);
 	if (!env_value)
-	{
-		DEBUG1;
 		return (NULL);
-	}
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 				ft_strlen(current) + rest + 2, sizeof(char));
 	ft_strlcat(new_str, current, ft_strlen(current) + 1);
@@ -107,7 +104,10 @@ static void	expand_rules(char *str, char **new_str, int *i, int *j)
 		(*new_str)[(*j)++] = str[(*i)++];
 	}
 	else if (ft_isvar(&str[*i]))
+	{
 		expande_to_new_str(str, new_str, i, j);
+		printf("str -%s-\n", *new_str);
+	}
 }
 
 char	*expander(char *str)

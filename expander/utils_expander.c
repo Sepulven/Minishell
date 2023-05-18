@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 23:29:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/09 15:20:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:29:47 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*get_env_value(char *var_name, char **envp)
 	if (!var_name || !var_name[0])
 		return (ft_strdup(""));
 	i = 0;
+	env_value = NULL;
 	while (envp[i])
 	{
 		matrix = ft_split(envp[i], '=');
@@ -43,7 +44,10 @@ char	*get_env_value(char *var_name, char **envp)
 			return (NULL);
 		if (ft_strncmp(var_name, matrix[0], ft_strlen(var_name)) == 0)
 		{
-			env_value = ft_strdup(matrix[1]);
+			if (!matrix[1])
+				env_value = ft_strdup("");
+			else
+				env_value = ft_strdup(matrix[1]);
 			free_double(matrix);
 			return (env_value);
 		}
