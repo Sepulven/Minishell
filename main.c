@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 14:49:46 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:39:11 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	minishell(char *str)
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	if ((parser_list && parser_list->command) 
-	    || (parser_list && parser_list->inf > 0))
+	if ((parser_list && parser_list->command) \
+		|| (parser_list && parser_list->inf > 0 && parser_list->next))
 		execute(parser_list, com);
 	else if (parser_list)
 		free_lst(parser_list);
@@ -93,17 +93,13 @@ int	main(int argc, char **argv, char **envp)
 	sh_level(envp);
 	while (1)
 	{
-		ft_printf("ARTEZA:");
-		str = get_next_line(0);
-		// str = readline(" ");
+		str = readline("ARTEZA:");
 		if (!str)
 		{
 			free_double(*env());
 			ft_printf("\n");
 			exit(EXIT_FAILURE);
 		}
-		// else
-		// 	str[ft_strlen(str) - 1] = '\0';
 		minishell(str);
 	}
 }
