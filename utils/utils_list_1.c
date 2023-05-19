@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_list_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 11:22:56 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:07:38 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,6 @@ void	__ft_lstadd_env(t_env **env, t_env *new)
 
 	if (!env)
 		return ;
-	if (*env == NULL)
-	{
-		*env = new;
-		return ;
-	}
 	current = __ft_lstlast_env(*env);
 	aux = *env;
 	while (aux)
@@ -88,26 +83,11 @@ void	__ft_lstadd_env(t_env **env, t_env *new)
 	current->next = new;
 }
 
-
 t_com_list	*__ft_lstlast(t_com_list *lst)
 {
 	t_com_list	*current;
 
 	current = lst;
-	while (current != NULL)
-	{
-		if (current->next == NULL)
-			return (current);
-		current = current->next;
-	}
-	return (current);
-}
-
-t_env	*__ft_lstlast_env(t_env *env)
-{
-	t_env	*current;
-
-	current = env;
 	while (current != NULL)
 	{
 		if (current->next == NULL)

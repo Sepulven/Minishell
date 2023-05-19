@@ -34,7 +34,7 @@ EXECUTOR_SRC	= cd.c echo.c builtins.c pwd.c commands.c execution.c \
 
 UTILS_SRC		= data_output.c string_jumps.c utils_list_1.c __def_env.c utils_general_1.c \
 				  validator.c frees.c get_com_number.c aux.c signals.c utils_files.c \
-				  formatter.c utils_lexer_1.c 
+				  formatter.c utils_lexer_1.c utils_list_2.c
 
 SRC				= $(addprefix expander/,$(EXPANDER_SRC)) \
 				  $(addprefix lexer/,$(LEXER_SRC)) \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 12:08:43 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:16:07 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static char	*concat_env_to_str(char *current, char *var_name,
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 				ft_strlen(current) + rest + 2, sizeof(char));
 	ft_strlcpy(new_str, current, ft_strlen(current) + 1);
-	ft_strlcat(new_str, env_value, ft_strlen(current) + ft_strlen(env_value) + 1 + 2);
+	ft_strlcat(new_str, env_value, ft_strlen(current) + \
+	ft_strlen(env_value) + 1 + 2);
 	free(env_value);
 	free(current);
 	return (new_str);

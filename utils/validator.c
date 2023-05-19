@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 17:01:37 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:11:06 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./utils.h"
-// > >> << < * ? [ ] | ; || && ( ) & # $ " '
-
-// Allowed characters: > >> < << " '
-// | & ; < > ( ) $ ` \ ' " whitespaces # * ?
-
+// * Aloco o array de matrizes// * Aloco o array de matrizes
+/*
+	* Quebra a nossa string recebida pelo prompt 
+	* em um array de matrizes que seram então processadas para o parser.
+	* cada command será uma matrix, que tera os seus tipos de tokens.
+	* * Done by.: asepulve
+*/
 extern int	g_exit_s;
 
 static int	isallowed(char c)
@@ -24,13 +26,6 @@ static int	isallowed(char c)
 			|| c == '&' || c == ';' || c == '(' || c == ')' ));
 }
 
-/*
-	Verifica pipes vazios e unclosed pipes;
-	Verifico se é redirect;
-	Verifico se o proximo caractere é outro redirect no mesmo sentido;
-	Caso não olho o que se segue se é allowed menos pipe ou redirect, apos saltar o whitespaces.
-	Para verificar se é os redirects são válidos.
-*/
 static int	repeat_out_rule(char *c)
 {
 	int	i;
@@ -95,11 +90,11 @@ int	validator(char **str)
 		if (jump_quotes(&line[i]) < 0)
 			return (err("Unclosed quotes", &line, line[i], i));
 		i += jump_quotes(&line[i]);
-		if (line[i] == 0)
-		 	break ;
-		if (line[i] != '\0' && (!isallowed(line[i]) || repeat_out_rule(&line[i])))
+		if (!line[i])
+			break ;
+		if (line[i] && (!isallowed(line[i]) || repeat_out_rule(&line[i])))
 			return (err("Unexpected character\n", &line, line[i], i));
-		else if (line[i] != '\0' && (line[i] == '|' && is_empty_to_next_pipe(&line[i])))
+		else if (line[i] && (line[i] == '|' && is_empty_to_next_pipe(&line[i])))
 			return (err("Empty pipes.", &line, line[i], i));
 		i += 1 - (line[i] == '\'' || line[i] == '"');
 	}
