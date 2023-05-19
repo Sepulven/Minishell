@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   formatter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:47:01 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:20:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:17:33 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ static char	*prepare_unformatted(char *unformatted, int *str_size, int *i,\
 		return (NULL);
 	str = ft_strtrim(unformatted, " \n\t\f\r");
 	if (!str)
+	{
+		free(unformatted);
 		return (NULL);
+	}
 	free(unformatted);
 	unformatted = ft_strdup(str);
 	if (!unformatted)
@@ -90,7 +93,12 @@ char	*formatter(char *unformatted)
 
 	unformatted = prepare_unformatted(unformatted, &str_size, &i, &formatted);
 	if (!unformatted)
+	{
+		free(formatted);
+		if (unformatted)
+			free(unformatted);
 		return (ft_strdup(""));
+	}
 	while (unformatted && unformatted[i])
 	{
 		str_size = jump_quotes(&unformatted[i]);
