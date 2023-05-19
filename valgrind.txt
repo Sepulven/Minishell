@@ -1,302 +1,206 @@
-<<<<<<< HEAD
-==87958== Memcheck, a memory error detector
-==87958== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==87958== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
-==87958== Command: ./minishell
-==87958== 
---87958-- Valgrind options:
---87958--    --verbose
---87958--    --leak-check=full
---87958--    --track-origins=yes
---87958--    --show-leak-kinds=all
---87958-- Contents of /proc/version:
---87958--   Linux version 5.4.0-139-generic (buildd@lcy02-amd64-112) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) #156-Ubuntu SMP Fri Jan 20 17:27:18 UTC 2023
---87958-- 
---87958-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
---87958-- Page sizes: currently 4096, max supported 4096
---87958-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
---87958-- Reading syms from /nfs/homes/asepulve/Desktop/Minishell/minishell
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
---87958--   Considering /usr/lib/debug/.build-id/45/87364908de169dec62ffa538170118c1c3a078.debug ..
---87958--   .. build-id is valid
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
---87958--    object doesn't have a symbol table
---87958--    object doesn't have a dynamic symbol table
---87958-- Scheduler: using generic scheduler lock implementation.
---87958-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
-==87958== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-87958-by-asepulve-on-???
-==87958== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-87958-by-asepulve-on-???
-==87958== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-87958-by-asepulve-on-???
-==87958== 
-==87958== TO CONTROL THIS PROCESS USING vgdb (which you probably
-==87958== don't want to do, unless you know exactly what you're doing,
-==87958== or are doing some strange experiment):
-==87958==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=87958 ...command...
-==87958== 
-==87958== TO DEBUG THIS PROCESS USING GDB: start GDB like this
-==87958==   /path/to/gdb ./minishell
-==87958== and then give GDB the following command
-==87958==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=87958
-==87958== --pid is optional if only one valgrind process is running
-==87958== 
---87958-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
---87958-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
---87958--    object doesn't have a symbol table
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
---87958--    object doesn't have a symbol table
-==87958== WARNING: new redirection conflicts with existing -- ignoring it
---87958--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
---87958--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
---87958-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
---87958-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/libreadline.so.8.0
---87958--    object doesn't have a symbol table
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
---87958--   Considering /usr/lib/debug/.build-id/18/78e6b475720c7c51969e69ab2d276fae6d1dee.debug ..
---87958--   .. build-id is valid
---87958-- Reading syms from /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
---87958--    object doesn't have a symbol table
---87958-- REDIR: 0x4953480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49537b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49520a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49527e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4954c50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x496fce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x496f820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49535e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x496f7e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49521d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4970f50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x496f860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x495bbb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49533d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x496f930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4952ae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4953750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49536f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4954c90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49538a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49526b0 (libc.so.6:strncat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49e0850 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x49532f0 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
---87958-- REDIR: 0x4a3b500 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
---87958-- REDIR: 0x494d0e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
---87958-- REDIR: 0x494d6d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
-==87959== 
-==87959== HEAP SUMMARY:
-==87959==     in use at exit: 342 bytes in 17 blocks
-==87959==   total heap usage: 111 allocs, 94 frees, 5,444 bytes allocated
-==87959== 
-==87959== Searching for pointers to 17 not-freed blocks
-==87959== Checked 100,584 bytes
-==87959== 
-==87959== 8 bytes in 1 blocks are still reachable in loss record 1 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402568: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x40276E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 16 bytes in 1 blocks are still reachable in loss record 2 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x401D81: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D5D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 16 bytes in 1 blocks are still reachable in loss record 3 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x401FC9: command_to_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x401F4C: populate_command_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x401E2E: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D5D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 19 bytes in 1 blocks are still reachable in loss record 4 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x408AA5: ft_strjoin (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x4071F1: get_pathname (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x40725D: take_avaible_filename (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402E80: heredoc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402943: treat_redirects (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x4028BD: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 40 bytes in 1 blocks are still reachable in loss record 5 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x402749: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 96 bytes in 1 blocks are still reachable in loss record 6 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x4085A6: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402255: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402AC2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== 147 bytes in 11 blocks are still reachable in loss record 7 of 7
-==87959==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87959==    by 0x408869: populate (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x40865F: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402255: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x402AC2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87959== 
-==87959== LEAK SUMMARY:
-==87959==    definitely lost: 0 bytes in 0 blocks
-==87959==    indirectly lost: 0 bytes in 0 blocks
-==87959==      possibly lost: 0 bytes in 0 blocks
-==87959==    still reachable: 342 bytes in 17 blocks
-==87959==         suppressed: 0 bytes in 0 blocks
-==87959== 
-==87959== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-==88201== 
-==88201== HEAP SUMMARY:
-==88201==     in use at exit: 390 bytes in 19 blocks
-==88201==   total heap usage: 141 allocs, 122 frees, 5,889 bytes allocated
-==88201== 
-==88201== Searching for pointers to 19 not-freed blocks
-==88201== Checked 100,584 bytes
-==88201== 
-==88201== 8 bytes in 1 blocks are still reachable in loss record 1 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402568: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x40276E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 8 bytes in 1 blocks are indirectly lost in loss record 2 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402568: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x40276E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 16 bytes in 1 blocks are still reachable in loss record 3 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x401D81: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D5D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 16 bytes in 1 blocks are still reachable in loss record 4 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x401FC9: command_to_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x401F4C: populate_command_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x401E2E: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D5D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 19 bytes in 1 blocks are still reachable in loss record 5 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x408AA5: ft_strjoin (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x4071F1: get_pathname (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x40725D: take_avaible_filename (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402E80: heredoc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402943: treat_redirects (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x4028BD: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 40 bytes in 1 blocks are still reachable in loss record 6 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x402749: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 48 (40 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 7 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x402749: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 96 bytes in 1 blocks are still reachable in loss record 8 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x4085A6: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402255: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AC2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== 147 bytes in 11 blocks are still reachable in loss record 9 of 9
-==88201==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==88201==    by 0x408869: populate (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x40865F: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402255: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x402AC2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==88201== 
-==88201== LEAK SUMMARY:
-==88201==    definitely lost: 40 bytes in 1 blocks
-==88201==    indirectly lost: 8 bytes in 1 blocks
-==88201==      possibly lost: 0 bytes in 0 blocks
-==88201==    still reachable: 342 bytes in 17 blocks
-==88201==         suppressed: 0 bytes in 0 blocks
-==88201== 
-==88201== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-==87958== 
-==87958== HEAP SUMMARY:
-==87958==     in use at exit: 96 bytes in 4 blocks
-==87958==   total heap usage: 139 allocs, 135 frees, 5,884 bytes allocated
-==87958== 
-==87958== Searching for pointers to 4 not-freed blocks
-==87958== Checked 99,984 bytes
-==87958== 
-==87958== 16 bytes in 2 blocks are indirectly lost in loss record 1 of 2
-==87958==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87958==    by 0x407F15: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x402568: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x40276E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958== 
-==87958== 96 (80 direct, 16 indirect) bytes in 2 blocks are definitely lost in loss record 2 of 2
-==87958==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
-==87958==    by 0x402749: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x402AFD: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x407D7A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958==    by 0x407D1A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
-==87958== 
-==87958== LEAK SUMMARY:
-==87958==    definitely lost: 80 bytes in 2 blocks
-==87958==    indirectly lost: 16 bytes in 2 blocks
-==87958==      possibly lost: 0 bytes in 0 blocks
-==87958==    still reachable: 0 bytes in 0 blocks
-==87958==         suppressed: 0 bytes in 0 blocks
-==87958== 
-==87958== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
-=======
->>>>>>> 729456b1df5782bac52059244d9ed07d3e440c35
+==90429== Memcheck, a memory error detector
+==90429== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==90429== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==90429== Command: ./minishell
+==90429== 
+--90429-- Valgrind options:
+--90429--    --verbose
+--90429--    --leak-check=full
+--90429--    --track-origins=yes
+--90429--    --show-leak-kinds=all
+--90429-- Contents of /proc/version:
+--90429--   Linux version 5.4.0-139-generic (buildd@lcy02-amd64-112) (gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)) #156-Ubuntu SMP Fri Jan 20 17:27:18 UTC 2023
+--90429-- 
+--90429-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--90429-- Page sizes: currently 4096, max supported 4096
+--90429-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--90429-- Reading syms from /nfs/homes/asepulve/Desktop/Minishell/minishell
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--90429--   Considering /usr/lib/debug/.build-id/45/87364908de169dec62ffa538170118c1c3a078.debug ..
+--90429--   .. build-id is valid
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--90429--    object doesn't have a symbol table
+--90429--    object doesn't have a dynamic symbol table
+--90429-- Scheduler: using generic scheduler lock implementation.
+--90429-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==90429== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-90429-by-asepulve-on-???
+==90429== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-90429-by-asepulve-on-???
+==90429== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-90429-by-asepulve-on-???
+==90429== 
+==90429== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==90429== don't want to do, unless you know exactly what you're doing,
+==90429== or are doing some strange experiment):
+==90429==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=90429 ...command...
+==90429== 
+==90429== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==90429==   /path/to/gdb ./minishell
+==90429== and then give GDB the following command
+==90429==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=90429
+==90429== --pid is optional if only one valgrind process is running
+==90429== 
+--90429-- REDIR: 0x4022e20 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--90429-- REDIR: 0x4022bf0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--90429--    object doesn't have a symbol table
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--90429--    object doesn't have a symbol table
+==90429== WARNING: new redirection conflicts with existing -- ignoring it
+--90429--     old: 0x04022e20 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--90429--     new: 0x04022e20 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--90429-- REDIR: 0x401f600 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--90429-- REDIR: 0x4023380 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/libreadline.so.8.0
+--90429--    object doesn't have a symbol table
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--90429--   Considering /usr/lib/debug/.build-id/18/78e6b475720c7c51969e69ab2d276fae6d1dee.debug ..
+--90429--   .. build-id is valid
+--90429-- Reading syms from /usr/lib/x86_64-linux-gnu/libtinfo.so.6.2
+--90429--    object doesn't have a symbol table
+--90429-- REDIR: 0x4953480 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952780 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49537b0 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49520a0 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49527e0 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4954c50 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x496fce0 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x496f820 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49535e0 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953410 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952710 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952150 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953540 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x496f7e0 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952670 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952230 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953800 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49521d0 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953950 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4970f50 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x496f860 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952820 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952100 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952630 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x495bbb0 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953850 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49533d0 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x496f930 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4952ae0 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4953750 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49536f0 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4954c90 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49538a0 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49526b0 (libc.so.6:strncat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49e0850 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x49532f0 (libc.so.6:strstr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--90429-- REDIR: 0x4a3b500 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--90429-- REDIR: 0x494d0e0 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+--90429-- REDIR: 0x494d6d0 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==90433== 
+==90433== HEAP SUMMARY:
+==90433==     in use at exit: 342 bytes in 17 blocks
+==90433==   total heap usage: 119 allocs, 102 frees, 5,528 bytes allocated
+==90433== 
+==90433== Searching for pointers to 17 not-freed blocks
+==90433== Checked 100,576 bytes
+==90433== 
+==90433== 8 bytes in 1 blocks are still reachable in loss record 1 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x407F25: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402578: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x40277E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402B2D: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 16 bytes in 1 blocks are still reachable in loss record 2 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x407F25: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x401D91: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D6D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 16 bytes in 1 blocks are still reachable in loss record 3 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x407F25: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x401FD9: command_to_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x401F5C: populate_command_tokens (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x401E3E: lexer (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D6D: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 19 bytes in 1 blocks are still reachable in loss record 4 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x408AB5: ft_strjoin (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407221: get_pathname (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x40728D: take_avaible_filename (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402EB0: heredoc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402953: treat_redirects (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x4028CD: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402B2D: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 40 bytes in 1 blocks are still reachable in loss record 5 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x402759: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402B2D: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 96 bytes in 1 blocks are still reachable in loss record 6 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x4085B6: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402265: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402AF2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== 147 bytes in 11 blocks are still reachable in loss record 7 of 7
+==90433==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90433==    by 0x408879: populate (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x40866F: ft_split (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402265: get_paths (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x402AF2: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90433== 
+==90433== LEAK SUMMARY:
+==90433==    definitely lost: 0 bytes in 0 blocks
+==90433==    indirectly lost: 0 bytes in 0 blocks
+==90433==      possibly lost: 0 bytes in 0 blocks
+==90433==    still reachable: 342 bytes in 17 blocks
+==90433==         suppressed: 0 bytes in 0 blocks
+==90433== 
+==90433== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==90429== 
+==90429== HEAP SUMMARY:
+==90429==     in use at exit: 48 bytes in 2 blocks
+==90429==   total heap usage: 117 allocs, 115 frees, 5,523 bytes allocated
+==90429== 
+==90429== Searching for pointers to 2 not-freed blocks
+==90429== Checked 99,976 bytes
+==90429== 
+==90429== 8 bytes in 1 blocks are indirectly lost in loss record 1 of 2
+==90429==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90429==    by 0x407F25: ft_calloc (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x402578: initialize_lst (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x40277E: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x402B2D: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429== 
+==90429== 48 (40 direct, 8 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
+==90429==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==90429==    by 0x402759: get_node (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x402B2D: parser (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x407D8A: minishell (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429==    by 0x407D2A: main (in /nfs/homes/asepulve/Desktop/Minishell/minishell)
+==90429== 
+==90429== LEAK SUMMARY:
+==90429==    definitely lost: 40 bytes in 1 blocks
+==90429==    indirectly lost: 8 bytes in 1 blocks
+==90429==      possibly lost: 0 bytes in 0 blocks
+==90429==    still reachable: 0 bytes in 0 blocks
+==90429==         suppressed: 0 bytes in 0 blocks
+==90429== 
+==90429== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
