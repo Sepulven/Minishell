@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 15:00:03 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:07:40 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,16 @@ static void	heredoc_process(int fd, char *token, char ***tokens)
 	char	*delimitador;
 
 	expand_flag = 1;
-	(void)expand_flag;
 	delimitador = get_delimitador(token, tokens);
-	// delimitador = formatter(delimitador);
+	if (ft_strrchr(delimitador, '"') || ft_strrchr(delimitador, '\''))
+		expand_flag = 0;
+	delimitador = formatter(delimitador);
 	while (1)
 	{
 		ft_printf("heredoc:>");
 		line = get_next_line(0);
+		if (expand_flag == 1)
+			line = expander(line);
 		if (line == NULL || !ft_strncmp(line, delimitador, \
 		ft_strlen(line) - (line[ft_strlen(line) - 1] == '\n')))
 			close_heredoc(fd, delimitador, line);
