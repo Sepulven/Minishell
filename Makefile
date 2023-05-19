@@ -25,8 +25,8 @@ EXPANDER_SRC	= expander.c utils_expander.c
 
 LEXER_SRC		= lexer.c command_to_tokens.c
 
-PARSER_SRC		= env_utils.c utils_parser_1.c parser.c\
-				  redirect_outf_inf.c redirect_heredoc.c
+PARSER_SRC		= env_utils.c utils_parser_1.c parser.c redirect_outf_inf.c \
+				  redirect_heredoc.c
 
 EXECUTOR_SRC	= cd.c echo.c builtins.c pwd.c commands.c execution.c \
 				  export.c pipes.c env.c exit.c print_export.c unset.c \

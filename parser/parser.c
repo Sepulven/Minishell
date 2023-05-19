@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:05:04 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:22:14 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,7 @@ t_com_list	*get_node(char **command_token, char **paths)
 			new->param = add_param(new->param, command_token[i]);
 		}
 		else if (!ft_isredirects(command_token[i]))
-		{
 			new->param = add_param(new->param, command_token[i]);
-		}
 		else if (ft_isredirects(command_token[i]))
 			treat_redirects(new, command_token[i]);
 		i++;
