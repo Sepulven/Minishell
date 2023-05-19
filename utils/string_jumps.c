@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   string_jumps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:52:41 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 16:26:04 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:56:01 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "./utils.h"
 
 extern int	g_exit_s;
-
-/*
-	* Retorna a quantidade de casa que deve ser percorrida até encontrar
-	* a outra aspa igual.
-*/
 
 int	jump_quotes(char *str)
 {

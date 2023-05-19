@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 15:07:40 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:46:47 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,33 @@ static void	heredoc_process(int fd, char *token, char ***tokens)
 	}
 }
 
-int	heredoc(char *token, t_com_list *new, t_com_list *lst, char **paths, char ***tokens)
+static void	_free_all(t_memory mem)
+{
+	if (mem.pathname)
+		free(mem.pathname);
+	if (mem.new)
+	{
+		free(mem.new->command);
+		if (mem.new->path)
+			free(mem.new->path);
+		free_double(mem.new->param);
+		free(mem.new);
+	}
+	if (mem.lst)
+		free_lst(mem.lst);
+	if (mem.paths)
+		free_double(mem.paths);
+}
+
+int	heredoc(char *token, t_memory mem)
 {
 	int		pid;
 	char	*pathname;
 	int		fd;
 
 	pathname = take_avaible_filename();
-	(void)new;
-	(void)lst;
 	fd = open(pathname, O_WRONLY | O_CREAT, 0644);
+	mem.pathname = pathname;
 	pid = fork();
 	if (pid == -1)
 		ft_putendl_fd("Forked failed\n", 2);
@@ -82,21 +99,8 @@ int	heredoc(char *token, t_com_list *new, t_com_list *lst, char **paths, char **
 	{
 		signal(SIGINT, NULL);
 		signal(SIGQUIT, SIG_IGN);
-		if (pathname)
-			free(pathname);
-		if (new)
-		{
-			free(new->command);
-			if (new->path)
-				free(new->path);
-			free_double(new->param);
-			free(new);
-		}
-		if (lst)
-			free_lst(lst);
-		if (paths)
-			free_double(paths);
-		heredoc_process(fd, token, tokens);
+		_free_all(mem);
+		heredoc_process(fd, token, mem.tokens);
 	}
 	wait(NULL);
 	close(fd);

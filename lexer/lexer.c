@@ -6,47 +6,11 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:44:54 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 11:48:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:10:00 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./lexer.h"
-
-/*
-	* Based on the command passed as a string, counts the number of tokens
-	* within the command. The algo. is related to the quotes rules and 
-	* tokens diviser. The beginning of the matrix creation.
-	* Returns 0 in an invalid scenario, attention is it impossible to have 0 commands.
-		* * Done by: Arthur Aguiar
-*/
-// size_t	count_tokens_in_command(char *str)
-// {
-// 	int		i;
-// 	size_t	counter;
-
-// 	i = 0;
-// 	counter = 1;
-// 	i += jump_white_spaces(&str[i]);
-// 	if (str[i] || ft_isredirects(&str[i]))
-// 		i += ft_jump_redirect_token(&str[i]);
-// 	else
-// 		counter = 0;
-// 	while (str[i])
-// 	{
-// 		i += jump_quotes(&str[i]);
-// 		if (str[i] && (ft_iswhitespace(str[i]) || ft_isredirects(&str[i])))
-// 		{
-// 			i += jump_white_spaces(&str[i]);
-// 			if (!str[i])
-// 				break ;
-// 			i += ft_jump_redirect_token(&str[i]);
-// 			counter++;
-// 		}
-// 		else
-// 			i++;
-// 	}
-// 	return (counter);
-// }
 
 size_t	count_tokens_in_command(char *str)
 {

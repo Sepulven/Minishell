@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   formatter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 22:47:01 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 12:17:33 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:04:53 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./utils.h"
-
-/*
-	* * Notas velhas, podem ser importantes no futuro.
-	* Atenção os casos em que são syntax error já encontram-se validado.
-	* Agora é apenas necessário popular até o ultimo este erro, apartir dele
-	* nada mais importar.
-
-	* Algo:
-	* Percorremos a string até encontrar o |
-	* Para percorremos a string precisamos saltar os quotes;
-	* Também é necessario encontrar um caractere inválido, caso haja. E parar de imediato.
-	* Quanto encontrarmos o |:
-	* Retiraremos formataremos para retirar as aspas do começo do primeiro comando
-	* Deixaremos tudo separado por apenas um espaço, retiraremos os whitespaces
-	* Copiaremos este valor para dentro da nossa matrix;
-
-*/
-
-/*
-	* Preciso refactorar para colocar em menos linhas;
-	* Vamos dar trim dos seguintes caracteres: ( ,",',|)
-*/
 
 static void	quotes_case(char **formatted, char *unformatted, \
 				int str_size, int i)
@@ -58,8 +36,8 @@ static void	str_out_quotes_case(char **formatted, char *unformatted, \
 	*formatted = ft_strjoin_free(*formatted, str, "s1s2");
 }
 
-static char	*prepare_unformatted(char *unformatted, int *str_size, int *i,\
-			char **formatted)
+static char	*prepare_unformatted(char *unformatted, int *str_size, \
+			int *i, char **formatted)
 {
 	char	*str;
 
@@ -85,20 +63,11 @@ static char	*prepare_unformatted(char *unformatted, int *str_size, int *i,\
 	return (unformatted);
 }
 
-char	*formatter(char *unformatted)
+char	*_formatter(char *formatted, char *unformatted, int str_size)
 {
-	char	*formatted;
-	int		i;
-	int		str_size;
+	int	i;
 
-	unformatted = prepare_unformatted(unformatted, &str_size, &i, &formatted);
-	if (!unformatted)
-	{
-		free(formatted);
-		if (unformatted)
-			free(unformatted);
-		return (ft_strdup(""));
-	}
+	i = 0;
 	while (unformatted && unformatted[i])
 	{
 		str_size = jump_quotes(&unformatted[i]);
@@ -117,4 +86,19 @@ char	*formatter(char *unformatted)
 	if (unformatted)
 		free(unformatted);
 	return (formatted);
+}
+
+char	*formatter(char *unformatted)
+{
+	char	*formatted;
+	int		i;
+	int		str_size;
+
+	unformatted = prepare_unformatted(unformatted, &str_size, &i, &formatted);
+	if (!unformatted)
+	{
+		free(formatted);
+		return (ft_strdup(""));
+	}
+	return (_formatter(formatted, unformatted, str_size));
 }

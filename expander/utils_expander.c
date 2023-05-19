@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_expander.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 23:29:00 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 11:58:14 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:15:46 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ char	*get_env_value(char *var_name, char **envp)
 	while (envp[i])
 	{
 		matrix = ft_split(envp[i], '=');
-		if (!matrix)
-			return (NULL);
 		if (ft_strncmp(var_name, matrix[0], ft_strlen(var_name)) == 0)
 		{
 			if (!matrix[1])

@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 15:20:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/16 15:02:50 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:00:42 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,14 @@ void	delete_heredoc_files(void)
 		if (pathname)
 			free(pathname);
 	}
+}
+
+void	delete_current_heredoc(int inf)
+{
+	char	*pathname;
+
+	close(inf);
+	pathname = take_current_pathname();
+	unlink(pathname);
+	free(pathname);
 }

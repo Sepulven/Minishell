@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 16:13:36 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:47:24 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,15 @@ static void	minishell(char *str)
 	(void)tokens;
 	(void)com;
 	(void)parser_list;
-	if (validator(&str) == EXIT_FAILURE)
+	if (validator(&str) == EXIT_FAILURE || !str)
 		return ;
 	com = get_com_number(str);
 	tokens = lexer(str, com);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	if ((parser_list && parser_list->command)
-		|| (parser_list && parser_list->inf > 0))
+	if ((parser_list && parser_list->command) \
+		|| (parser_list && parser_list->inf > 0 && parser_list->next))
 		execute(parser_list, com);
 	else if (parser_list)
 		free_lst(parser_list);

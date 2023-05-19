@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 15:13:21 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:00:30 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-# define DEBUG1 write(1, "PING1\n", 7);
-# define DEBUG2 write(1, "PING2\n", 7);
+// # define DEBUG1 write(1, "PING1\n", 7);
+// # define DEBUG2 write(1, "PING2\n", 7);
 
 typedef struct s_env
 {
@@ -69,11 +69,11 @@ int					get_com_number(char *str);
 char				*formatter(char *unformatted);
 char				*ft_strjoin_free(char *s1, char *s2, char *opt);
 
-
 /*utils_files.c*/
 void				delete_heredoc_files(void);
 char				*get_pathname(int index);
 char				*take_avaible_filename(void);
+void				delete_current_heredoc(int inf);
 char				*take_current_pathname(void);
 
 /*signals.c*/

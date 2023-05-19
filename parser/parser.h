@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 13:01:10 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:59:31 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PARSER_H 1
 
 # include "../libft/libft.h"
-// # include "../utils/utils.h"
 # include "../expander/expander.h"
 
 # include <unistd.h>
@@ -27,13 +26,17 @@
 
 # define ERR_CTRL_D "\nhere-document delimited by end-of-file (wanted '%s')\n"
 
-// PARSER UTILS //
+typedef struct s_memory {
+	t_com_list	*new;
+	t_com_list	*lst;
+	char		*pathname;
+	char		**paths;
+	char		***tokens;
+}	t_memory;
 
 /*parser_lexer_utils.c*/
 int				pos_of_c_in_str(char *str, char *c);
 void			initialize_lst(t_com_list **new);
-
-// FIM PARSER UTILS //
 
 /* !Funcoes libft alteradas ! */
 char			*ft_substr_mini(char const *s, \
@@ -42,7 +45,7 @@ int				ft_strcmp_mini(char *a, char *b);
 
 /*parser.c*/
 t_com_list		*parser(char ***tokens, char **envp);
-t_com_list		*get_node(char **command_token, char **paths, t_com_list *lst, char ***tokens);
+t_com_list		*get_node(char **command_token, t_memory mem);
 
 /*redirect_outf_inf.c*/
 int				redirect_inf(char *token);
@@ -50,7 +53,7 @@ int				redirect_outf(char *token);
 int				append(char *token);
 
 /*redirect_heredoc.c*/
-int				heredoc(char *token, t_com_list *new, t_com_list *lst, char **paths, char ***tokens);
+int				heredoc(char *token, t_memory memory);
 
 /*env_utils.c*/
 char			**get_paths(char **envp);

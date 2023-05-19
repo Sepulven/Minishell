@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 14:34:19 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:58:59 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,41 +57,31 @@ char	**add_param(char **matrix, char *param)
 	return (new_matrix);
 }
 
-static void	delete_current_heredoc(int inf)
-{
-	char	*pathname;
-
-	close(inf);
-	pathname = take_current_pathname();
-	unlink(pathname);
-	free(pathname);
-}
-
-static void	treat_redirects(t_com_list *new, char *command_token, t_com_list *lst, char **paths, char ***tokens)
+static void	treat_redirects(char *command_token, t_memory mem)
 {
 	if (!ft_strncmp(command_token, "<<", 2))
 	{
-		if (new->inf)
-			delete_current_heredoc(new->inf);
-		new->inf = heredoc(command_token, new, lst, paths, tokens);
+		if (mem.new->inf)
+			delete_current_heredoc(mem.new->inf);
+		mem.new->inf = heredoc(command_token, mem);
 	}
 	else if (!ft_strncmp(command_token, ">>", 2))
 	{
-		if (new->outf)
-			close(new->outf);
-		new->outf = append(command_token);
+		if (mem.new->outf)
+			close(mem.new->outf);
+		mem.new->outf = append(command_token);
 	}
 	else if (!ft_strncmp(command_token, "<", 1))
 	{
-		if (new->inf)
-			close(new->inf);
-		new->inf = redirect_inf(command_token);
+		if (mem.new->inf)
+			close(mem.new->inf);
+		mem.new->inf = redirect_inf(command_token);
 	}
 	else if (!ft_strncmp(command_token, ">", 1))
 	{
-		if (new->outf)
-			close(new->outf);
-		new->outf = redirect_outf(command_token);
+		if (mem.new->outf)
+			close(mem.new->outf);
+		mem.new->outf = redirect_outf(command_token);
 	}
 }
 
@@ -100,7 +90,8 @@ static void	treat_redirects(t_com_list *new, char *command_token, t_com_list *ls
 	
 	* Percorro a matrix redefindo os inf e ouf, dependendo de cada situção.
 */
-t_com_list	*get_node(char **command_token, char **paths, t_com_list *lst, char ***tokens)
+
+t_com_list	*get_node(char **command_token, t_memory mem)
 {
 	t_com_list	*new;
 	int			i;
@@ -115,27 +106,19 @@ t_com_list	*get_node(char **command_token, char **paths, t_com_list *lst, char *
 		if (!new->command && !ft_isredirects(command_token[i]))
 		{
 			new->command = token_to_field(command_token[i]);
-			new->path = check_path(paths, new->command);
+			new->path = check_path(mem.paths, new->command);
 			new->param = add_param(new->param, command_token[i]);
 		}
 		else if (!ft_isredirects(command_token[i]))
-		{
 			new->param = add_param(new->param, command_token[i]);
-		}
 		else if (ft_isredirects(command_token[i]))
-			treat_redirects(new, command_token[i], lst, paths, tokens);
+			treat_redirects(command_token[i], (t_memory){new, mem.lst, \
+			NULL, mem.paths, mem.tokens});
 		i++;
 	}
 	return (new);
 }
 
-/*
-	* Recebe os tokens e as váriaveis de ambiente para popular o parse;
-	* Como eu havia definido alteriormente iremos percorrer estes tokens para popular a matriz;
-
-	* Tinhamos algums problemas com os free... Devo tomar cuidado pois temos uma função que dando
-	* free conforme vai recebendo os parametros.
-*/
 t_com_list	*parser(char ***tokens, char **envp)
 {
 	t_com_list	*lst;
@@ -150,7 +133,7 @@ t_com_list	*parser(char ***tokens, char **envp)
 	lst = NULL;
 	while (tokens[i])
 	{
-		node = get_node(tokens[i], paths, lst, tokens);
+		node = get_node(tokens[i], (t_memory){0, lst, 0, paths, tokens});
 		i++;
 		if (!node)
 			exit(EXIT_FAILURE);
