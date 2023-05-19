@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:08:31 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:21:11 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/18 19:36:13 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ static char	*concat_env_to_str(char *current, char *var_name,
 	new_str = ft_calloc(ft_strlen(env_value) + 2 + \
 				ft_strlen(current) + rest + 2, sizeof(char));
 	ft_strlcat(new_str, current, ft_strlen(current) + 1);
-	ft_strlcat(new_str, env_value,
-		ft_strlen(current) + ft_strlen(env_value) + 1 + 2);
+	ft_strlcat(new_str, env_value, ft_strlen(current) + ft_strlen(env_value) + 1 + 2);
 	free(env_value);
 	free(current);
 	return (new_str);
@@ -71,7 +70,8 @@ static void	expande_to_new_str(char *str, char **new_str, int *i, int *j)
 	if (!new_str)
 	{
 		write(2, "WE COULDN'T ALLOCATE MEMORY.\n", 30);
-		exit(EXIT_FAILURE);
+		g_exit_s = EXIT_FAILURE;
+		exit(g_exit_s);
 	}
 	*i += ft_strlen(var_name) + 1;
 	*j = ft_strlen(*new_str);

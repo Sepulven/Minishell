@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ==87958== Memcheck, a memory error detector
 ==87958== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
 ==87958== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
@@ -297,3 +298,5 @@
 ==87958==         suppressed: 0 bytes in 0 blocks
 ==87958== 
 ==87958== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+=======
+>>>>>>> 729456b1df5782bac52059244d9ed07d3e440c35
