@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/18 12:03:13 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:07:43 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,3 @@ void	is_dir(t_com_list *lst, int **fd)
 		}
 	}
 }
-
-// void	is_dir(t_com_list *lst)
-// {
-// 	struct stat	path_stat;
-
-// 	stat(lst->path, &path_stat);
-// 	if (S_ISDIR(path_stat.st_mode))
-// 	{
-// 		if (ft_strncmp(lst->command, "./", 2) == 0 || ft_strncmp(lst->command, "/", 1) == 0)
-// 		{
-// 			error_m(0, lst->command, "Is a directory\n", 126);
-// 			error_function(lst, 0, 126, -1);
-// 		}
-// 	}
-// }

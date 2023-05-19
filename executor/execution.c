@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/18 12:20:21 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:07 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	dups_dir(t_com_list *lst)
 		dup2(lst->outf, STDOUT_FILENO);
 		close(lst->outf);
 	}
-	if (access(lst->path, R_OK) == 0)
+	if (lst->path && access(lst->path, R_OK) == 0)
 		is_dir(lst, 0);
 }
 

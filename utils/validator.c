@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 23:23:07 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:48:43 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:48:00 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	validator(char **str)
 	if (line && (line[0] == '|' || line[ft_strlen(line) - 1] == '|'))
 		err("Unclosed pipes.", line, '|', 0);
 	i = 0;
-	while (line[i])
+	while (line && line[i])
 	{
 		if (jump_quotes(&line[i]) == -1)
 			err("Unclosed quotes", line, line[i], i);

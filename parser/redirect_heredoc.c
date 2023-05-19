@@ -6,13 +6,13 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 16:14:29 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 15:05:01 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:07:40 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-char	*get_delimitador(char *token)
+char	*get_delimitador(char *token, char ***tokens)
 {
 	int		i;
 	char	*delimitador;
@@ -22,7 +22,8 @@ char	*get_delimitador(char *token)
 	i += ft_isredirects(&token[i]);
 	i += jump_white_spaces(&token[i]);
 	delimitador = ft_strdup(&token[i]);
-	free(token);
+	if (tokens)
+		free_tokens(tokens);
 	return (delimitador);
 }
 
@@ -39,14 +40,14 @@ void	close_heredoc(int fd, char *delimitador, char *line)
 	exit(EXIT_SUCCESS);
 }
 
-static void	heredoc_process(int fd, char *token)
+static void	heredoc_process(int fd, char *token, char ***tokens)
 {
 	char	*line;
 	int		expand_flag;
 	char	*delimitador;
 
 	expand_flag = 1;
-	delimitador = get_delimitador(token);
+	delimitador = get_delimitador(token, tokens);
 	if (ft_strrchr(delimitador, '"') || ft_strrchr(delimitador, '\''))
 		expand_flag = 0;
 	delimitador = formatter(delimitador);
@@ -64,13 +65,15 @@ static void	heredoc_process(int fd, char *token)
 	}
 }
 
-int	heredoc(char *token)
+int	heredoc(char *token, t_com_list *new, t_com_list *lst, char **paths, char ***tokens)
 {
 	int		pid;
 	char	*pathname;
 	int		fd;
 
 	pathname = take_avaible_filename();
+	(void)new;
+	(void)lst;
 	fd = open(pathname, O_WRONLY | O_CREAT, 0644);
 	pid = fork();
 	if (pid == -1)
@@ -79,7 +82,21 @@ int	heredoc(char *token)
 	{
 		signal(SIGINT, NULL);
 		signal(SIGQUIT, SIG_IGN);
-		heredoc_process(fd, token);
+		if (pathname)
+			free(pathname);
+		if (new)
+		{
+			free(new->command);
+			if (new->path)
+				free(new->path);
+			free_double(new->param);
+			free(new);
+		}
+		if (lst)
+			free_lst(lst);
+		if (paths)
+			free_double(paths);
+		heredoc_process(fd, token, tokens);
 	}
 	wait(NULL);
 	close(fd);

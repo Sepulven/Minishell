@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:59:06 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 11:32:54 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:01:10 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int				ft_strcmp_mini(char *a, char *b);
 
 /*parser.c*/
 t_com_list		*parser(char ***tokens, char **envp);
-t_com_list		*get_node(char **command_token, char **paths);
+t_com_list		*get_node(char **command_token, char **paths, t_com_list *lst, char ***tokens);
 
 /*redirect_outf_inf.c*/
 int				redirect_inf(char *token);
@@ -50,7 +50,7 @@ int				redirect_outf(char *token);
 int				append(char *token);
 
 /*redirect_heredoc.c*/
-int				heredoc(char *token);
+int				heredoc(char *token, t_com_list *new, t_com_list *lst, char **paths, char ***tokens);
 
 /*env_utils.c*/
 char			**get_paths(char **envp);

@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:49:19 by asepulve          #+#    #+#             */
-/*   Updated: 2023/04/30 20:19:27 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:23 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*check_path(char **paths, char *command)
 		path1 = ft_strjoin(paths[i], "/");
 		path2 = ft_strjoin(path1, command);
 		free(path1);
-		if (access(path2, X_OK) == 0)
+		if (path2 && access(path2, X_OK) == 0)
 			return (path2);
 		free(path2);
 		i++;

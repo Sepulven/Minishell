@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 17:01:12 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/18 12:02:59 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:56:15 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	command(int **fd, t_com_list *lst, int i, int com)
 		command_final(fd, node, i);
 	else
 		command_middle(fd, node, i);
-	if (access(node->path, R_OK) == 0)
+	if (node->path && access(node->path, R_OK) == 0)
 		is_dir(node, fd);
 	builtins(lst, fd, node, com);
 	free_pipes(fd, com);
