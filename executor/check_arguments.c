@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/19 16:00:36 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 19:52:17 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_flags_two(char **param, char *command)
 {
 	int	j;
 
-	j = 1;
+	j = 0;
 	if (!param[1])
 		return (0);
 	if (param[1][0] != '-')
@@ -78,7 +78,6 @@ int	check_flags_two(char **param, char *command)
 
 void	is_dir(t_com_list *lst, int **fd)
 {
-	
 	struct stat	path_stat;
 
 	stat(lst->path, &path_stat);
