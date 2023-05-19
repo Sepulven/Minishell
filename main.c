@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 14:49:46 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:13:36 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,19 @@ static void	minishell(char *str)
 	(void)tokens;
 	(void)com;
 	(void)parser_list;
-	validator(&str);
-	if (!str)
+	if (validator(&str) == EXIT_FAILURE)
 		return ;
 	com = get_com_number(str);
 	tokens = lexer(str, com);
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	if ((parser_list && parser_list->command) 
-	    || (parser_list && parser_list->inf > 0))
+	if ((parser_list && parser_list->command)
+		|| (parser_list && parser_list->inf > 0))
 		execute(parser_list, com);
 	else if (parser_list)
 		free_lst(parser_list);
 }
-
-/*
-	! Don't delete it !
-	Readline context useful:
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	str = readline("ARTEZA:"); // readline for the evaluation
-*/
 
 void	sh_level(char **envp)
 {
@@ -93,17 +82,16 @@ int	main(int argc, char **argv, char **envp)
 	sh_level(envp);
 	while (1)
 	{
-		ft_printf("ARTEZA:");
-		str = get_next_line(0);
-		// str = readline(" ");
+		str = readline("ARTEZA:");
 		if (!str)
 		{
 			free_double(*env());
 			ft_printf("\n");
-			exit(EXIT_FAILURE);
+			rl_clear_history();
+			g_exit_s = EXIT_FAILURE;
+			exit(g_exit_s);
 		}
-		// else
-		// 	str[ft_strlen(str) - 1] = '\0';
+		add_history(str);
 		minishell(str);
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:28:35 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 11:27:52 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:13:21 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 
 # include "../libft/libft.h"
 
+# include <signal.h>
+# include "stdlib.h"
 # include <unistd.h>
 # include <stdio.h>
-# include <signal.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <stddef.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 # define DEBUG1 write(1, "PING1\n", 7);
 # define DEBUG2 write(1, "PING2\n", 7);
