@@ -6,7 +6,7 @@
 /*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 17:39:11 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:41:29 by asepulve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ static void	minishell(char *str)
 	(void)tokens;
 	(void)com;
 	(void)parser_list;
-	validator(&str);
-	if (!str)
+	if (validator(&str) == EXIT_FAILURE)
 		return ;
 	com = get_com_number(str);
 	tokens = lexer(str, com);
@@ -44,16 +43,6 @@ static void	minishell(char *str)
 	else if (parser_list)
 		free_lst(parser_list);
 }
-
-/*
-	! Don't delete it !
-	Readline context useful:
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	str = readline("ARTEZA:"); // readline for the evaluation
-*/
 
 void	sh_level(char **envp)
 {
@@ -98,8 +87,11 @@ int	main(int argc, char **argv, char **envp)
 		{
 			free_double(*env());
 			ft_printf("\n");
-			exit(EXIT_FAILURE);
+			rl_clear_history();
+			g_exit_s = EXIT_FAILURE;
+			exit(g_exit_s);
 		}
+		add_history(str);
 		minishell(str);
 	}
 }

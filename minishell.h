@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 14:11:06 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/18 09:40:20 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:13:02 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@
 # include "executor/executor.h"
 # include "libft/libft.h"
 
-# include "stdlib.h"
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stddef.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/wait.h>
 
 int				check_words(char const *s);
 

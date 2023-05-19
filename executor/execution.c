@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:53:49 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/19 14:56:07 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:16:08 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	do_fork(t_com_list *lst, int **id, int i, int com)
 		signal(SIGQUIT, handler_quit);
 		command(id, lst, i, com);
 	}
+	signal(SIGQUIT, handler);
 	return (pid);
 }
 
@@ -74,6 +75,7 @@ void	execute_one(t_com_list *lst, int com)
 		wait(&status);
 		if (WIFEXITED(status))
 			g_exit_s = WEXITSTATUS(status);
+		signal(SIGQUIT, handler);
 	}
 }
 
@@ -100,6 +102,7 @@ int	**do_loop(t_com_list *lst, int com, int *i, int *status)
 		wait(NULL);
 		*i -= 1;
 	}
+	signal(SIGQUIT, handler);
 	free_pipes(id, com);
 	return (id);
 }
@@ -117,6 +120,8 @@ void	execute(t_com_list *lst, int com)
 	status = 0;
 	if (com == 1)
 	{
+		if (!lst->command)
+			return ;
 		if (check_builtin_one(lst) == -1)
 			execute_one(lst, com);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   string_jumps.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 23:52:41 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:47:48 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:26:04 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	jump_quotes(char *str)
 	char	c;
 
 	i = 0;
-	if (str[i] != '\'' && str[i] != '"' && str[i] != '`')
+	if (str[i] != '\'' && str[i] != '"')
 		return (0);
 	c = str[i++];
 	while (str[i])
@@ -33,7 +33,7 @@ int	jump_quotes(char *str)
 		if (str[i++] == c)
 			return (i);
 	}
-	return (-1);
+	return (-10);
 }
 
 int	jump_white_spaces(char *str)

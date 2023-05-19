@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:43 by mvicente          #+#    #+#             */
-/*   Updated: 2023/05/19 13:07:43 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:00:36 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,14 @@ int	check_flags_two(char **param, char *command)
 
 void	is_dir(t_com_list *lst, int **fd)
 {
+	
 	struct stat	path_stat;
 
 	stat(lst->path, &path_stat);
 	if (S_ISDIR(path_stat.st_mode))
 	{
+		if (!lst->command[0])
+			error_function(lst, fd, 126, 1);
 		if (ft_strncmp(lst->command, "./", 2) == 0)
 		{
 			error_m(0, lst->command, "Is a directory\n", 126);
