@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asepulve <asepulve@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:08:43 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/19 11:54:57 by asepulve         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:34:19 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ static void	delete_current_heredoc(int inf)
 	free(pathname);
 }
 
-static void	treat_redirects(t_com_list *new, char *command_token)
+static void	treat_redirects(t_com_list *new, char *command_token, t_com_list *lst, char **paths, char ***tokens)
 {
 	if (!ft_strncmp(command_token, "<<", 2))
 	{
 		if (new->inf)
 			delete_current_heredoc(new->inf);
-		new->inf = heredoc(command_token);
+		new->inf = heredoc(command_token, new, lst, paths, tokens);
 	}
 	else if (!ft_strncmp(command_token, ">>", 2))
 	{
@@ -100,7 +100,7 @@ static void	treat_redirects(t_com_list *new, char *command_token)
 	
 	* Percorro a matrix redefindo os inf e ouf, dependendo de cada situção.
 */
-t_com_list	*get_node(char **command_token, char **paths)
+t_com_list	*get_node(char **command_token, char **paths, t_com_list *lst, char ***tokens)
 {
 	t_com_list	*new;
 	int			i;
@@ -119,9 +119,11 @@ t_com_list	*get_node(char **command_token, char **paths)
 			new->param = add_param(new->param, command_token[i]);
 		}
 		else if (!ft_isredirects(command_token[i]))
+		{
 			new->param = add_param(new->param, command_token[i]);
+		}
 		else if (ft_isredirects(command_token[i]))
-			treat_redirects(new, command_token[i]);
+			treat_redirects(new, command_token[i], lst, paths, tokens);
 		i++;
 	}
 	return (new);
@@ -148,7 +150,7 @@ t_com_list	*parser(char ***tokens, char **envp)
 	lst = NULL;
 	while (tokens[i])
 	{
-		node = get_node(tokens[i], paths);
+		node = get_node(tokens[i], paths, lst, tokens);
 		i++;
 		if (!node)
 			exit(EXIT_FAILURE);

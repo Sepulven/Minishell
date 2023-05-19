@@ -6,7 +6,7 @@
 /*   By: mvicente <mvicente@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:52:09 by asepulve          #+#    #+#             */
-/*   Updated: 2023/05/18 19:36:39 by mvicente         ###   ########.fr       */
+/*   Updated: 2023/05/19 14:49:46 by mvicente         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ static void	minishell(char *str)
 	parser_list = parser(tokens, *env());
 	if (!parser_list)
 		return ;
-	if (parser_list && parser_list->command)
+	if ((parser_list && parser_list->command) 
+	    || (parser_list && parser_list->inf > 0))
 		execute(parser_list, com);
+	else if (parser_list)
+		free_lst(parser_list);
 }
 
 /*
